@@ -1,6 +1,0 @@
-{
-    "typescript.tsserver.web.projectWideIntellisense.enabled": true,
-    "files.watcherExclude": {
-        "**/node_modules/**": true
-    }
-}
