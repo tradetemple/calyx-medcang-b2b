@@ -1,0 +1,60 @@
+{
+  "name": "nexara",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbo",
+    "build": "next build",
+    "build:cf": "opennextjs-cloudflare build",
+    "preview": "npm run build:cf && opennextjs-cloudflare preview",
+    "deploy": "npm run build:cf && opennextjs-cloudflare deploy",
+    "lint": "next lint",
+    "knip": "knip",
+    "start": "next start",
+    "feeds:generate": "node scripts/generate-feeds.js",
+    "feeds:validate": "node scripts/generate-feeds.js && echo 'All feeds generated and validated successfully'"
+  },
+  "dependencies": {
+    "@googlemaps/js-api-loader": "^1.16.8",
+    "@next/third-parties": "^16.2.0",
+    "@opennextjs/cloudflare": "^1.19.1",
+    "@radix-ui/react-dialog": "^1.1.6",
+    "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-toast": "^1.2.6",
+    "@supabase/supabase-js": "^2.47.14",
+    "@tailwindcss/typography": "^0.5.19",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "immer": "^10.1.1",
+    "isomorphic-dompurify": "^2.21.0",
+    "lucide-react": "^0.474.0",
+    "next": "^16.2.3",
+    "next-themes": "^0.4.6",
+    "postcss": "^8.5.8",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "react-icons": "^5.4.0",
+    "react-international-phone": "^4.6.0",
+    "sonner": "^2.0.6",
+    "tailwind-merge": "^3.1.0",
+    "tailwindcss": "^3.4.19",
+    "uuid": "^11.1.0",
+    "zod": "^4.3.6",
+    "zustand": "^5.0.3"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260429.1",
+    "@types/node": "^20.19.9",
+    "@types/react": "19.2.10",
+    "@types/react-dom": "19.2.3",
+    "@types/uuid": "^10.0.0",
+    "knip": "^5.62.0",
+    "postcss-load-config": "^6.0.1",
+    "typescript": "^5.9.2",
+    "wrangler": "^4.62.0"
+  },
+  "overrides": {
+    "@types/react": "19.2.10",
+    "@types/react-dom": "19.2.3"
+  }
+}

@@ -1,0 +1,1000 @@
+{
+  "Metadata": {
+    "title": "Calyx Systems | MedCanG B2B-Beschaffungs-Demo",
+    "description": "Architektonische Demonstration einer MedCanG-konformen B2B-Plattform für medizinische Cannabis-Beschaffung und telemedizinische Triage.",
+    "ogTitle": "Calyx Systems | MedCanG B2B-Beschaffungs-Demo",
+    "ogDescription": "Simulierte GDP-konforme Großhandelsplattform für deutsche Apotheken. Unterstützt durch Next.js und strikte Zod-Validierung.",
+    "twitterTitle": "Calyx Systems | MedCanG B2B-Beschaffungs-Demo",
+    "twitterDescription": "Architektonische Demonstration einer MedCanG-konformen B2B-Plattform für medizinische Cannabis-Beschaffung und telemedizinische Triage.",
+    "products": {
+      "title": "B2B-Chargenkatalog - Calyx Systems",
+      "description": "Erkunden Sie den Musterkatalog GDP-konformer medizinischer Cannabischargen. Echtzeit-Kontingentprüfung und CoA-Zugriff.",
+      "keywords": "B2B, medizinisches Cannabis, Großhandel, MedCanG, GDP, GMP, Apothekenbeschaffung, Calyx Systems, RegTech",
+      "ogTitle": "B2B-Chargenkatalog - Calyx Systems",
+      "ogDescription": "Simulierte Beschaffungsumgebung mit strikter Row Level Security, Live-Kontingentgrenzen und Compliance-Validierung.",
+      "twitterTitle": "B2B-Chargenkatalog - Calyx Systems",
+      "twitterDescription": "Simulierte Beschaffungsumgebung mit strikter Row Level Security, Live-Kontingentgrenzen und Compliance-Validierung."
+    },
+    "productMetadataDescription": "Großhandel ab {price}. GDP-Lieferung simuliert für {cities} und in ganz {country}."
+  },
+  "home": {
+    "hero": {
+      "headline": {
+        "part1": "Backend-for-Frontend",
+        "highlight": "MedCanG",
+        "part2": " konform."
+      },
+      "subheadline": "Eine Live-Demonstration von Industriestandards und MedCanG Phase 2 Konformität.",
+      "cta": "B2B-Beschaffung",
+      "ctaSubtitle": "Rollenbasierter Bestandszugriff mit MedCanG-Kontingentprüfung und Chargen-Tracking.",
+      "cta1": "Telemedizin-Triage",
+      "cta1Subtitle": "FHIR-standardisierte Rezeptprüfung.",
+      "cta2": "Audit-Tresor",
+      "cta2Subtitle": "Unveränderliche Logs und GDP-Nachweise."
+    }
+  },
+  "navigation": {
+    "home": "Startseite",
+    "cta": "B2B-Katalog",
+    "cta1": "Telemedizin",
+    "cta2": "Audit-Trail",
+    "contact": "Kontakt",
+    "search": "Chargen suchen",
+    "searchPlaceholder": "Chargen-IDs oder Sorten suchen...",
+    "loadingProducts": "Lade Bestand...",
+    "loading": "Lade...",
+    "noProductsFoundFor": "Keine Chargen gefunden für",
+    "banner": [
+      {
+        "content": "Systemstatus: GDP-konform"
+      },
+      {
+        "content": "Bestands-Sync: Echtzeit"
+      },
+      {
+        "content": "MedCanG Phase 2 bereit."
+      }
+    ],
+    "mobileMenu": {
+      "open": "Menü öffnen",
+      "close": "Menü schließen"
+    },
+    "userRolePill": {
+      "unauthorised": "STATUS: UNVERIFIZIERTER_GAST",
+      "identified": "IDENTIFIZIERT:"
+    }
+  },
+  "footer": {
+    "logoAlt": "Calyx Medical B2B Logo",
+    "middleRow": {
+      "sections": [
+        {
+          "title": "Plattform",
+          "links": {
+            "cta": "B2B-Katalog",
+            "cta1": "FHIR-Triage",
+            "cta2": "Audit-Tresor",
+            "checkout": "Manifest-Checkout"
+          }
+        },
+        {
+          "title": "Unternehmen",
+          "links": {
+            "privacyPolicy": "Datenschutz",
+            "termsOfService": "Nutzungsbedingungen"
+          }
+        },
+        {
+          "title": "Kontakt",
+          "links": {
+            "chatWithUs": "WhatsApp",
+            "emailUs": "Architekten kontaktieren"
+          }
+        }
+      ]
+    },
+    "followUs": "Netzwerk",
+    "companyInformation": "Unternehmensinformationen: Trade Temple AB | Org. nr: 559436-9646 | Registriert in Stockholm, Schweden.",
+    "companyContactPrefix": "Kontakt:",
+    "companyLegalText": "Durch die Nutzung dieser Website stimmen Sie unseren Nutzungsbedingungen und unserer Datenschutzrichtlinie zu. Dies ist eine architektonische Demonstration einer B2B RegTech-Plattform.",
+    "bottomRow": {
+      "copyright": "Alle Rechte vorbehalten.",
+      "githubAria": "GitHub Repository",
+      "linkedinAria": "LinkedIn Profil"
+    }
+  },
+  "productGrid": {
+    "viewDetails": "Charge anzeigen",
+    "addFailed": "Hinzufügen zum Manifest fehlgeschlagen.",
+    "productAriaLabel": "Charge: {name}",
+    "labels": {
+      "concentration": "Konzentration",
+      "moq": "MOQ",
+      "price": "Preis",
+      "from": "Ab",
+      "unit": "Gramm",
+      "units": "Gramm",
+      "category": "Kategorie",
+      "image": "Bild",
+      "product": "Sorte",
+      "thc": "THC",
+      "cbd": "CBD",
+      "genetics": "Genetik",
+      "irradiation": "Bestrahlung",
+      "batch": "Charge",
+      "liveStock": "Bestand (g)",
+      "coa": "COA",
+      "actions": "Aktionen",
+      "exp": "Verf.",
+      "download": "Download",
+      "view": "Ansehen",
+      "noProducts": "Keine aktiven Chargen gefunden",
+      "inStock": "Vorrätig",
+      "outOfStock": "Erschöpft",
+      "tiered": "Staffelung"
+    }
+  },
+  "productsClient": {
+    "catalogTitle": "B2B-Chargenkatalog",
+    "showingProducts": "{count} Chargen gelistet.",
+    "noProductsFound": "Kein Bestand gefunden."
+  },
+  "productDetail": {
+    "labels": {
+      "concentration": "Konzentration",
+      "quantity": "Volumen (g)",
+      "price": "Preis",
+      "from": "Ab",
+      "unit": "Gramm",
+      "units": "Gramm"
+    },
+    "priceChart": "Großhandelspreis-Matrix",
+    "tabs": {
+      "specifications": "Chargendetails"
+    },
+    "quotaMeter": {
+      "title": "Verifiziertes Bestands-Kontingent",
+      "description": "MedCanG-Compliance: Die verifizierte Tresorkapazität ist auf 5.000g pro 30-Tage-Zyklus begrenzt."
+    },
+    "quantityControl": {
+      "title": "Beschaffungsvolumen",
+      "currentRate": "Aktueller Tarif:",
+      "moq": "MOQ",
+      "estTotal": "Geschätzter Gesamtbetrag",
+      "volDiscount": "Mengenrabatt",
+      "auditTrail": "Verschlüsselter GDP-Audit-Trail aktiv"
+    },
+    "cart": {
+      "quantity": "Beschaffungsvolumen",
+      "addToCart": "Zum Manifest hinzufügen",
+      "addedToCart": "Im Manifest protokolliert",
+      "error": "Kontingent- oder Validierungsfehler.",
+      "minOrder": "MOQ: {moq}g",
+      "minOrderUnits": "Mindestbestellmenge ist {moq}g",
+      "adding": "Validierung...",
+      "added": "✓ Manifest aktualisiert"
+    },
+    "products": "Bestand",
+    "tieredPricing": "Mengenrabatt",
+    "from": "Ab",
+    "minimumOrder": "MOQ",
+    "keyFeatures": "Compliance-Details",
+    "productUnavailable": "Diese Charge ist derzeit erschöpft oder unter Quarantäne.",
+    "outOfStock": "Charge erschöpft",
+    "showLess": "Weniger anzeigen",
+    "more": "mehr",
+    "btmRates": "BTM-konforme Großhandelspreise (exkl. MwSt.)"
+  },
+  "cart": {
+    "hero": {
+      "title": "Beschaffungsmanifest",
+      "total": "Netto-Gesamt"
+    },
+    "empty": {
+      "title": "Ihr Manifest ist leer"
+    },
+    "item": {
+      "batch": "Charge: ",
+      "expiry": "Verf.: ",
+      "quota": "Monatliches Apotheken-Kontingent von {quota}g darf nicht überschritten werden.",
+      "decreaseQuantity": "Volumen verringern",
+      "increaseQuantity": "Volumen erhöhen",
+      "removeAria": "Vom Manifest entfernen"
+    },
+    "summary": {
+      "total": "Netto-Gesamt (zzgl. 7% MwSt.)"
+    },
+    "checkout": {
+      "button": "Manifest signieren & Prüfen"
+    }
+  },
+  "checkout": {
+    "title": "Compliance & Abwicklung",
+    "optional": "Optional",
+    "steps": {
+      "address": "Apotheke",
+      "shipping": "GDP-Transport",
+      "review": "Audit",
+      "payment": "Zahlung"
+    },
+    "actions": {
+      "autofill": "Autorisierte Apotheke simulieren",
+      "continueToShipping": "Einrichtung bestätigen",
+      "continueToReview": "GDP-Logistik bestätigen",
+      "continueToPayment": "Weiter zum Hauptbuch",
+      "placeOrder": "Signieren & an Tresor übermitteln",
+      "back": "Zurück",
+      "manualEntry": "Manuelle Eingabe",
+      "apply": "Prüfen",
+      "applying": "Prüfung...",
+      "remove": "Löschen",
+      "catalogue": "Zurück zum Bestand"
+    },
+    "summary": {
+      "orderSummary": "Zusammenfassung des Manifests",
+      "quantity": "Volumen",
+      "subtotal": "Netto-Zwischensumme",
+      "shipping": "GDP-Sicherheitskurier (BtM)",
+      "discount": "Großhandelsrabatt",
+      "loyaltyDiscount": "Vertragsrabatt",
+      "fee": "Bearbeitungsgebühr",
+      "total": "Gesamtbetrag",
+      "exVat": "zzgl. MwSt.",
+      "free": "Erlassen",
+      "batch": "Charge:",
+      "expires": "Verfällt:",
+      "unit": "g",
+      "units": "Gramm",
+      "loading": "Validierung der Limits..."
+    },
+    "placeholders": {
+      "fullName": "Name der autorisierten Apotheke",
+      "email": "APOTHEKE@BEISPIEL.DE",
+      "phone": "GESICHERTE LEITUNG",
+      "address1": "ANSCHRIFT DER EINRICHTUNG...",
+      "address2": "GEBÄUDE/SUITE",
+      "city": "STADT",
+      "postalCode": "POSTLEITZAHL",
+      "state": "BUNDESLAND",
+      "selectCountry": "LAND AUSWÄHLEN",
+      "couponCode": "AUTORISIERUNGSCODE",
+      "notes": "HINWEISE ZUM SICHEREN VERSAND",
+      "notesHelp": "GDP-TRANSPORTANFORDERUNGEN HINZUFÜGEN...",
+      "vatId": "z.B. DE123456789",
+      "gln": "z.B. 4000001000005",
+      "pharmacyLicense": "z.B. AZ-74-abc-12345",
+      "btmLicense": "z.B. BtM-E-12345",
+      "responsiblePerson": "NAME DER SACHKUNDIGEN PERSON (QP)",
+      "deliveryTimeWindow": "GDP-ZEITFENSTER WÄHLEN"
+    },
+    "shipping": {
+      "mockMethod": {
+        "title": "GDP-Sicherheitskurier (BtM)",
+        "description": "Spezialisierte pharmazeutische Logistik mit aktiver Temperaturführung (15-25°C) und zertifizierten Sicherheitsstandards für Betäubungsmittel."
+      },
+      "contactInfo": "Kontakt der Einrichtung",
+      "shippingAddress": "Autorisierter Bestimmungsort",
+      "shippingMethod": "Sicheres Transportprotokoll",
+      "complianceDetails": "MedCanG-Compliance-Daten",
+      "operatingLicense": "Lizenzprüfung",
+      "fields": {
+        "fullName": "Offizieller Apothekenname",
+        "addressLine1": "Anschrift Zeile 1",
+        "addressLine2": "Anschrift Zeile 2",
+        "city": "Stadt",
+        "postalCode": "Postleitzahl",
+        "state": "Bundesland",
+        "country": "Land",
+        "phone": "Autorisierte Telefonnummer",
+        "notes": "Versandhinweise",
+        "vatId": "Umsatzsteuer-Identifikationsnummer (USt-IdNr.)",
+        "gln": "Global Location Number (GLN)",
+        "pharmacyLicense": "Apothekenerlaubnis-Nr.",
+        "btmLicense": "BtM-Erlaubnisnummer",
+        "responsiblePerson": "Verantwortliche sachkundige Person (QP)",
+        "deliveryTimeWindow": "GDP-konformes Lieferfenster"
+      },
+      "review": {
+        "fields": {
+          "vat": "USt-ID:",
+          "gln": "GLN:",
+          "responsible": "QP:",
+          "pharmacy": "LIZENZ:",
+          "btm": "BTM-ID:",
+          "delivery": "FENSTER:"
+        }
+      },
+      "noMethodsAvailable": "Kein sicherer Transport für dieses Gebiet verfügbar.",
+      "loadingMethods": "Validierung der Transportrouten...",
+      "sameAsShipping": "Rechnungsempfänger entspricht der Lieferadresse",
+      "businessDays": "Werktage"
+    },
+    "payment": {
+      "initializing": "Sicheres B2B-Hauptbuch wird erstellt...",
+      "selectMethod": "Abrechnungsmethode wählen",
+      "demoNotice": "Simulationsmodus: Die Auswahl einer Zahlungsmethode protokolliert eine erfolgreiche Bestellung im Audit-Tresor.",
+      "methods": [
+        {
+          "title": "SEPA-Lastschrift",
+          "description": "Standardmäßige B2B-Abrechnung. Der Einzug erfolgt sicher über das Geschäftskonto."
+        },
+        {
+          "title": "30 Tage Rechnungskauf (Netto 30)",
+          "description": "Zahlbar innerhalb von 30 Tagen nach Erhalt der Charge. Vorbehaltlich der Vertragsprüfung."
+        }
+      ]
+    },
+    "errors": {
+      "required": "Dieses Compliance-Feld ist obligatorisch.",
+      "invalidEmail": "Ungültiges Format.",
+      "checkoutState": "Fehler beim Aktualisieren des Validierungsstatus:",
+      "missingFields": "Bitte füllen Sie alle erforderlichen MedCanG-Compliance-Felder aus.",
+      "generalError": "Ein System-Validierungsfehler ist aufgetreten.",
+      "shippingCalculationFailed": "Routenvalidierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+      "orderCreationFailed": "Manifest-Übermittlung abgelehnt.",
+      "emptyCart": "Ihr Manifest ist leer."
+    },
+    "orderConfirmation": {
+      "title": "Manifest erfolgreich übermittelt",
+      "thankYou": "Transaktion protokolliert.",
+      "orderNumber": "Manifest-ID #",
+      "date": "Zeitstempel",
+      "orderSummary": "Beschaffungsübersicht",
+      "viewOrder": "Audit-Log anzeigen",
+      "paymentInfo": "Abrechnungs-Informationen",
+      "paymentInstruction": "Details zur Überweisung:",
+      "shippingInfo": "Autorisierter Bestimmungsort",
+      "billingInfo": "Rechnungsempfänger",
+      "invoiceUnavailable": "Belegdokument im Simulationsmodus nicht verfügbar.",
+      "invoiceAttached": "Ihre simulierte B2B-Rechnung wurde erstellt."
+    }
+  },
+  "orderDetails": {
+    "title": "Details zum Manifest",
+    "sections": {
+      "orderInfo": {
+        "title": "Transaktionsinformationen",
+        "orderId": "Manifest-ID #",
+        "status": "Systemstatus",
+        "total": "Gesamtbetrag",
+        "subtotal": "Netto-Zwischensumme",
+        "transactionFee": "Bearbeitung",
+        "vat": "7% MwSt.",
+        "unit": "g",
+        "units": "Gramm",
+        "discount": "Mengenrabatt",
+        "shipping": "GDP-Logistik",
+        "free": "Erlassen",
+        "loyaltyDiscount": "Vertragsrabatt"
+      },
+      "shipping": {
+        "title": "Autorisierter Bestimmungsort",
+        "tracking": "Logistik",
+        "trackingInformation": "Kühlketten-Tracking",
+        "trackingNumber": "Transport-ID",
+        "notShippedYet": "Dieses Manifest wartet auf den sicheren Versand.",
+        "clickRefresh": "Tresor aktualisieren, um Versandstatus zu prüfen.",
+        "vat": "USt-ID"
+      },
+      "compliance": {
+        "title": "MedCanG-Compliance-Daten",
+        "responsiblePerson": "Sachkundige Person (QP)",
+        "gln": "GLN",
+        "pharmacyLicense": "Apothekenerlaubnis",
+        "btmLicense": "BtM-Erlaubnis",
+        "deliveryWindow": "Sicheres Fenster"
+      },
+      "billing": {
+        "title": "Rechnungsempfänger",
+        "vat": "USt-ID"
+      },
+      "items": {
+        "title": "Beschaffte Chargen",
+        "quantity": "Volumen (g)",
+        "color": "Spezifikation"
+      },
+      "payment": {
+        "title": "Abrechnung",
+        "method": "Methode",
+        "copied": "Kopiert!",
+        "copy": "Kopieren",
+        "clickToCopy": "Klicken zum Kopieren",
+        "methods": {
+          "sepa": "SEPA-Lastschrift",
+          "invoice_30": "30 Tage Rechnungskauf"
+        },
+        "downloadInvoice": "Hauptbuch herunterladen (simuliert)",
+        "invoiceNote": "Werte entsprechen dem finalen Datensatz im Beschaffungstresor.",
+        "downloadReceipt": "Beleg herunterladen",
+        "receiptNote": "Werte entsprechen dem finalen Datensatz im Beschaffungstresor."
+      },
+      "timeline": {
+        "title": "Audit-Zeitstrahl",
+        "ordered": "Protokolliert",
+        "shipped": "Versandt",
+        "delivered": "Erhalten"
+      },
+      "statuses": {
+        "processing": "Verifizierung",
+        "shipped": "Unterwegs",
+        "delivered": "Erhalten",
+        "cancelled": "Abgelehnt",
+        "pending": "Warten auf Abrechnung"
+      }
+    }
+  },
+  "audit": {
+  "header": {
+    "title": "Systemintegrität verifiziert",
+    "logsTitle": "SYSTEM_LOGS // BTM_AUDIT_VAULT",
+    "live": "LIVE",
+    "nodeIdentity": "Node-Identität",
+    "mockId": "GER-BER-PHARM-8372",
+    "flushLogs": "Logs leeren"
+  },
+  "terminal": {
+    "title": "Schreibgeschütztes Sicherheits-Ledger",
+    "timestamp": "ZEITSTEMPEL",
+    "actorId": "AKTEUR_ID",
+    "action": "AKTION",
+    "status": "STATUS",
+    "details": "DETAILS",
+    "hashKey": "HASH_SCHLÜSSEL",
+    "awaitingLogs": "SYSTEM IM LEERLAUF: WARTE AUF INTERAKTION..."
+  },
+  "footer": {
+    "securityProtocol": "Sicherheitsprotokoll: AES-256-GCM",
+    "immutability": "Unveränderlichkeit: SHA-256 Verkettung",
+    "copyright": "&copy; 2026 CALYX SYSTEMS GERMANY // COMPLIANCE DIVISION"
+  }
+  },
+  "roleGuard": {
+    "loading": "Sicherheitskontext wird initialisiert...",
+    "simulator": {
+      "uiTitle": "SECURE_ROLE_SIMULATOR",
+      "prompt": "Identitätsanspruch wählen",
+      "guestUnauthorized": "Gast (nicht autorisiert)",
+      "verifiedPharmacy": "verified_pharmacy",
+      "medicalDoctor": "medical_doctor",
+      "subtitle": "Demonstration von JWT-basiertem RBAC & Audit-Trails"
+    },
+    "roleChange": {
+      "authEst": "AUTH_SESSION_ESTABLISHED",
+      "details": "Identität verifiziert: {identifier} | Rolle: {role}",
+      "success": "SUCCESS"
+    },
+    "rlsDenied": {
+      "title": "ZUGRIFF_VERWEIGERT",
+      "message": "Sie verfügen nicht über die erforderlichen Berechtigungen, um auf diese sichere Ressource zuzugreifen.",
+      "conflictTitle": "COMPLIANCE_KONFLIKT_FEHLER",
+      "conflictMessage": "Verstoß gegen §7 MedCanG: Ärzten ist die direkte Beschaffung oder der kommerzielle Handel mit Betäubungsmitteln gesetzlich untersagt. Der Zugriff auf den Checkout ist auf lizenzierte Apotheken beschränkt."
+    },
+    "rlsError": {
+      "policyName": "MedCanG §7 Strikte Trennung",
+      "loading": "Sicherheitskontext wird geladen...",
+      "error403": "FEHLER 403:",
+      "message": "PostgREST hat diese Anfrage auf Datenbankebene abgelehnt",
+      "details": {
+        "activePolicy": "Aktive Richtlinie:",
+        "requestRole": "Anfrage-Rolle:",
+        "requiredRole": "Erforderliche Rolle:",
+        "timestamp": "Zeitstempel:",
+        "guest": "Gast"
+      },
+      "exampleTitle": "Datenbanksicherheit in Aktion",
+      "solution": {
+        "title": "Wie man das behebt",
+        "solution": "Mit verifizierten Apotheken-Anmeldedaten anmelden",
+        "explanation": "Verwenden Sie ein JWT mit role = 'verified_pharmacy'"
+      },
+      "footer": {
+        "notice": "Dies ist eine Offline-UI-Demonstration der Online-Datenbanksicherheit",
+        "disclaimer": "Row Level Security (RLS) wird auf PostgreSQL-Ebene erzwungen"
+      }
+    }
+  },
+  "telemedicine": {
+    "title": "Telemedizin-Triage-Simulator",
+    "subtitle": "MedCanG §3 Regulatory Compliance Engine • Gematik FHIR R4 Ingestion",
+    "status": "System Live: Frankfurt-Main-01",
+    "leftColumn": {
+      "title": "FHIR-Payload-Ingestion",
+      "loadValid": "Gültig laden",
+      "loadInvalid": "Ungültig laden",
+      "jsonTerminal": "Raw JSON Terminal",
+      "execute": "Zod-Triage & Parse ausführen"
+    },
+    "rightColumn": {
+      "title": "Klinisches Bewertungsergebnis",
+      "identityTitle": "Patientenidentität",
+      "noData": "Keine gültigen Daten verarbeitet",
+      "prescriptionTitle": "Rezeptdetails",
+      "quantity": "Menge:",
+      "ref": "Ref:",
+      "complianceTitle": "MedCanG-Compliance-Checkliste",
+      "fhirValidation": "FHIR-Schema-Validierung",
+      "qesSignature": "Kryptografische QES-Signatur",
+      "consultationCheck": "§3 MedCanG 365-Tage-Konsultationsprüfung",
+      "checklistPass": "BESTANDEN",
+      "checklistFail": "FEHLGESCHLAGEN",
+      "lastSeen": "Zuletzt gesehen:",
+      "triageApprovedTitle": "GENEHMIGT: ABGABE AUTORISIERT",
+      "triageApprovedSubtitle": "Alle regulatorischen Prüfungen für die deutsche medizinische Rechtsprechung bestanden.",
+      "triageRejectedTitle": "ABGELEHNT: REGULATORISCHER VERSTOSS",
+      "triageRejectedSubtitle": "Eine oder mehrere obligatorische MedCanG-Compliance-Prüfungen sind fehlgeschlagen.",
+      "errorTrace": "Schema-Fehlerverfolgung:",
+      "awaitingInjestion": "Warten auf Payload-Ingestion",
+      "instructUser": "Führen Sie die Triage über das Ingestion-Terminal aus, um die klinischen Ergebnisse zu sehen."
+    },
+    "handleTriage": {
+      "fhirValidation": "FHIR_SCHEMA_VALIDATION",
+      "success": "SUCCESS",
+      "failure": "FAILURE",
+      "allPassed": "E-Rezept {parsedData.id} verifiziert. Patient {parsedData.subject.id} für {parsedData.dispenseRequest.quantity.value}g freigegeben.",
+      "notPassed": "Regulatorischer Verstoß bei {parsedData.subject.id}. QES- oder Konsultationsdatum ungültig.",
+      "payloadFailed": "Payload hat die grundlegende FHIR-Schema-Validierung nicht bestanden.",
+      "parseFailed": "Fehler beim Parsen der Raw-JSON-Payload.",
+      "invalidJson": "Ungültiges JSON-Format."
+    }
+  },
+  "privacy": {
+    "hero": {
+      "title": "Datenschutzrichtlinie",
+      "subtitle": "Datenverarbeitung für diese architektonische Demonstration."
+    },
+    "sections": {
+      "dataCollection": {
+        "title": "Daten & Musterdaten",
+        "intro": "Da dies eine RegTech-Portfolio-Demonstration ist, werden keine echten personenbezogenen Daten erhoben oder verarbeitet:",
+        "items": [
+          "Es werden ausschließlich hardcodierte Musterdaten für Anzeigezwecke verwendet.",
+          "Der lokale Browser-Speicher wird strikt zur Simulation von JWT-Sitzungen und rollenbasierter Zugriffskontrolle (RBAC) genutzt.",
+          "Es werden keine echten Patienten-, Apotheken- oder Rezeptdaten eingelesen oder gespeichert.",
+          ""
+        ]
+      },
+      "dataSecurity": {
+        "title": "Infrastruktur & Sicherheit",
+        "description": "Diese Demonstration wird auf einer hochperformanten Cloudflare-Only-Infrastruktur gehostet, die Cloudflare DNS, Pages und Edge Workers nutzt, um Routing ohne Latenz und Sicherheit auf Edge-Ebene zu gewährleisten."
+      },
+      "rights": {
+        "title": "Tracking & Cookies",
+        "intro": "Bezüglich lokaler Daten:",
+        "items": [
+          "Es werden keine Tracking-Skripte, Pixel oder Analysen von Drittanbietern eingesetzt.",
+          "Sitzungspersistenz und UI-Status werden vollständig clientseitig verwaltet.",
+          "",
+          ""
+        ]
+      }
+    }
+  },
+  "terms": {
+    "title": "Nutzungsbedingungen & Haftungsausschluss",
+    "subtitle": "Rechtlicher Hinweis zu dieser architektonischen Demonstration.",
+    "sections": {
+      "section1": {
+        "title": "1. Art der Plattform",
+        "para1": "Diese Website ist ein technisches und architektonisches Demonstrations-Portfolio, das von <b>Trade Temple AB</b> erstellt wurde und im Eigentum des Unternehmens steht.",
+        "para2": "Durch den Zugriff auf diese Seite erkennen Sie an, dass es sich um eine simulierte RegTech-Umgebung handelt und nicht um eine funktionierende kommerzielle oder medizinische Einheit.",
+        "para3": "Auf dieser Plattform findet keine tatsächliche Betäubungsmittel-Lieferkette, kein Großhandelsvertrieb und keine medizinische Triage statt.",
+        "para4": "Es werden keine echten Produkte, medizinischen Cannabischargen oder Gesundheitsdienstleistungen verkauft, vermittelt oder bereitgestellt.",
+        "para5": ""
+      },
+      "section2": {
+        "title": "2. Zulässige Nutzung",
+        "para1": "Diese Plattform ist ausschließlich für die Bewertung durch potenzielle Arbeitgeber, CTOs und technische Recruiter bestimmt.",
+        "para2": "Sie erklären sich damit einverstanden, die simulierten Backend-Systeme oder Edge-Funktionen nicht zu missbrauchen, zurückzuentwickeln oder zu manipulieren.",
+        "list": [
+          "Kein automatisiertes Scraping oder Penetrationstests.",
+          "Die Plattform dient nur der visuellen und architektonischen Bewertung.",
+          ""
+        ]
+      },
+      "section3": {
+        "title": "3. Musterdaten & Compliance-Simulation",
+        "para1": "Alle angezeigten Chargennummern, THC/CBD-Werte, Preise und medizinischen Daten sind frei erfunden.",
+        "para2": "Analysezertifikate (CoAs) und regulatorische Logik (wie MedCanG-Kontingentprüfung und FHIR-Parsing) sind zu Demonstrationszwecken simuliert.",
+        "para3": "",
+        "para4": "",
+        "para5": ""
+      },
+      "section4": {
+        "title": "4. Simulierte Transaktionen",
+        "para1": "Der B2B-Beschaffungs-Checkout, der FHIR-Parser und die Audit-Logs sind interaktive Simulationen.",
+        "para2": "Es werden keine Finanztransaktionen, SEPA-Mandate oder tatsächliche Logistikversandaufträge ausgeführt.",
+        "para3": "",
+        "para4": "",
+        "para5": ""
+      },
+      "section5": {
+        "title": "5. Geistiges Eigentum",
+        "para1": "Die zugrunde liegende Codebasis, die UI/UX-Architektur und die Compliance-Algorithmen sind das geistige Eigentum von <b>Trade Temple AB</b>.",
+        "para2": "Der Code, die Designs und die Architektur dürfen ohne ausdrückliche schriftliche Genehmigung nicht repliziert, kopiert oder für kommerzielle Anwendungen verwendet werden.",
+        "para3": "",
+        "para4": "",
+        "para5": ""
+      },
+      "section6": {
+        "title": "6. Haftung & Garantien",
+        "para1": "Die Plattform wird ohne Mängelgewähr bereitgestellt.",
+        "para2": "Trade Temple AB übernimmt keine Haftung für das Vertrauen in die simulierte Compliance-Logik, die Daten oder die präsentierte Schnittstelle.",
+        "para3": "",
+        "para4": "",
+        "para5": ""
+      },
+      "section7": {
+        "title": "7. Anwendbares Recht",
+        "para1": "Diese Bedingungen und der Schutz des darin enthaltenen geistigen Eigentums unterliegen den Gesetzen von Schweden.",
+        "para2": "",
+        "para3": "",
+        "para4": "",
+        "para5": ""
+      }
+    }
+  },
+  "languageCurrencyChanger": {
+    "language": "Sprache",
+    "currencyChanger": {
+      "title": "Währung",
+      "detected": "Erkannt",
+      "auto": "Auto"
+    },
+    "currencies": {
+      "EUR": "Euro",
+      "GBP": "Britisches Pfund"
+    }
+  },
+  "loading": "Lade...",
+  "errors": {
+    "auth": {
+      "default": "Authentifizierung fehlgeschlagen. Bitte versuchen Sie es erneut.",
+      "invalidCredentials": "Ungültige E-Mail oder Passwort. Bitte prüfen Sie Ihre Daten.",
+      "emailNotConfirmed": "Bitte bestätigen Sie Ihre E-Mail-Adresse, bevor Sie sich anmelden.",
+      "emailNotAuthorized": "Diese E-Mail-Adresse ist nicht autorisiert. Bitte kontaktieren Sie den Support.",
+      "signupDisabled": "Die Registrierung neuer Konten ist derzeit deaktiviert.",
+      "emailExists": "Ein Konto mit dieser E-Mail-Adresse existiert bereits.",
+      "userNotFound": "Kein Konto mit dieser E-Mail-Adresse gefunden.",
+      "weakPassword": "Das Passwort ist zu schwach. Bitte wählen Sie ein stärkeres Passwort.",
+      "samePassword": "Das neue Passwort muss sich von Ihrem aktuellen Passwort unterscheiden.",
+      "sessionExpired": "Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.",
+      "sessionNotFound": "Sitzung nicht gefunden. Bitte melden Sie sich erneut an.",
+      "refreshTokenNotFound": "Sitzung abgelaufen. Bitte melden Sie sich erneut an.",
+      "userBanned": "Ihr Konto wurde vorübergehend gesperrt. Bitte kontaktieren Sie den Support.",
+      "rateLimitExceeded": "Zu viele Anfragen. Bitte warten Sie einen Moment.",
+      "emailRateLimitExceeded": "Zu viele E-Mails gesendet. Bitte warten Sie kurz.",
+      "smsRateLimitExceeded": "Zu viele SMS gesendet. Bitte warten Sie kurz.",
+      "captchaFailed": "Captcha-Verifizierung fehlgeschlagen. Bitte erneut versuchen.",
+      "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "phoneNotConfirmed": "Bitte bestätigen Sie Ihre Telefonnummer, bevor Sie sich anmelden.",
+      "phoneExists": "Ein Konto mit dieser Telefonnummer existiert bereits.",
+      "providerDisabled": "Diese Anmeldemethode ist derzeit deaktiviert.",
+      "oauthProviderNotSupported": "Dieser Social-Login-Anbieter wird nicht unterstützt.",
+      "anonymousProviderDisabled": "Anonyme Anmeldung ist deaktiviert.",
+      "emailProviderDisabled": "E-Mail-Anmeldung ist deaktiviert.",
+      "phoneProviderDisabled": "Telefon-Anmeldung ist deaktiviert.",
+      "otpDisabled": "OTP-Anmeldung ist deaktiviert.",
+      "otpExpired": "Der Verifizierungscode ist abgelaufen. Bitte fordern Sie einen neuen an.",
+      "badJwt": "Ungültiges Authentifizierungstoken. Bitte erneut anmelden.",
+      "noAuthorization": "Autorisierung erforderlich. Bitte anmelden.",
+      "notAdmin": "Administratorzugriff erforderlich.",
+      "insufficientAal": "Zusätzliche Authentifizierung erforderlich.",
+      "mfaChallengeExpired": "MFA-Challenge abgelaufen.",
+      "mfaVerificationFailed": "MFA-Verifizierung fehlgeschlagen.",
+      "mfaVerificationRejected": "MFA-Verifizierung wurde abgelehnt.",
+      "reauthenticationNeeded": "Bitte authentifizieren Sie sich erneut, um fortzufahren.",
+      "reauthenticationNotValid": "Erneute Authentifizierung fehlgeschlagen.",
+      "inviteNotFound": "Einladung nicht gefunden oder abgelaufen.",
+      "userAlreadyExists": "Ein Konto mit diesen Informationen existiert bereits.",
+      "sessionRetrievalFailed": "Sitzungsinformationen konnten nicht abgerufen werden.",
+      "noAuthenticatedUser": "Kein angemeldeter Benutzer gefunden.",
+      "thirdPartyProvider": "Dieses Konto nutzt Social-Login.",
+      "useThirdPartyLogin": "Bitte nutzen Sie Ihre ursprüngliche Anmeldemethode (Google, Apple, etc.)."
+    },
+    "validation": {
+      "default": "Bitte prüfen Sie Ihre Eingabe.",
+      "failed": "Validierung fehlgeschlagen. Bitte prüfen Sie Ihre Angaben.",
+      "badJson": "Ungültiges Datenformat. Bitte erneut versuchen.",
+      "requiredField": "Dieses Feld ist erforderlich.",
+      "invalidEmail": "Bitte geben Sie eine gültige E-Mail-Adresse ein.",
+      "passwordMismatch": "Passwörter stimmen nicht überein.",
+      "emailRequired": "E-Mail-Adresse ist erforderlich.",
+      "passwordRequired": "Passwort ist erforderlich.",
+      "nameTooShort": "Der Name ist zu kurz.",
+      "nameTooLong": "Der Name ist zu lang.",
+      "invalidFormat": "Ungültiges Format. Bitte prüfen Sie Ihre Eingabe."
+    },
+    "payment": {
+      "default": "Zahlung fehlgeschlagen. Bitte erneut versuchen.",
+      "failed": "Zahlung konnte nicht verarbeitet werden.",
+      "declined": "Zahlung wurde abgelehnt. Bitte prüfen Sie Ihr Zahlungsmittel.",
+      "insufficientFunds": "Unzureichende Deckung. Bitte nutzen Sie ein anderes Zahlungsmittel.",
+      "cardExpired": "Ihre Karte ist abgelaufen.",
+      "invalidCard": "Ungültige Karteninformationen.",
+      "processingFailed": "Zahlungsverarbeitung fehlgeschlagen.",
+      "authorizationFailed": "Zahlungsautorisierung fehlgeschlagen.",
+      "confirmationFailed": "Zahlungsbestätigung fehlgeschlagen.",
+      "setupFailed": "Zahlungseinrichtung fehlgeschlagen.",
+      "stripeKeyMissing": "Zahlungskonfigurationsfehler. Bitte Support kontaktieren.",
+      "invalidAmount": "Ungültiger Zahlungsbetrag.",
+      "applePayNoEmail": "E-Mail für Apple Pay erforderlich.",
+      "googlePayNoEmail": "E-Mail für Google Pay erforderlich.",
+      "applePayNoPhone": "Telefonnummer für Apple Pay erforderlich.",
+      "paypalNoEmail": "E-Mail für PayPal erforderlich.",
+      "applePayNoAddress": "Adresse für Apple Pay erforderlich.",
+      "googlePayNoAddress": "Adresse für Google Pay erforderlich."
+    },
+    "order": {
+      "default": "Bestellverarbeitung fehlgeschlagen.",
+      "creationFailed": "Bestellung konnte nicht erstellt werden.",
+      "creationFailedWithRefund": "Bestellung fehlgeschlagen. Rückerstattung wurde eingeleitet.",
+      "creationFailedManualRefund": "Bestellung fehlgeschlagen. Bitte kontaktieren Sie den Support für eine Rückerstattung.",
+      "apiError": "Systemfehler aufgetreten. Rückerstattung wurde eingeleitet.",
+      "apiErrorWithRefund": "Systemfehler aufgetreten. Rückerstattung wurde eingeleitet.",
+      "apiErrorManualRefund": "Systemfehler aufgetreten. Bitte Support für Rückerstattung kontaktieren.",
+      "duplicateUser": "Ein Konto mit dieser E-Mail existiert bereits. Bitte anmelden.",
+      "loginRequired": "Bitte melden Sie sich an, um die Bestellung abzuschließen.",
+      "emptyCart": "Ihr Warenkorb ist leer.",
+      "invalidOrderData": "Ungültige Bestellinformationen."
+    },
+    "network": {
+      "default": "Verbindung fehlgeschlagen. Bitte Internetverbindung prüfen.",
+      "connectionFailed": "Verbindung nicht möglich. Bitte erneut versuchen.",
+      "timeout": "Zeitüberschreitung der Anfrage.",
+      "serverError": "Serverfehler. Bitte später erneut versuchen.",
+      "serviceUnavailable": "Dienst vorübergehend nicht verfügbar."
+    },
+    "general": {
+      "default": "Ein unerwarteter Fehler ist aufgetreten.",
+      "conflict": "Ein Konflikt ist aufgetreten. Bitte erneut versuchen.",
+      "requestTimeout": "Zeitüberschreitung der Anfrage.",
+      "unexpectedFailure": "Ein unerwarteter Fehler ist aufgetreten.",
+      "missingFields": "Bitte füllen Sie alle erforderlichen Felder aus.",
+      "invalidData": "Ungültige Daten bereitgestellt.",
+      "operationFailed": "Vorgang fehlgeschlagen.",
+      "accessDenied": "Zugriff verweigert.",
+      "resourceNotFound": "Angeforderte Ressource nicht gefunden.",
+      "tooManyRequests": "Zu viele Anfragen. Bitte warten Sie einen Moment."
+    }
+  },
+  "schema": {
+    "product": {
+      "name": "Calyx Systems B2B",
+      "description": "Simulierte B2B-Chargen für medizinisches Cannabis. Keywords: Medizinisches Cannabis, RegTech, GDP-Großhandel, MedCanG-Konformität.",
+      "availability": "InStock",
+      "defaultDescription": "GDP-konforme {category} simuliert für {cities} und {country}."
+    },
+    "breadcrumb": {
+      "home": "Startseite"
+    },
+    "areaServed": {
+      "description": "Simulierte medizinische Beschaffung für {country}.",
+      "shippingDescription": "Simulierter GDP-Kühlkettenversand nach {country}."
+    },
+    "contactPoint": {
+      "type": "Technischer Architekten-Support"
+    },
+    "units": {
+      "grams": "Gramm",
+      "perGram": "pro Gramm"
+    },
+    "properties": {
+      "concentration": "THC/CBD %",
+      "quality": "GACP/GMP-Status",
+      "qualityValue": "Ph. Eur. konform",
+      "availability": "Bestand",
+      "businessType": "Typ"
+    },
+    "provider": {
+      "name": "Calyx Systems {city}",
+      "description": "B2B-Beschaffung von medizinischem Cannabis in {country}",
+      "businessTypeB2B": "Großhandelsbeschaffung",
+      "businessTypeB2C": "",
+      "qualityValue": "GMP-zertifiziert"
+    },
+    "review": {
+      "anonymousAuthor": "Verifizierte Apotheke"
+    },
+    "paymentAccepted": "SEPA-Lastschrift, 30 Tage Rechnungskauf",
+    "keywords": "Medizinisches Cannabis, B2B Großhandel, MedCanG, RegTech, GDP",
+    "searchAction": {
+      "name": "Chargen suchen"
+    }
+  },
+  "common": {
+    "product": "Charge",
+    "close": "Schließen",
+    "error": "Systemfehler:",
+    "retryLoadingConfiguration": "Verbindung erneut versuchen",
+    "retryPayment": "Abrechnung erneut versuchen",
+    "securePayment": "B2B-Abrechnung",
+    "contactSales": "Architekten kontaktieren",
+    "loadingTheme": "Lade UI",
+    "themeSwitcherLoading": "Lade...",
+    "addToCart": "Zum Manifest hinzufügen",
+    "featuredProducts": "Hervorgehobene Chargen",
+    "loadingOverlay": {
+      "processing": "Validierung...",
+      "pleaseWait": "Prüfung der Compliance-Logik",
+      "almostDone": "Eintrag in das unveränderliche Logbuch",
+      "completing": "Manifest wird finalisiert"
+    },
+    "images": {
+      "noMedia": "Keine Medien verfügbar",
+      "video": "Video",
+      "photo": "Foto",
+      "zoomOut": "Verkleinern",
+      "zoomIn": "Vergrößern",
+      "reset": "Zurücksetzen"
+    }
+  },
+  "countries": {
+    "AD": "Andorra",
+    "AE": "Vereinigte Arabische Emirate",
+    "AR": "Argentinien",
+    "AT": "Österreich",
+    "AU": "Australien",
+    "BE": "Belgien",
+    "BG": "Bulgarien",
+    "BR": "Brasilien",
+    "CA": "Kanada",
+    "CH": "Schweiz",
+    "CL": "Chile",
+    "CN": "China",
+    "CO": "Kolumbien",
+    "CY": "Zypern",
+    "CZ": "Tschechien",
+    "CS": "Tschechien",
+    "DE": "Deutschland",
+    "DK": "Dänemark",
+    "DA": "Dänemark",
+    "EE": "Estland",
+    "ES": "Spanien",
+    "FI": "Finnland",
+    "FR": "Frankreich",
+    "GB": "Vereinigtes Königreich",
+    "GR": "Griechenland",
+    "EL": "Griechenland",
+    "HK": "Hongkong",
+    "HR": "Kroatien",
+    "HU": "Ungarn",
+    "ID": "Indonesien",
+    "IE": "Irland",
+    "IL": "Israel",
+    "IN": "Indien",
+    "IS": "Island",
+    "IT": "Italien",
+    "JP": "Japan",
+    "KR": "Südkorea",
+    "LI": "Liechtenstein",
+    "LT": "Litauen",
+    "LU": "Luxemburg",
+    "LV": "Lettland",
+    "MC": "Monaco",
+    "MT": "Malta",
+    "MX": "Mexiko",
+    "MY": "Malaysia",
+    "NL": "Niederlande",
+    "NO": "Norwegen",
+    "NZ": "Neuseeland",
+    "PE": "Peru",
+    "PH": "Philippinen",
+    "PL": "Polen",
+    "PT": "Portugal",
+    "RO": "Rumänien",
+    "SE": "Schweden",
+    "SG": "Singapur",
+    "SI": "Slowenien",
+    "SK": "Slowakei",
+    "TH": "Thailand",
+    "TR": "Türkei",
+    "US": "Vereinigte Staaten",
+    "VN": "Vietnam",
+    "ZA": "Südafrika",
+    "Andorra": "Andorra",
+    "United Arab Emirates": "Vereinigte Arabische Emirate",
+    "Argentina": "Argentinien",
+    "Austria": "Österreich",
+    "Australia": "Australien",
+    "Belgium": "Belgien",
+    "Bulgaria": "Bulgarien",
+    "Brazil": "Brasilien",
+    "Canada": "Kanada",
+    "Switzerland": "Schweiz",
+    "Chile": "Chile",
+    "China": "China",
+    "Colombia": "Kolumbien",
+    "Cyprus": "Zypern",
+    "Czechia": "Tschechische Republik",
+    "Germany": "Deutschland",
+    "Denmark": "Dänemark",
+    "Estonia": "Estland",
+    "Spain": "Spanien",
+    "Finland": "Finnland",
+    "France": "Frankreich",
+    "Greece": "Griechenland",
+    "Hong Kong": "Hongkong",
+    "Croatia": "Kroatien",
+    "Hungary": "Ungarn",
+    "Indonesia": "Indonesien",
+    "Ireland": "Irland",
+    "Israel": "Israel",
+    "India": "Indien",
+    "Iceland": "Island",
+    "Italy": "Italien",
+    "Japan": "Japan",
+    "South Korea": "Südkorea",
+    "Liechtenstein": "Liechtenstein",
+    "Lithuania": "Litauen",
+    "Luxembourg": "Luxemburg",
+    "Latvia": "Lettland",
+    "Monaco": "Monaco",
+    "Malta": "Malta",
+    "Mexico": "Mexiko",
+    "Malaysia": "Malaysia",
+    "Netherlands": "Niederlande",
+    "Norway": "Norwegen",
+    "New Zealand": "Neuseeland",
+    "Peru": "Peru",
+    "Philippines": "Philippinen",
+    "Poland": "Polen",
+    "Portugal": "Portugal",
+    "Romania": "Rumänien",
+    "Sweden": "Schweden",
+    "Singapore": "Singapur",
+    "Slovenia": "Slowenien",
+    "Slovakia": "Slowakei",
+    "Thailand": "Thailand",
+    "Turkey": "Türkei",
+    "United States": "Vereinigte Staaten",
+    "United Kingdom": "Vereinigtes Königreich",
+    "Vietnam": "Vietnam",
+    "South Africa": "Südafrika"
+  },
+  "countriesNames": {
+    "Andorra": "Andorra",
+    "United Arab Emirates": "Vereinigte Arabische Emirate",
+    "Argentina": "Argentinien",
+    "Austria": "Österreich",
+    "Australia": "Australien",
+    "Belgium": "Belgien",
+    "Bulgaria": "Bulgarien",
+    "Brazil": "Brasilien",
+    "Canada": "Kanada",
+    "Chile": "Chile",
+    "China": "China",
+    "Colombia": "Kolumbien",
+    "Cyprus": "Zypern",
+    "Czech Republic": "Tschechische Republik",
+    "Denmark": "Dänemark",
+    "Estonia": "Estland",
+    "Finland": "Finnland",
+    "France": "Frankreich",
+    "United Kingdom": "Vereinigtes Königreich",
+    "Germany": "Deutschland",
+    "Greece": "Griechenland",
+    "Hong Kong": "Hongkong",
+    "Croatia": "Kroatien",
+    "Hungary": "Ungarn",
+    "Indonesia": "Indonesien",
+    "Ireland": "Irland",
+    "Israel": "Israel",
+    "India": "Indien",
+    "Iceland": "Island",
+    "IT": "Italien",
+    "JP": "Japan",
+    "KR": "Südkorea",
+    "LI": "Liechtenstein",
+    "LT": "Litauen",
+    "LU": "Luxemburg",
+    "LV": "Lettland",
+    "MC": "Monaco",
+    "MT": "Malta",
+    "MX": "Mexiko",
+    "MY": "Malaysia",
+    "NL": "Niederlande",
+    "NO": "Norwegen",
+    "Peru": "Peru",
+    "Philippines": "Philippinen"
+  }
+}

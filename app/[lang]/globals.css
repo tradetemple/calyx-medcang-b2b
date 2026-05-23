@@ -1,0 +1,212 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Font loading optimization - prevent layout shifts */
+html {
+  /* Ensure consistent font metrics during loading */
+  font-size-adjust: 0.5;
+}
+
+/* Critical resource loading states */
+.resources-loading {
+  /* Prevent layout shifts during resource loading */
+  contain: layout style paint;
+}
+
+.resources-loaded {
+  /* Enable full functionality after resources load */
+  contain: none;
+}
+
+/* Render-blocking prevention */
+.async-css-loading {
+  /* Hide content until non-critical CSS loads */
+  visibility: hidden;
+}
+
+.async-css-loaded .async-css-loading {
+  visibility: visible;
+  transition: opacity 0.2s ease-in;
+}
+
+:root {
+  --background: hsl(var(--color-bg-main));
+  --foreground: hsl(var(--color-text-main));
+  
+  /* Font family variables */
+  --font-primary: var(--font-noto-sans), system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  --font-heading: AeonikPro, var(--font-noto-sans), system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  /* surface + border */
+  --gm3-sys-color-surface: hsl(var(--color-surface));
+  --gm3-sys-color-surface-container-high: hsl(var(--color-surface-hover));
+  --gm3-elevation-level2: 0 4px 6px rgba(0,0,0,.1);
+
+  /* text */
+  --gm3-sys-color-on-surface-variant: hsl(var(--color-text-secondary));
+  --gm3-sys-color-on-surface: hsl(var(--color-text-main));
+  --gm3-sys-color-primary: hsl(var(--color-primary));
+
+  /* rounding */
+  --gm3-shape-corner-full: 0.375rem;
+}
+
+@keyframes scale-check {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Add this to your existing animations */
+@keyframes badge-pop {
+  0% { transform: scale(0.8); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+.animate-scale-check {
+  animation: scale-check 0.3s ease-in-out;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in-out;
+}
+
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; /* 'AeonikPro', */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+input,
+textarea,
+[contenteditable="true"],
+[contenteditable=""],
+[contenteditable] {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+.fade-top-bottom {
+  /* Fades the video horizontally with a tighter oval gradient to reduce blank background */
+  -webkit-mask-image: radial-gradient(ellipse 120% 50% at center, black 50%, transparent 70%);
+  mask-image: radial-gradient(ellipse 120% 50% at center, black 50%, transparent 70%);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+::selection {
+  background-color: hsl(var(--color-secondary));
+  color: hsl(var(--color-static-white));
+}
+
+::-moz-selection {
+  background-color: hsl(var(--color-secondary));
+  color: hsl(var(--color-static-white));
+}
+
+.features-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+footer {
+  flex-shrink: 0;
+}
+
+.selectable {
+  -webkit-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 0.3; }
+}
+.animate-pulse-slow {
+  animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}

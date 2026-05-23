@@ -1,0 +1,13 @@
+# Cache Next.js build assets (CSS, JS, Webpack chunks)
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache Images, Fonts, and Media
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable

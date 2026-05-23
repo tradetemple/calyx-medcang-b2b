@@ -1,0 +1,982 @@
+{
+  "Metadata": {
+    "title": "Calyx Systems | MedCanG B2B Procurement Demo",
+    "description": "Architectural demonstration of a MedCanG-compliant B2B medical cannabis procurement and telemedical triage platform.",
+    "ogTitle": "Calyx Systems | MedCanG B2B Procurement Demo",
+    "ogDescription": "Simulated GDP-compliant wholesale platform for German pharmacies. Powered by Next.js and strict Zod validation.",
+    "twitterTitle": "Calyx Systems | MedCanG B2B Procurement Demo",
+    "twitterDescription": "Architectural demonstration of a MedCanG-compliant B2B medical cannabis procurement and telemedical triage platform.",
+    "products": {
+      "title": "B2B Batch Catalogue - Calyx Systems",
+      "description": "Explore the mock catalogue of GDP-compliant medical cannabis batches. Real-time quota enforcement and CoA access.",
+      "keywords": "B2B, medical cannabis, wholesale, MedCanG, GDP, GMP, pharmacy procurement, Calyx Systems, RegTech",
+      "ogTitle": "B2B Batch Catalogue - Calyx Systems",
+      "ogDescription": "Simulated procurement environment featuring strict Row Level Security, live quota limits, and compliance validation.",
+      "twitterTitle": "B2B Batch Catalogue - Calyx Systems",
+      "twitterDescription": "Simulated procurement environment featuring strict Row Level Security, live quota limits, and compliance validation."
+    },
+    "productMetadataDescription": "Wholesale starting at {price}. GDP delivery simulated for {cities} and throughout {country}."
+  },
+  "home": {
+    "hero": {
+      "headline": {
+        "part1": "Backend-for-Frontend",
+        "highlight": "MedCanG",
+        "part2": " compliant."
+      },
+      "subheadline": "A live demonstration of industry standards and MedCanG Phase 2 compliance.",
+      "cta": "B2B Procurement",
+      "ctaSubtitle": "Role-based inventory access with automated MedCanG quota enforcement and batch traceability.",
+      "cta1": "Telemedical Triage",
+      "cta1Subtitle": "FHIR-standardized prescription verification.",
+      "cta2": "Audit Vault",
+      "cta2Subtitle": "Immutable system logging and GDP traceability."
+    }
+  },
+  "navigation": {
+    "home": "Home",
+    "cta": "B2B Catalogue",
+    "cta1": "Telemedicine",
+    "cta2": "Audit Trail",
+    "contact": "Contact",
+    "search": "Search batches",
+    "searchPlaceholder": "Search batch IDs or strains...",
+    "loadingProducts": "Loading inventory...",
+    "loading": "Loading...",
+    "noProductsFoundFor": "No batches found for",
+    "banner": [
+      {
+        "content": "System Status: GDP-Compliant"
+      },
+      {
+        "content": "Inventory Sync: Real-time"
+      },
+      {
+        "content": "MedCanG Phase 2 Ready."
+      }
+    ],
+    "mobileMenu": {
+      "open": "Open Menu",
+      "close": "Close Menu"
+    },
+    "userRolePill": {
+      "unauthorised": "STATUS: UNVERIFIED_GUEST",
+      "identified": "IDENTIFIED:"
+    }
+  },
+  "footer": {
+    "logoAlt": "Calyx Medical B2B Logo",
+    "middleRow": {
+      "sections": [
+        {
+          "title": "Platform",
+          "links": {
+            "cta": "B2B Catalogue",
+            "cta1": "FHIR Triage",
+            "cta2": "Audit Vault",
+            "checkout": "Manifest Checkout"
+          }
+        },
+        {
+          "title": "Company",
+          "links": {
+            "privacyPolicy": "Privacy & Data",
+            "termsOfService": "Terms of Use"
+          }
+        },
+        {
+          "title": "Contact",
+          "links": {
+            "chatWithUs": "Whatsapp",
+            "emailUs": "Email Architect"
+          }
+        }
+      ]
+    },
+    "followUs": "Network",
+    "companyInformation": "Company Information: Trade Temple AB | Org. nr: 559436-9646 | Registered in Stockholm, Sweden.",
+    "companyContactPrefix": "Contact:",
+    "companyLegalText": "By using this site, you agree to our Terms of Service and Privacy Policy. This is an architectural demonstration of a B2B RegTech platform.",
+    "bottomRow": {
+      "copyright": "All rights reserved.",
+      "githubAria": "GitHub Repository",
+      "linkedinAria": "LinkedIn Profile"
+    }
+  },
+  "productGrid": {
+    "viewDetails": "View Batch",
+    "addFailed": "Failed to add to manifest.",
+    "productAriaLabel": "Batch: {name}",
+    "labels": {
+      "concentration": "Concentration",
+      "moq": "MOQ",
+      "price": "Price",
+      "from": "From",
+      "unit": "gram",
+      "units": "grams",
+      "category": "Category",
+      "image": "Image",
+      "product": "Strain",
+      "thc": "THC",
+      "cbd": "CBD",
+      "genetics": "Genetics",
+      "irradiation": "Irradiation",
+      "batch": "Batch",
+      "liveStock": "Live Stock (g)",
+      "coa": "COA",
+      "actions": "Actions",
+      "exp": "Exp",
+      "download": "Download",
+      "view": "View",
+      "noProducts": "No active batches found",
+      "inStock": "In Stock",
+      "outOfStock": "Exhausted",
+      "tiered": "Tiered"
+    }
+  },
+  "productsClient": {
+    "catalogTitle": "B2B Batch Catalogue",
+    "showingProducts": "{count} batches listed.",
+    "noProductsFound": "No inventory found."
+  },
+  "productDetail": {
+    "labels": {
+      "concentration": "Concentration",
+      "quantity": "Volume (g)",
+      "price": "Price",
+      "from": "From",
+      "unit": "gram",
+      "units": "grams"
+    },
+    "priceChart": "Wholesale Price Matrix",
+    "tabs": {
+      "specifications": "Batch Details"
+    },
+    "quotaMeter": {
+      "title": "Verified Inventory Quota",
+      "description": "MedCanG Compliance: Verified vault capacity restricted to 5,000g per 30-day procurement cycle."
+    },
+    "quantityControl": {
+      "title": "Procurement Volume",
+      "currentRate": "Current Rate:",
+      "moq": "MOQ",
+      "estTotal": "Estimated Order Total",
+      "volDiscount": "Volume Discount Applied",
+      "auditTrail": "Encrypted GDP Audit Trail Active"
+    },
+    "cart": {
+      "quantity": "Procurement Volume",
+      "addToCart": "Add to manifest",
+      "addedToCart": "Logged to Manifest",
+      "error": "Quota or Validation Error.",
+      "minOrder": "MOQ: {moq}g",
+      "minOrderUnits": "MOQ is {moq}g",
+      "adding": "Validating...",
+      "added": "✓ Manifest Updated"
+    },
+    "products": "Inventory",
+    "tieredPricing": "Volume Pricing",
+    "from": "From",
+    "minimumOrder": "MOQ",
+    "keyFeatures": "Compliance Details",
+    "productUnavailable": "This batch is currently exhausted or quarantined.",
+    "outOfStock": "Batch exhausted",
+    "showLess": "Show less",
+    "more": "more",
+    "btmRates": "BTM-Compliant Wholesale Rates (Excl. VAT)"
+  },
+  "cart": {
+    "hero": {
+      "title": "Procurement Manifest",
+      "total": "Net Total"
+    },
+    "empty": {
+      "title": "Your Manifest is Empty"
+    },
+    "item": {
+      "batch": "Batch: ",
+      "expiry": "Exp: ",
+      "quota": "Cannot exceed {quota}g monthly pharmacy limit.",
+      "decreaseQuantity": "Decrease Volume",
+      "increaseQuantity": "Increase Volume",
+      "removeAria": "Remove from manifest"
+    },
+    "summary": {
+      "total": "Net Total (excl. 7% Medical VAT)"
+    },
+    "checkout": {
+      "button": "Sign Manifest & Verify"
+    }
+  },
+  "checkout": {
+    "title": "Compliance & Checkout",
+    "optional": "Optional",
+    "steps": {
+      "address": "Pharmacy",
+      "shipping": "GDP Transport",
+      "review": "Audit",
+      "payment": "Payment"
+    },
+    "actions": {
+      "autofill": "Simulate Authorized Pharmacy",
+      "continueToShipping": "Confirm Facility",
+      "continueToReview": "Confirm GDP Logistics",
+      "continueToPayment": "Proceed to Ledger",
+      "placeOrder": "Sign & Submit to Vault",
+      "back": "Back",
+      "manualEntry": "Manual Entry",
+      "apply": "Verify",
+      "applying": "Verifying...",
+      "remove": "Clear",
+      "catalogue": "Back to Inventory"
+    },
+    "summary": {
+      "orderSummary": "Manifest Summary",
+      "quantity": "Volume",
+      "subtotal": "Net Subtotal",
+      "shipping": "GDP Secure Vault Courier",
+      "discount": "Wholesale Discount",
+      "loyaltyDiscount": "Contract Discount",
+      "fee": "Processing Fee",
+      "total": "Total Amount",
+      "exVat": "EX. VAT",
+      "free": "Waived",
+      "batch": "Batch:",
+      "expires": "Expires:",
+      "unit": "g",
+      "units": "grams",
+      "loading": "Validating limits..."
+    },
+    "placeholders": {
+      "fullName": "Authorized Pharmacy Name",
+      "email": "PHARMACY@EXAMPLE.COM",
+      "phone": "SECURE LINE",
+      "address1": "FACILITY ADDRESS...",
+      "address2": "BUILDING/SUITE",
+      "city": "CITY",
+      "postalCode": "POSTAL CODE",
+      "state": "STATE / PROVINCE",
+      "selectCountry": "SELECT COUNTRY",
+      "couponCode": "AUTHORIZATION CODE",
+      "notes": "SECURE DISPATCH NOTES",
+      "notesHelp": "ADD GDP TRANSPORT REQUESTS...",
+      "vatId": "e.g., DE123456789",
+      "gln": "e.g., 4000001000005",
+      "pharmacyLicense": "e.g., AZ-74-abc-12345",
+      "btmLicense": "e.g., BtM-E-12345",
+      "responsiblePerson": "QUALIFIED PERSON (QP) NAME",
+      "deliveryTimeWindow": "SELECT GDP TIME WINDOW"
+    },
+    "shipping": {
+      "mockMethod": {
+        "title": "GDP Secure Vault Courier",
+        "description": "Specialized pharmaceutical logistics featuring active temperature control (15-25°C) and armored narcotics security protocols."
+      },
+      "contactInfo": "Facility Contact",
+      "shippingAddress": "Authorized Destination",
+      "shippingMethod": "Secure Transport Protocol",
+      "complianceDetails": "MedCanG Compliance Data",
+      "operatingLicense": "License Verification",
+      "fields": {
+        "fullName": "Official Pharmacy Name",
+        "addressLine1": "Facility Address Line 1",
+        "addressLine2": "Facility Address Line 2",
+        "city": "City",
+        "postalCode": "Postal Code",
+        "state": "State / Province",
+        "country": "Country",
+        "phone": "Authorized Phone Number",
+        "notes": "Dispatch Notes",
+        "vatId": "VAT Identification Number (USt-IdNr.)",
+        "gln": "Global Location Number (GLN)",
+        "pharmacyLicense": "Pharmacy License No. (Betriebserlaubnis)",
+        "btmLicense": "Narcotics License No. (BtM-Erlaubnis)",
+        "responsiblePerson": "Responsible Qualified Person (QP)",
+        "deliveryTimeWindow": "GDP-Compliant Delivery Window"
+      },
+      "review": {
+        "fields": {
+          "vat": "VAT ID:",
+          "gln": "GLN:",
+          "responsible": "QP:",
+          "pharmacy": "LICENSE:",
+          "btm": "BTM ID:",
+          "delivery": "WINDOW:"
+        }
+      },
+      "noMethodsAvailable": "No secure transport available for this jurisdiction.",
+      "loadingMethods": "Validating Transport Routes...",
+      "sameAsShipping": "Billing entity matches receiving facility",
+      "businessDays": "working days"
+    },
+    "payment": {
+      "initializing": "Establishing Secure B2B Ledger...",
+      "selectMethod": "Select Settlement Method",
+      "demoNotice": "Simulation Mode: Executing a payment method will log a successful order to the Audit Vault.",
+      "methods": [
+        {
+          "title": "SEPA Direct Debit (SEPA-Lastschrift)",
+          "description": "Standard B2B settlement. Funds are cleared securely via SEPA mandate."
+        },
+        {
+          "title": "30-Day Business Invoice (Net 30)",
+          "description": "Settle within 30 days of batch receipt. Subject to contract approval."
+        }
+      ]
+    },
+    "errors": {
+      "required": "This compliance field is mandatory.",
+      "invalidEmail": "Invalid format.",
+      "checkoutState": "Failed to update validation state:",
+      "missingFields": "Please complete all required MedCanG compliance fields.",
+      "generalError": "A system validation error occurred.",
+      "shippingCalculationFailed": "Route validation failed. Please try again.",
+      "orderCreationFailed": "Manifest submission rejected.",
+      "emptyCart": "Your manifest is empty."
+    },
+    "orderConfirmation": {
+      "title": "Manifest Submitted Successfully",
+      "thankYou": "Transaction Logged.",
+      "orderNumber": "Manifest ID #",
+      "date": "Timestamp",
+      "orderSummary": "Procurement Summary",
+      "viewOrder": "View Audit Log",
+      "paymentInfo": "Settlement Information",
+      "paymentInstruction": "Ledger Details:",
+      "shippingInfo": "Authorized Destination",
+      "billingInfo": "Billing Entity",
+      "invoiceUnavailable": "Ledger document unavailable in simulation mode.",
+      "invoiceAttached": "Your simulated B2B invoice has been generated."
+    }
+  },
+  "orderDetails": {
+    "title": "Manifest Details",
+    "sections": {
+      "orderInfo": {
+        "title": "Transaction Information",
+        "orderId": "Manifest ID #",
+        "status": "System Status",
+        "total": "Total Amount",
+        "subtotal": "Net Subtotal",
+        "transactionFee": "Processing",
+        "vat": "7% Medical VAT",
+        "unit": "g",
+        "units": "grams",
+        "discount": "Volume Discount",
+        "shipping": "GDP Logistics",
+        "free": "Waived",
+        "loyaltyDiscount": "Contract Discount"
+      },
+      "shipping": {
+        "title": "Authorized Destination",
+        "tracking": "Logistics",
+        "trackingInformation": "Cold Chain Tracking",
+        "trackingNumber": "Transport ID",
+        "notShippedYet": "This manifest is pending secure dispatch.",
+        "clickRefresh": "Refresh vault to check dispatch status.",
+        "vat": "VAT ID"
+      },
+      "compliance": {
+        "title": "MedCanG Compliance Data",
+        "responsiblePerson": "Qualified Person (QP)",
+        "gln": "GLN",
+        "pharmacyLicense": "Pharmacy License",
+        "btmLicense": "Narcotics License (BtM)",
+        "deliveryWindow": "Secure Window"
+      },
+      "billing": {
+        "title": "Billing Entity",
+        "vat": "VAT ID"
+      },
+      "items": {
+        "title": "Procured Batches",
+        "quantity": "Volume (g)",
+        "color": "Specification"
+      },
+      "payment": {
+        "title": "Settlement",
+        "method": "Method",
+        "copied": "Copied!",
+        "copy": "Copy",
+        "clickToCopy": "Click to copy",
+        "methods": {
+          "sepa": "SEPA Direct Debit",
+          "invoice_30": "30-Day Business Invoice"
+        },
+        "downloadInvoice": "Download Ledger (Simulated)",
+        "invoiceNote": "Values match the final procurement vault record.",
+        "downloadReceipt": "Download Receipt",
+        "receiptNote": "Values match the final procurement vault record."
+      },
+      "timeline": {
+        "title": "Audit Timeline",
+        "ordered": "Logged",
+        "shipped": "Dispatched",
+        "delivered": "Received"
+      },
+      "statuses": {
+        "processing": "Verifying",
+        "shipped": "In Transit",
+        "delivered": "Received",
+        "cancelled": "Rejected",
+        "pending": "Awaiting Settlement"
+      }
+    }
+  },
+  "audit": {
+    "header": {
+      "title": "System Integrity Verified",
+      "logsTitle": "SYSTEM_LOGS // BTM_AUDIT_VAULT",
+      "live": "LIVE",
+      "nodeIdentity": "Node Identity",
+      "mockId": "GER-BER-PHARM-8372",
+      "flushLogs": "Flush Logs"
+    },
+    "terminal": {
+      "title": "Read-Only Secure Ledger",
+      "timestamp": "TIMESTAMP",
+      "actorId": "ACTOR_ID",
+      "action": "ACTION",
+      "status": "STATUS",
+      "details": "DETAILS",
+      "hashKey": "HASH_KEY",
+      "awaitingLogs": "SYSTEM IDLE: AWAITING INTERACTION..."
+    },
+    "footer": {
+      "securityProtocol": "Security Protocol: AES-256-GCM",
+      "immutability": "Immutability: SHA-256 Chaining",
+      "copyright": "&copy; 2026 CALYX SYSTEMS GERMANY // COMPLIANCE DIVISION"
+    }
+  },
+  "roleGuard": {
+    "loading": "Initializing security context...",
+    "simulator": {
+      "uiTitle": "SECURE_ROLE_SIMULATOR",
+      "prompt": "Select Identity Claim",
+      "guestUnauthorized": "guest (unauthorized)",
+      "verifiedPharmacy": "verified_pharmacy",
+      "medicalDoctor": "medical_doctor",
+      "subtitle": "Demonstrating JWT-based RBAC & Audit Trails"
+    },
+    "roleChange": {
+      "authEst": "AUTH_SESSION_ESTABLISHED",
+      "details": "Identity verified: {identifier} | Role: {role}",
+      "success": "SUCCESS"
+    },
+    "rlsDenied": {
+      "title": "ACCESS_DENIED",
+      "message": "You do not have the required permissions to access this secure resource.",
+      "conflictTitle": "COMPLIANCE_CONFLICT_ERROR",
+      "conflictMessage": "MedCanG §7 Violation: Medical Doctors are legally prohibited from direct procurement or commercial narcotic transactions. Access to checkout is restricted to licensed pharmacies."
+    },
+    "rlsError": {
+      "policyName": "MedCanG §7 Strict Separation",
+      "loading": "Loading security context...",
+      "error403": "ERROR 403:",
+      "message": "PostgREST has rejected this request at the database layer",
+      "details": {
+        "activePolicy": "Active Policy:",
+        "requestRole": "Request Role:",
+        "requiredRole": "Required Role:",
+        "timestamp": "Timestamp:",
+        "guest": "guest"
+      },
+      "exampleTitle": "Database Security in Action",
+      "solution": {
+        "title": "How to Fix This",
+        "solution": "Sign in with verified pharmacy credentials",
+        "explanation": "Use a JWT with role = 'verified_pharmacy'"
+      },
+      "footer": {
+        "notice": "This is an offline UI demonstration of the online database security",
+        "disclaimer": "Row Level Security (RLS) is enforced at the PostgreSQL level"
+      }
+    }
+  },
+  "telemedicine": {
+    "title": "Telemedicine Triage Simulator",
+    "subtitle": "MedCanG §3 Regulatory Compliance Engine • Gematik FHIR R4 Ingestion",
+    "status": "System Live: Frankfurt-Main-01",
+    "leftColumn": {
+      "title": "FHIR Payload Ingestion",
+      "loadValid": "Load Valid",
+      "loadInvalid": "Load Invalid",
+      "jsonTerminal": "Raw JSON Terminal",
+      "execute": "Execute Zod Triage & Parse"
+    },
+    "rightColumn": {
+      "title": "Clinical Evaluation Result",
+      "identityTitle": "Patient Identity",
+      "noData": "No valid data parsed",
+      "prescriptionTitle": "Prescription Detail",
+      "quantity": "Quantity:",
+      "ref": "Ref:",
+      "complianceTitle": "MedCanG Compliance Checklist",
+      "fhirValidation": "FHIR Schema Validation",
+      "qesSignature": "QES Cryptographic Signature",
+      "consultationCheck": "§3 MedCanG 365-Day Consultation Check",
+      "checklistPass": "PASS",
+      "checklistFail": "FAIL",
+      "lastSeen": "Last seen:",
+      "triageApprovedTitle": "APPROVED: DISPENSING AUTHORIZED",
+      "triageApprovedSubtitle": "All regulatory checks passed for German medical jurisdiction.",
+      "triageRejectedTitle": "REJECTED: REGULATORY VIOLATION",
+      "triageRejectedSubtitle": "One or more mandatory MedCanG compliance checks have failed.",
+      "errorTrace": "Schema Error Trace:",
+      "awaitingInjestion": "Awaiting Payload Ingestion",
+      "instructUser": "Execute the triage from the ingestion terminal to see clinical results."
+    },
+    "handleTriage":{
+      "fhirValidation": "FHIR_SCHEMA_VALIDATION",
+      "success": "SUCCESS",
+      "failure": "FAILURE",
+      "allPassed": "E-Rezept {parsedData.id} verified. Patient {parsedData.subject.id} cleared for {parsedData.dispenseRequest.quantity.value}g.",
+      "notPassed": "Regulatory violation on {parsedData.subject.id}. QES or Consultation date invalid.",
+      "payloadFailed": "Payload failed basic FHIR schema validation.",
+      "parseFailed": "Failed to parse raw JSON payload.",
+      "invalidJson": "Invalid JSON format."
+    }
+  },
+  "privacy": {
+    "hero": {
+      "title": "Privacy Policy",
+      "subtitle": "Data handling for this architectural demonstration."
+    },
+    "sections": {
+      "dataCollection": {
+        "title": "Data & Mock Data",
+        "intro": "As this is a RegTech portfolio demonstration, no real personal data is collected or processed:",
+        "items": [
+          "Only hardcoded mock data is used for display purposes.",
+          "Local browser storage is used strictly to simulate JWT sessions and Role-Based Access Control (RBAC).",
+          "No real patient, pharmacy, or prescription data is ingested or stored.",
+          ""
+        ]
+      },
+      "dataSecurity": {
+        "title": "Infrastructure & Security",
+        "description": "This demonstration is hosted on a high-performance, Cloudflare-only infrastructure utilizing Cloudflare DNS, Pages, and Edge Workers to ensure zero-latency routing and edge-level security."
+      },
+      "rights": {
+        "title": "Tracking & Cookies",
+        "intro": "Regarding local data:",
+        "items": [
+          "No third-party tracking scripts, pixels, or analytics are deployed.",
+          "Session persistence and UI state are handled entirely client-side.",
+          "",
+          ""
+        ]
+      }
+    }
+  },
+  "terms": {
+    "title": "Terms of Service & Disclaimer",
+    "subtitle": "Legal notice regarding this architectural demonstration.",
+    "sections": {
+      "section1": {
+        "title": "1. Nature of the Platform",
+        "para1": "This website is a technical and architectural demonstration portfolio created and owned by <b>Trade Temple AB</b>.",
+        "para2": "By accessing this site, you acknowledge that this is a simulated RegTech environment and not a functioning commercial or medical entity.",
+        "para3": "There is no actual narcotic supply chain, wholesale distribution, or medical triage occurring on this platform.",
+        "para4": "No real products, medical cannabis batches, or healthcare services are sold, brokered, or provided."
+      },
+      "section2": {
+        "title": "2. Permitted Use",
+        "para1": "This platform is intended solely for evaluation by prospective employers, CTOs, and technical recruiters.",
+        "para2": "You agree not to abuse, reverse-engineer, or attempt to exploit the mock backend systems or edge functions.",
+        "list": [
+          "No automated scraping or penetration testing.",
+          "The platform is for visual and architectural evaluation only."
+        ]
+      },
+      "section3": {
+        "title": "3. Mock Data & Compliance Simulation",
+        "para1": "All batch numbers, THC/CBD values, pricing, and medical data displayed are entirely fictitious.",
+        "para2": "Certificates of Analysis (CoAs) and regulatory logic (such as MedCanG quota enforcement and FHIR parsing) are simulated for demonstration purposes."
+      },
+      "section4": {
+        "title": "4. Simulated Transactions",
+        "para1": "The B2B procurement checkout, FHIR parser, and audit logs are interactive simulations.",
+        "para2": "No financial transactions, SEPA mandates, or actual logistics dispatches will be executed."
+      },
+      "section5": {
+        "title": "5. Intellectual Property",
+        "para1": "The underlying codebase, UI/UX architecture, and compliance algorithms are the intellectual property of <b>Trade Temple AB</b>.",
+        "para2": "The code, designs, and architecture may not be replicated, copied, or used for commercial applications without explicit written permission."
+      },
+      "section6": {
+        "title": "6. Liability & Warranties",
+        "para1": "The platform is provided 'as is' without warranties of any kind.",
+        "para2": "Trade Temple AB assumes no liability for any reliance placed on the simulated compliance logic, data, or interface presented."
+      },
+      "section7": {
+        "title": "7. Governing Law",
+        "para1": "These terms and the protection of the intellectual property herein are governed by the laws of Sweden."
+      }
+    }
+  },
+  "languageCurrencyChanger": {
+    "language": "Language",
+    "currencyChanger": {
+      "title": "Currency",
+      "detected": "Detected",
+      "auto": "Auto"
+    },
+    "currencies": {
+      "EUR": "Euro",
+      "GBP": "British Pound"
+    }
+  },
+  "loading": "Loading",
+  "errors": {
+    "auth": {
+      "default": "Authentication failed. Please try again.",
+      "invalidCredentials": "Invalid email or password. Please check your credentials.",
+      "emailNotConfirmed": "Please confirm your email address before signing in.",
+      "emailNotAuthorized": "This email address is not authorized. Please contact support.",
+      "signupDisabled": "New account registration is currently disabled.",
+      "emailExists": "An account with this email address already exists.",
+      "userNotFound": "No account found with this email address.",
+      "weakPassword": "Password is too weak. Please choose a stronger password.",
+      "samePassword": "New password must be different from your current password.",
+      "sessionExpired": "Your session has expired. Please sign in again.",
+      "sessionNotFound": "Session not found. Please sign in again.",
+      "refreshTokenNotFound": "Session expired. Please sign in again.",
+      "userBanned": "Your account has been temporarily suspended. Please contact support.",
+      "rateLimitExceeded": "Too many requests. Please wait a moment and try again.",
+      "emailRateLimitExceeded": "Too many emails sent. Please wait before requesting another.",
+      "smsRateLimitExceeded": "Too many SMS messages sent. Please wait before trying again.",
+      "captchaFailed": "Captcha verification failed. Please try again.",
+      "emailInvalid": "Please enter a valid email address.",
+      "phoneNotConfirmed": "Please confirm your phone number before signing in.",
+      "phoneExists": "An account with this phone number already exists.",
+      "providerDisabled": "This sign-in method is currently disabled.",
+      "oauthProviderNotSupported": "This social sign-in provider is not supported.",
+      "anonymousProviderDisabled": "Anonymous sign-in is disabled.",
+      "emailProviderDisabled": "Email sign-in is disabled.",
+      "phoneProviderDisabled": "Phone sign-in is disabled.",
+      "otpDisabled": "One-time password sign-in is disabled.",
+      "otpExpired": "Verification code has expired. Please request a new one.",
+      "badJwt": "Invalid authentication token. Please sign in again.",
+      "noAuthorization": "Authorization required. Please sign in.",
+      "notAdmin": "Administrator access required.",
+      "insufficientAal": "Additional authentication required.",
+      "mfaChallengeExpired": "Multi-factor authentication challenge expired.",
+      "mfaVerificationFailed": "Multi-factor authentication verification failed.",
+      "mfaVerificationRejected": "Multi-factor authentication was rejected.",
+      "reauthenticationNeeded": "Please re-authenticate to continue.",
+      "reauthenticationNotValid": "Re-authentication failed. Please try again.",
+      "inviteNotFound": "Invitation not found or has expired.",
+      "userAlreadyExists": "An account with this information already exists.",
+      "sessionRetrievalFailed": "Failed to retrieve session information.",
+      "noAuthenticatedUser": "No authenticated user found.",
+      "thirdPartyProvider": "This account uses social sign-in.",
+      "useThirdPartyLogin": "Please use your original sign-in method (Google, Apple, etc.)."
+    },
+    "validation": {
+      "default": "Please check your input and try again.",
+      "failed": "Validation failed. Please check your information.",
+      "badJson": "Invalid data format. Please try again.",
+      "requiredField": "This field is required.",
+      "invalidEmail": "Please enter a valid email address.",
+      "passwordMismatch": "Passwords do not match.",
+      "emailRequired": "Email address is required.",
+      "passwordRequired": "Password is required.",
+      "nameTooShort": "Name is too short.",
+      "nameTooLong": "Name is too long.",
+      "invalidFormat": "Invalid format. Please check your input."
+    },
+    "payment": {
+      "default": "Payment failed. Please try again.",
+      "failed": "Payment could not be processed. Please try again.",
+      "declined": "Payment was declined. Please check your payment method.",
+      "insufficientFunds": "Insufficient funds. Please use a different payment method.",
+      "cardExpired": "Your card has expired. Please use a different payment method.",
+      "invalidCard": "Invalid card information. Please check your details.",
+      "processingFailed": "Payment processing failed. Please try again.",
+      "authorizationFailed": "Payment authorization failed.",
+      "confirmationFailed": "Payment confirmation failed.",
+      "setupFailed": "Payment setup failed. Please try again.",
+      "stripeKeyMissing": "Payment configuration error. Please contact support.",
+      "invalidAmount": "Invalid payment amount.",
+      "applePayNoEmail": "Email is required for Apple Pay.",
+      "googlePayNoEmail": "Email is required for Google Pay.",
+      "applePayNoPhone": "Phone number is required for Apple Pay.",
+      "paypalNoEmail": "Email is required for PayPal.",
+      "applePayNoAddress": "Address is required for Apple Pay.",
+      "googlePayNoAddress": "Address is required for Google Pay."
+    },
+    "order": {
+      "default": "Order processing failed. Please try again.",
+      "creationFailed": "Failed to create order. Please try again.",
+      "creationFailedWithRefund": "Order failed. Refund has been initiated.",
+      "creationFailedManualRefund": "Order failed. Please contact support for a refund.",
+      "apiError": "System error occurred. Refund has been initiated.",
+      "apiErrorWithRefund": "System error occurred. Refund has been initiated.",
+      "apiErrorManualRefund": "System error occurred. Please contact support for a refund.",
+      "duplicateUser": "An account with this email already exists. Please log in.",
+      "loginRequired": "Please log in to complete your order.",
+      "emptyCart": "Your cart is empty.",
+      "invalidOrderData": "Invalid order information."
+    },
+    "network": {
+      "default": "Connection failed. Please check your internet connection.",
+      "connectionFailed": "Unable to connect. Please try again.",
+      "timeout": "Request timed out. Please try again.",
+      "serverError": "Server error. Please try again later.",
+      "serviceUnavailable": "Service temporarily unavailable."
+    },
+    "general": {
+      "default": "An unexpected error occurred. Please try again.",
+      "conflict": "A conflict occurred. Please try again.",
+      "requestTimeout": "Request timed out. Please try again.",
+      "unexpectedFailure": "An unexpected error occurred.",
+      "missingFields": "Please fill in all required fields.",
+      "invalidData": "Invalid data provided.",
+      "operationFailed": "Operation failed. Please try again.",
+      "accessDenied": "Access denied.",
+      "resourceNotFound": "Requested resource not found.",
+      "tooManyRequests": "Too many requests. Please wait and try again."
+    }
+  },
+  "schema": {
+    "product": {
+      "name": "Calyx Systems B2B",
+      "description": "Simulated B2B medical cannabis batches. Keywords: medical cannabis, RegTech, GDP wholesale, MedCanG compliance.",
+      "availability": "InStock",
+      "defaultDescription": "GDP-compliant {category} simulated for {cities} and {country}."
+    },
+    "breadcrumb": {
+      "home": "Home"
+    },
+    "areaServed": {
+      "description": "Simulated medical procurement for {country}.",
+      "shippingDescription": "Simulated GDP cold-chain transport to {country}."
+    },
+    "contactPoint": {
+      "type": "Technical Architect Support"
+    },
+    "units": {
+      "grams": "grams",
+      "perGram": "per gram"
+    },
+    "properties": {
+      "concentration": "THC/CBD %",
+      "quality": "GACP/GMP Status",
+      "qualityValue": "Ph. Eur. Compliant",
+      "availability": "Live Stock",
+      "businessType": "Type"
+    },
+    "provider": {
+      "name": "Calyx Systems {city}",
+      "description": "B2B Medical Cannabis Procurement in {country}",
+      "businessTypeB2B": "Wholesale Procurement",
+      "businessTypeB2C": "",
+      "qualityValue": "GMP Certified"
+    },
+    "review": {
+      "anonymousAuthor": "Verified Pharmacy"
+    },
+    "paymentAccepted": "SEPA Direct Debit, 30-Day Invoice",
+    "keywords": "medical cannabis, b2b wholesale, MedCanG, RegTech, GDP",
+    "searchAction": {
+      "name": "Search Batches"
+    }
+  },
+  "common": {
+    "product": "Batch",
+    "close": "Close",
+    "error": "System Error:",
+    "retryLoadingConfiguration": "Retry Connection",
+    "retryPayment": "Retry Settlement",
+    "securePayment": "B2B Settlement",
+    "contactSales": "Contact Architect",
+    "loadingTheme": "Loading UI",
+    "themeSwitcherLoading": "Loading",
+    "addToCart": "Add to Manifest",
+    "featuredProducts": "Featured Batches",
+    "loadingOverlay": {
+      "processing": "Validating...",
+      "pleaseWait": "Verifying compliance logic",
+      "almostDone": "Writing to immutable log",
+      "completing": "Finalizing manifest"
+    },
+    "images": {
+      "noMedia": "No media available",
+      "video": "Video",
+      "photo": "Photo",
+      "zoomOut": "Zoom Out",
+      "zoomIn": "Zoom In",
+      "reset": "Reset"
+    }
+  },
+  "countries": {
+    "AD": "Andorra",
+    "AE": "United Arab Emirates",
+    "AR": "Argentina",
+    "AT": "Austria",
+    "AU": "Australia",
+    "BE": "Belgium",
+    "BG": "Bulgaria",
+    "BR": "Brazil",
+    "CA": "Canada",
+    "CH": "Switzerland",
+    "CL": "Chile",
+    "CN": "China",
+    "CO": "Colombia",
+    "CY": "Cyprus",
+    "CZ": "Czech Republic",
+    "CS": "Czech Republic",
+    "DE": "Germany",
+    "DK": "Denmark",
+    "DA": "Denmark",
+    "EE": "Estonia",
+    "ES": "Spain",
+    "FI": "Finland",
+    "FR": "France",
+    "GB": "United Kingdom",
+    "GR": "Greece",
+    "EL": "Greece",
+    "HK": "Hong Kong",
+    "HR": "Croatia",
+    "HU": "Hungary",
+    "ID": "Indonesia",
+    "IE": "Ireland",
+    "IL": "Israel",
+    "IN": "India",
+    "IS": "Iceland",
+    "IT": "Italy",
+    "JP": "Japan",
+    "KR": "South Korea",
+    "LI": "Liechtenstein",
+    "LT": "Lithuania",
+    "LU": "Luxembourg",
+    "LV": "Latvia",
+    "MC": "Monaco",
+    "MT": "Malta",
+    "MX": "Mexico",
+    "MY": "Malaysia",
+    "NL": "Netherlands",
+    "NO": "Norway",
+    "NZ": "New Zealand",
+    "PE": "Peru",
+    "PH": "Philippines",
+    "PL": "Poland",
+    "PT": "Portugal",
+    "RO": "Romania",
+    "SE": "Sweden",
+    "SG": "Singapore",
+    "SI": "Slovenia",
+    "SK": "Slovakia",
+    "TH": "Thailand",
+    "TR": "Turkey",
+    "US": "United States",
+    "VN": "Vietnam",
+    "ZA": "South Africa",
+    "Andorra": "Andorra",
+    "United Arab Emirates": "United Arab Emirates",
+    "Argentina": "Argentina",
+    "Austria": "Austria",
+    "Australia": "Australia",
+    "Belgium": "Belgium",
+    "Bulgaria": "Bulgaria",
+    "Brazil": "Brazil",
+    "Canada": "Canada",
+    "Switzerland": "Switzerland",
+    "Chile": "Chile",
+    "China": "China",
+    "Colombia": "Colombia",
+    "Cyprus": "Cyprus",
+    "Czechia": "Czech Republic",
+    "Germany": "Germany",
+    "Denmark": "Denmark",
+    "Estonia": "Estonia",
+    "Spain": "Spain",
+    "Finland": "Finland",
+    "France": "France",
+    "Greece": "Greece",
+    "Hong Kong": "Hong Kong",
+    "Croatia": "Croatia",
+    "Hungary": "Hungary",
+    "Indonesia": "Indonesia",
+    "Ireland": "Ireland",
+    "Israel": "Israel",
+    "India": "India",
+    "Iceland": "Iceland",
+    "Italy": "Italy",
+    "Japan": "Japan",
+    "South Korea": "South Korea",
+    "Liechtenstein": "Liechtenstein",
+    "Lithuania": "Lithuania",
+    "Luxembourg": "Luxembourg",
+    "Latvia": "Latvia",
+    "Monaco": "Monaco",
+    "Malta": "Malta",
+    "Mexico": "Mexico",
+    "Malaysia": "Malaysia",
+    "Netherlands": "Netherlands",
+    "Norway": "Norway",
+    "New Zealand": "New Zealand",
+    "Peru": "Peru",
+    "Philippines": "Philippines",
+    "Poland": "Poland",
+    "Portugal": "Portugal",
+    "Romania": "Romania",
+    "Sweden": "Sweden",
+    "Singapore": "Singapore",
+    "Slovenia": "Slovenia",
+    "Slovakia": "Slovakia",
+    "Thailand": "Thailand",
+    "Turkey": "Turkey",
+    "United States": "United States",
+    "United Kingdom": "United Kingdom",
+    "Vietnam": "Vietnam",
+    "South Africa": "South Africa"
+  },
+  "countriesNames": {
+    "Andorra": "Andorra",
+    "United Arab Emirates": "United Arab Emirates",
+    "Argentina": "Argentina",
+    "Austria": "Austria",
+    "Australia": "Australia",
+    "Belgium": "Belgium",
+    "Bulgaria": "Bulgaria",
+    "Brazil": "Brazil",
+    "Canada": "Canada",
+    "Chile": "Chile",
+    "China": "China",
+    "Colombia": "Colombia",
+    "Cyprus": "Cyprus",
+    "Czech Republic": "Czech Republic",
+    "Denmark": "Denmark",
+    "Estonia": "Estonia",
+    "Finland": "Finland",
+    "France": "France",
+    "United Kingdom": "United Kingdom",
+    "Germany": "Germany",
+    "Greece": "Greece",
+    "Hong Kong": "Hong Kong",
+    "Croatia": "Croatia",
+    "Hungary": "Hungary",
+    "Indonesia": "Indonesia",
+    "Ireland": "Ireland",
+    "Israel": "Israel",
+    "India": "India",
+    "Iceland": "Iceland",
+    "Italy": "Italy",
+    "Japan": "Japan",
+    "South Korea": "South Korea",
+    "Liechtenstein": "Liechtenstein",
+    "Lithuania": "Lithuania",
+    "Luxembourg": "Luxembourg",
+    "Latvia": "Latvia",
+    "Monaco": "Monaco",
+    "Malta": "Malta",
+    "Mexico": "Mexico",
+    "Malaysia": "Malaysia",
+    "Netherlands": "Netherlands",
+    "Norway": "Norway",
+    "Peru": "Peru",
+    "Philippines": "Philippines"
+  }
+}

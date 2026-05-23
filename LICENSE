@@ -1,0 +1,22 @@
+Copyright (c) 2026 Trade Temple AB. All rights reserved.
+
+This repository and its contents, including but not limited to the codebase, 
+user interface designs, mock datasets, and regulatory compliance logic, 
+are the sole intellectual property of Trade Temple AB.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software, to inspect and review the code solely for the purposes of 
+evaluating the author for employment, contracting, or technical evaluation.
+
+Except as expressly authorized above, you may not:
+1. Copy, modify, merge, publish, distribute, sublicense, or sell copies of the Software.
+2. Use the Software or any portion thereof for any commercial purpose.
+3. Replicate the architecture or designs for public use.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
