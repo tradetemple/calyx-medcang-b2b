@@ -3,21 +3,21 @@ import { MetadataRoute } from "next";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: [
-        { userAgent: "*", allow: "/", disallow: ["/api/", "/dashboard/"] },
+        { userAgent: "*", allow: "/", disallow: ["/api/", "/audit/"] },
         {
             userAgent: 'Googlebot',
             allow: ['/'],
-            disallow: ["/api/", "/dashboard/"]
+            disallow: ["/api/", "/audit/"]
         },
         {
             userAgent: ['Applebot', 'Bingbot'],
             allow: ['/'],
-            disallow: ["/api/", "/dashboard/"]
+            disallow: ["/api/", "/audit/"]
         },
         {
             userAgent: 'GPTBot',
             allow: ['/'],
-            disallow: ["/api/", "/dashboard/"]
+            disallow: ["/api/", "/audit/"]
         }
     ],
     sitemap: `${process.env.NEXT_PUBLIC_SITE_URL}/sitemap.xml`,
