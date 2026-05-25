@@ -17,13 +17,13 @@ export default function manifest(): MetadataRoute.Manifest {
         type: 'image/png',
       },
       {
-        src: '/icon-512x512.png',
-        sizes: '512x512',
+        src: '/icon-310x310.png',
+        sizes: '310x310',
         type: 'image/png',
       },
       {
-        src: '/icon-maskable-512x512.png',
-        sizes: '512x512',
+        src: '/icon-maskable-310x310.png',
+        sizes: '310x310',
         type: 'image/png',
         purpose: 'maskable', // This fixes the "Maskable Icon" error
       },

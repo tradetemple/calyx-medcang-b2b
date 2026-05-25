@@ -75,9 +75,9 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         { url: siteSettings.favicon || '/favicon.ico?v=2', sizes: 'any' },
         { url: '/icon-16x16.png', sizes: '16x16', type: 'image/png' },
         { url: '/icon-32x32.png', sizes: '32x32', type: 'image/png' },
-        { url: '/icon-64x64.png', sizes: '64x64', type: 'image/png' },
+        { url: '/icon-96x96.png', sizes: '96x96', type: 'image/png' },
         { url: '/icon-192x192.png', sizes: '192x192', type: 'image/png' },
-        { url: '/icon-512x512.png', sizes: '512x512', type: 'image/png' }
+        { url: '/icon-310x310.png', sizes: '310x310', type: 'image/png' }
       ],
       apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
       shortcut: siteSettings.favicon || '/favicon.ico?v=2'
@@ -106,9 +106,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export async function generateStaticParams() {
   return [
-    { lang: 'en' }, { lang: 'se' }, { lang: 'fr' }, { lang: 'es' }, 
-    { lang: 'de' }, { lang: 'it' }, { lang: 'nl' }, { lang: 'pl' }, 
-    { lang: 'cs' }, { lang: 'el' }, { lang: 'da' }, { lang: 'no' },
+    { lang: 'en' }, { lang: 'de' }
   ];
 }
 
@@ -120,15 +118,12 @@ export default async function RootLayout({
   params: Promise<{ lang: string }>;
 }) {
   const { lang } = await params;
-  const primaryLang = lang.split('-')[0];
-  const isRTL = ['ar', 'he', 'fa', 'ur'].includes(primaryLang);
-  const textDirection = isRTL ? 'rtl' : 'ltr';
 
   // Fetch critical layout data at the top level
   const { dictionary } = await getMinimalLayoutData(lang);
 
   return (
-    <html lang={lang} dir={textDirection} className={`${inter.variable}`} suppressHydrationWarning>
+    <html lang={lang} className={`${inter.variable}`} suppressHydrationWarning>
       <head>
         <ThemeInitializer />
       </head>
