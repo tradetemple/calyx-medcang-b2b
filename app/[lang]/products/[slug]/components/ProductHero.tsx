@@ -1,8 +1,6 @@
-import { preload } from 'react-dom';
 import ProductHeroClient from './ProductHeroClient';
 import { MedicalProduct } from '@/types/medical-product';
 import { StarRating } from '@/components/StarRating';
-import { getCdnUrl } from '@/app/[lang]/utils/image-cdn';
 import DynamicPrice from '@/components/DynamicPrice';
 
 interface ProductHeroProps {

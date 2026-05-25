@@ -30,26 +30,26 @@ export default function QuotaMeter({ className, showLabel = true, pendingGrams =
   const isOverLimit = projectedUsage > MONTHLY_QUOTA_GRAMS;
 
   return (
-    <div className={cn("p-4 bg-slate-50 border border-slate-200 rounded-none space-y-3", className)}>
+    <div className={cn("p-3 md:p-4 bg-white md:bg-slate-50 border border-slate-200 rounded-none space-y-2 md:space-y-3", className)}>
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <ShieldAlert className={cn(
-            "w-4 h-4", 
+            "w-4 h-auto", 
             isOverLimit ? "text-red-600" : isNearLimit ? "text-amber-500" : "text-blue-600"
           )} />
-          <span className="text-xs font-bold uppercase tracking-widest text-slate-700">
+          <span className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-slate-700">
             {t.quotaMeter.title}
           </span>
         </div>
         <span className={cn(
-          "text-xs font-mono font-medium",
+          "text-[10px] md:text-xs font-mono font-medium",
           isOverLimit ? "text-red-600 font-bold" : "text-slate-500"
         )}>
           {projectedUsage} / {MONTHLY_QUOTA_GRAMS}g
         </span>
       </div>
 
-      <div className="h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
+      <div className="h-1 md:h-1.5 w-full bg-slate-200 rounded-full overflow-hidden">
         <div
           className={cn(
             "h-full transition-all duration-500",
@@ -60,7 +60,7 @@ export default function QuotaMeter({ className, showLabel = true, pendingGrams =
       </div>
 
       {showLabel && (
-        <p className="text-[10px] text-slate-500 leading-relaxed italic">
+        <p className="hidden md:block text-[10px] text-slate-500 leading-relaxed italic">
           {t.quotaMeter.description}
         </p>
       )}

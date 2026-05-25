@@ -83,26 +83,17 @@ export default function ProcurementController({
   }
 
   return (
-    <div className="space-y-6">
+    <div className="md:space-y-6">
       {/* 1. REGULATORY QUOTA METER */}
       <QuotaMeter t={t} pendingGrams={quantity} />
 
       {/* 2. QUANTITY CONTROLLER */}
-      <div className="space-y-3 p-4 bg-slate-50 border border-slate-200">
-        <div className="flex items-center justify-between">
-            <label className="text-xs font-bold uppercase tracking-widest text-slate-800 block">
-              {t.quantityControl.title}
-            </label>
-            <span className="text-[10px] font-bold text-slate-900 bg-slate-200 px-2 py-0.5 border border-slate-300 font-mono">
-                {t.quantityControl.currentRate} {formatCurrency(currentUnitPrice, locale, 'EUR')}/g
-            </span>
-        </div>
-        
+      <div className="space-y-2 md:space-y-3 p-3 md:p-4 bg-white md:bg-slate-50 md:border border-slate-200">
         <div className="flex items-center gap-4">
           <div className="flex items-center border border-slate-300 bg-white">
             <button 
               onClick={handleDecrement}
-              className="p-3 hover:bg-slate-100 transition-colors border-r border-slate-300 disabled:opacity-30 text-slate-700"
+              className="p-2 md:p-3 hover:bg-slate-100 transition-colors border-r border-slate-300 disabled:opacity-30 text-slate-700"
               disabled={quantity <= moqGrams}
             >
               <Minus className="w-4 h-4" />
@@ -112,12 +103,12 @@ export default function ProcurementController({
               type="number" 
               value={quantity}
               readOnly
-              className="w-24 text-center font-mono bg-white font-bold text-lg focus:outline-none text-slate-900"
+              className="w-16 md:w-24 text-center font-mono bg-white font-bold text-xs md:text-lg focus:outline-none text-slate-900"
             />
 
             <button 
               onClick={handleIncrement}
-              className="p-3 hover:bg-slate-100 transition-colors border-l border-slate-300 disabled:opacity-30 text-slate-700"
+              className="p-2 md:p-3 hover:bg-slate-100 transition-colors border-l border-slate-300 disabled:opacity-30 text-slate-700"
               disabled={quantity + 50 > remainingQuota}
             >
               <Plus className="w-4 h-4" />
@@ -128,12 +119,21 @@ export default function ProcurementController({
             <span className="text-[10px] uppercase font-bold text-slate-500">{t.quantityControl.moq}</span>
             <span className="text-sm font-mono font-bold text-slate-800">{moqGrams}g</span>
           </div>
+
+          <div className="flex items-center justify-between">
+            <label className="hidden md:block text-xs font-bold uppercase tracking-widest text-slate-800 block">
+              {t.quantityControl.title}
+            </label>
+            <span className="text-[10px] font-bold text-slate-900 bg-slate-200 px-2 py-0.5 border border-slate-300 font-mono">
+                {t.quantityControl.currentRate} {formatCurrency(currentUnitPrice, locale, 'EUR')}/g
+            </span>
+        </div>
         </div>
       </div>
 
       {/* 3. PRICE BREAKDOWN */}
-      <div className="pt-4 border-t border-slate-200 flex items-center justify-between">
-        <div>
+      <div className="md:pt-4 md:border-t border-slate-200 flex items-center justify-between px-2">
+        <div className='hidden md:block'>
           <span className="text-xs text-slate-500 uppercase font-bold tracking-widest">{t.quantityControl.estTotal}</span>
           <p className="text-2xl font-mono font-bold text-slate-900">
             {formatCurrency(totalPrice, locale, 'EUR')}
@@ -142,7 +142,7 @@ export default function ProcurementController({
         
         {/* Visual cue that they hit a discount tier */}
         {tiers.length > 1 && quantity >= tiers[1]?.min && (
-            <div className="flex items-center gap-1 text-emerald-600">
+            <div className="flex items-center gap-1 text-emerald-600 m-auto md:m-0">
                 <TrendingDown className="w-4 h-4" />
                 <span className="text-[10px] font-bold uppercase italic tracking-wider">{t.quantityControl.volDiscount}</span>
             </div>
@@ -150,7 +150,7 @@ export default function ProcurementController({
       </div>
 
       {/* 4. ADD TO CART ACTION */}
-      <div className="pt-2">
+      <div className="pt-2 px-2">
         <AddToCartButton
           productId={product.id}
           moqGrams={moqGrams}
@@ -160,7 +160,7 @@ export default function ProcurementController({
           selectedVariantImage={product.product_image || ''}
           locale={locale}
           disabled={quantity < moqGrams || quantity > remainingQuota}
-          price={currentUnitPrice}
+          price={totalPrice}
         />
       </div>
 

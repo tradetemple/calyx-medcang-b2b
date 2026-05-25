@@ -46,27 +46,27 @@ export default function CartSidebar( { dict, lang }: { dict: any; lang: string }
         <Dialog.Overlay className="fixed inset-0 z-[120] bg-slate-900/40 backdrop-blur-sm" />
         <Dialog.Content className="fixed top-0 right-0 bottom-0 w-full md:max-w-md bg-white shadow-2xl z-[125] flex flex-col">
           
-          <div className="p-5 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
+          <div className="p-3 md:p-5 border-b border-slate-200 bg-slate-50 flex justify-between items-center">
             <Dialog.Title className="text-sm font-bold uppercase tracking-widest text-slate-800 font-mono">
               {t.hero.title} ({totalGrams}g {t.hero.total})
             </Dialog.Title>
-            <Dialog.Close className="text-slate-400 hover:text-slate-800">
+            <Dialog.Close className="text-slate-400 hover:text-slate-800 ml-2">
               <FiX size={20} />
             </Dialog.Close>
           </div>
 
-          <div className="flex-1 overflow-y-auto p-5 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 md:p-5 space-y-4">
             {items.length === 0 ? (
               <p className="text-slate-500 text-sm font-mono text-center mt-10">
                 {t.empty.title}
               </p>
             ) : (
               items.map((item) => (
-                <div key={item.id} className="flex gap-4 p-3 border border-slate-200">
+                <div key={item.id} className="flex gap-4 p-2 md:p-3 border border-slate-200">
                   <CartItemImage item={item} />
                   
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-semibold text-slate-900 truncate">
+                    <h3 className="font-semibold text-slate-900 truncate text-xs md:text-sm">
                       {item.product.name}
                     </h3>
                     {item.product.test_results && (
@@ -78,8 +78,7 @@ export default function CartSidebar( { dict, lang }: { dict: any; lang: string }
                     
                     <div className="mt-3 flex items-center justify-between">
                       <QuantityControl dict={dict} item={item} />
-                      <span className="font-mono text-sm font-bold text-slate-900">
-                        {/* Replaced hardcoded € with DynamicPrice */}
+                      <span className="font-mono text-xs md:text-sm font-bold text-slate-900 ml-2 md:ml-0">
                         <DynamicPrice 
                           basePrice={calculateTieredPrice(item)} 
                           lang={lang}
@@ -101,7 +100,7 @@ export default function CartSidebar( { dict, lang }: { dict: any; lang: string }
           {items.length > 0 && (
             <div className="p-5 border-t border-slate-200 bg-slate-50">
               <div className="flex justify-between font-mono text-sm text-slate-800 mb-4">
-                <span>{t.summary.total}</span>
+                <span className='text-xs md:text-sm mr-4'>{t.summary.total}</span>
                 <span className="font-bold">
                   {/* Replaced hardcoded € with DynamicPrice */}
                   <DynamicPrice 
