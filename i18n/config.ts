@@ -17,9 +17,13 @@ const config = {
       en: '/',
       de: '/'
     },
-    '/about': {
-      en: '/about',
-      de: '/über-uns',
+    '/audit': {
+      en: '/audit',
+      de: '/prüfung',
+    },
+    '/telemedicine': {
+      en: '/telemedicine',
+      de: '/telemedizin',
     },
     '/products': {
       en: '/products',

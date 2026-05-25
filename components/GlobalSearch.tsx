@@ -1,10 +1,12 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { FiSearch, FiX } from 'react-icons/fi';
 import { createPortal } from 'react-dom';
 import dynamic from 'next/dynamic';
 import { EnhancedProduct } from '@/lib/product-enhancement';
+import { useProductFiltersStore } from '@/stores/productFiltersStore';
+import { sortProducts } from '@/lib/product-sorting';
 
 const ProductGrid = dynamic(() => import('./products/ProductGrid'), {
   loading: () => (
@@ -27,6 +29,8 @@ export default function GlobalSearch({ lang, dict }: GlobalSearchProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [mounted, setMounted] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  
+  const { sortBy, sortOrder } = useProductFiltersStore();
 
   useEffect(() => {
     setMounted(true);
@@ -82,21 +86,36 @@ export default function GlobalSearch({ lang, dict }: GlobalSearchProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isOpen, closeSearch]);
 
-  const filteredProducts = query.trim() === '' 
-    ? [] 
-    : products.filter(p => {
-        const searchLower = query.toLowerCase();
-        const specificationsStr = typeof p.specifications === 'string' 
-          ? p.specifications 
-          : JSON.stringify(p.specifications || '');
-          
-        return (
-          p.name.toLowerCase().includes(searchLower) ||
-          (p.descriptive_name && p.descriptive_name.toLowerCase().includes(searchLower)) ||
-          (p.description && p.description.toLowerCase().includes(searchLower)) ||
-          (specificationsStr && specificationsStr.toLowerCase().includes(searchLower))
-        );
-      });
+  const sortedProducts = useMemo(() => {
+    if (query.trim() === '') return [];
+
+    const filtered = products.filter(p => {
+      const searchLower = query.toLowerCase();
+      const specificationsStr = typeof p.specifications === 'string' 
+        ? p.specifications 
+        : JSON.stringify(p.specifications || '');
+        
+      return (
+        p.name.toLowerCase().includes(searchLower) ||
+        (p.descriptive_name && p.descriptive_name.toLowerCase().includes(searchLower)) ||
+        (p.description && p.description.toLowerCase().includes(searchLower)) ||
+        (specificationsStr && specificationsStr.toLowerCase().includes(searchLower)) ||
+        (p.test_results?.batch_number && p.test_results.batch_number.toLowerCase().includes(searchLower))
+      );
+    });
+
+    return sortProducts(filtered, sortBy, sortOrder);
+  }, [products, query, sortBy, sortOrder]);
+
+  const handleResultsClick = (e: React.MouseEvent) => {
+    // Check if the click was on a sortable header or filter control
+    const target = e.target as HTMLElement;
+    const isSortClick = !!target.closest('th');
+    
+    if (!isSortClick) {
+      closeSearch();
+    }
+  };
 
   return (
     <>
@@ -137,16 +156,16 @@ export default function GlobalSearch({ lang, dict }: GlobalSearchProps) {
                 </div>
               )}
               
-              {!isLoading && query && filteredProducts.length === 0 && (
+              {!isLoading && query && sortedProducts.length === 0 && (
                 <div className="text-center py-8 text-gray-500">
                   {dict?.navigation?.noProductsFoundFor || "No products found for"} "{query}"
                 </div>
               )}
 
-              {filteredProducts.length > 0 && (
-                <div onClick={closeSearch}>
+              {sortedProducts.length > 0 && (
+                <div onClick={handleResultsClick}>
                   <ProductGrid 
-                    products={filteredProducts} 
+                    products={sortedProducts} 
                     vatNumber="" 
                     lang={lang} 
                     dict={dict} 

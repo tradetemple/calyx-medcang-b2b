@@ -34,7 +34,6 @@ export default function OptimizedProductImage({
   onLoad,
   onError,
   isAboveFold = false,
-  isThumbnail = false,
 }: OptimizedProductImageProps) {
   const shouldPrioritize = priority || isAboveFold
   const [isLoading, setIsLoading] = useState(!shouldPrioritize) 
@@ -69,7 +68,7 @@ export default function OptimizedProductImage({
      )
   }
 
-  // --- THE STRICT CDN PROXY ---
+  /* --- THE STRICT CDN PROXY ---
   const { proxySrc, proxySrcSet } = useMemo(() => {
     if (!src) return { proxySrc: '', proxySrcSet: '' };
 
@@ -93,7 +92,7 @@ export default function OptimizedProductImage({
       proxySrc: src1200,
       proxySrcSet: `${src400} 400w, ${src600} 600w, ${src800} 800w, ${src1200} 1200w, ${src1800} 1800w, ${src2400} 2400w`
     };
-  }, [src, isThumbnail]);
+  }, [src, isThumbnail]);*/
 
   return (
     <div className={`relative w-full h-full overflow-hidden ${className}`} style={containerStyle}>
@@ -106,8 +105,7 @@ export default function OptimizedProductImage({
 
       {/* PURE HTML5 IMG TAG */}
       <img
-        src={proxySrc}
-        srcSet={proxySrcSet}
+        src={src}
         sizes={sizes || "(max-width: 768px) 100vw, 50vw"}
         alt={alt}
         className={`w-full h-full object-cover ${

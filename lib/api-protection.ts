@@ -1,21 +1,11 @@
 /* eslint-disable */
 import { NextRequest } from 'next/server';
-import { createClient as createServiceClient } from '@supabase/supabase-js';
 
 // Rate limiting store (in production, use Redis or similar)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 
-// CSRF token store (in production, use Redis or similar)
-const csrfTokenStore = new Map<string, { token: string; expires: number }>();
-
 // Security audit log store (in production, use persistent storage)
 const securityAuditLog: SecurityAuditEntry[] = [];
-
-interface AuthResult {
-  user: any;
-  isAdmin: boolean;
-  supabase: any;
-}
 
 interface SecurityAuditEntry {
   timestamp: string;
@@ -96,16 +86,6 @@ export function getCorsHeaders(origin?: string) {
     'Access-Control-Allow-Headers': 'Content-Type, Authorization, x-api-key',
     'Access-Control-Max-Age': '86400',
   };
-}
-
-/**
- * Create service role client for system operations
- */
-export function createServiceRoleClient() {
-  return createServiceClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!
-  );
 }
 
 /**

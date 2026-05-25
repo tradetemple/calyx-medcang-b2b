@@ -30,7 +30,7 @@ export default function ProductHero({
   siteUrl,
 }: ProductHeroProps) {
   if (product.product_image) {
-    // Generate the EXACT URLs that OptimizedProductImage uses to ensure a cache hit
+    /* Generate the EXACT URLs that OptimizedProductImage uses to ensure a cache hit
     const url400 = getCdnUrl(product.product_image, { width: 400 });
     const url800 = getCdnUrl(product.product_image, { width: 800 });
     const url1200 = getCdnUrl(product.product_image, { width: 1200 });
@@ -43,7 +43,7 @@ export default function ProductHero({
       fetchPriority: 'high',
       imageSrcSet: srcSet,
       imageSizes: sizes
-    });
+    });*/
   }
 
   const displayName = translation?.name || product.name;
@@ -85,8 +85,8 @@ export default function ProductHero({
         {/* Static LCP image - ALWAYS visible, no z-index competition */}
         {product.product_image && (
           <img 
-            src={getCdnUrl(product.product_image, { width: 800 })}
-            srcSet={`${getCdnUrl(product.product_image, { width: 400 })} 400w, ${getCdnUrl(product.product_image, { width: 800 })} 800w, ${getCdnUrl(product.product_image, { width: 1200 })} 1200w`}
+            src={product.product_image} //getCdnUrl(product.product_image, { width: 800 })
+            //srcSet={`${getCdnUrl(product.product_image, { width: 400 })} 400w, ${getCdnUrl(product.product_image, { width: 800 })} 800w, ${getCdnUrl(product.product_image, { width: 1200 })} 1200w`}
             sizes="(max-width: 768px) 100vw, 50vw"
             alt={translation?.name || product.name}
             fetchPriority="high"

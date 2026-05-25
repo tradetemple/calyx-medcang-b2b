@@ -3,13 +3,13 @@ import { MetadataRoute } from 'next'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Zeyana | Moissanite Engagement Rings',
-    short_name: 'Zeyana',
-    description: 'Fine Jewellery & Moissanite Engagement Rings',
+    name: 'Calyx Medical Prototype',
+    short_name: 'Calyx',
+    description: 'A live technical demonstration of compliant healthcare infrastructure. Calyx Medical features FHIR-based prescription triage, a GDP-compliant B2B pharmacy procurement and manifest checkout system, and an audit-ready immutable ledger. Purpose-built for businesses requiring strict cryptographic traceability, data privacy, and technical auditability.',
     start_url: '/',
     display: 'standalone',
     background_color: '#f8f7f4', // Your bg-main color
-    theme_color: '#102f5b',      // This fixes the "Address Bar Theme" error
+    theme_color: '#1363d3',      // This fixes the "Address Bar Theme" error
     icons: [
       {
         src: '/icon-192x192.png',

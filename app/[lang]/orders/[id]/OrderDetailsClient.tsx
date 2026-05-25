@@ -173,10 +173,10 @@ interface InvoiceDownloadProps {
 
 function InvoiceDownload({ orderId, locale, token, t, invoice = false }: InvoiceDownloadProps) {
 
-  const invoiceUrl = `/api/invoice/${orderId}?lang=${locale}${token ? `&token=${encodeURIComponent(token)}` : ''}`;
+  const invoiceUrl = `/docs/sample-ledger.pdf`;
 
   return (
-    <div className="mt-4 pt-4 border-t border-surface-active">
+    <div className="mt-4 pt-4">
       <a
         href={invoiceUrl}
         target="_blank"

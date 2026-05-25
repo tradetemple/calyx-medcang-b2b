@@ -18,16 +18,11 @@ export async function GET(): Promise<Response> {
   // Define your static pages along with their file paths.
   const staticPageRoutes = [
     { route: "", file: "app/[lang]/page.tsx" },
-    { route: "about", file: "app/[lang]/about/page.tsx" },
-    { route: "affiliate", file: "app/[lang]/affiliate/page.tsx" },
-    { route: "symbol", file: "app/[lang]/symbol/page.tsx" },
-    { route: "offer", file: "app/[lang]/offer/page.tsx" },
     { route: "products", file: "app/[lang]/products/page.tsx" },
-    { route: "articles", file: "app/[lang]/articles/page.tsx" },
-    { route: "compliance", file: "app/[lang]/compliance/page.tsx" },
-    { route: "contact", file: "app/[lang]/contact/page.tsx" },
+    { route: "telemedicine", file: "app/[lang]/telemedicine/page.tsx" },
+    { route: "audit", file: "app/[lang]/audit/page.tsx" },
+    { route: "checkout", file: "app/[lang]/checkout/page.tsx" },
     { route: "privacy", file: "app/[lang]/privacy/page.tsx" },
-    { route: "support", file: "app/[lang]/support/page.tsx" },
     { route: "terms", file: "app/[lang]/terms/page.tsx" },
   ];
 

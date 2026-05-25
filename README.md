@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚕️ Calyx Systems | B2B MedCanG Procurement & Triage Engine
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-15+-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue?logo=typescript)
+![Zod](https://img.shields.io/badge/Zod-Validation-3068b7)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-Edge_Architecture-F38020?logo=cloudflare)
+![Zustand](https://img.shields.io/badge/Zustand-State_Management-443E38)
 
-First, run the development server:
+**Calyx Systems** is an architectural demonstration of a highly regulated, enterprise-grade B2B platform built for the German medical cannabis and pharmaceutical supply chain. 
 
+It demonstrates how modern **Backend-For-Frontend (BFF)** architectures, strict runtime validation, and Edge computing can solve complex compliance requirements under the 2024/2026 **MedCanG** (Medical Cannabis Act) and **GDP** (Good Distribution Practice) frameworks.
+
+---
+
+## 🏗️ Architectural Overview
+
+This platform rejects standard "e-commerce" patterns in favor of a secure, data-dense compliance engine.
+
+- **Edge-Native Performance:** Deployed on **Cloudflare Pages** utilizing **Cloudflare Workers** and **KV Caching**. The product catalog runs with near-zero latency, ensuring instant inventory syncs for high-volume pharmacies.
+- **Backend-For-Frontend (BFF):** The Next.js App Router is utilized as a secure middleware layer, processing client actions, verifying regulatory constraints server-side, and simulating hand-offs to external health/logistics microservices (e.g., Python/Go).
+- **Strict Data Integrity:** `any` types are strictly forbidden. **Zod** is used as the ultimate gatekeeper for all incoming payloads, API requests, and state mutations, automatically inferring TypeScript interfaces to prevent runtime crashes.
+- **Simulated RLS (Row Level Security):** Demonstrates strict Role-Based Access Control (RBAC) mimicking PostgreSQL/Supabase database-level security policies.
+
+---
+
+## ⚙️ Core Compliance Modules
+
+### 1. B2B GDP Procurement Catalog
+A high-density data grid replacing traditional retail cards, optimized for rapid pharmacist workflow.
+- **Dynamic Tiered Pricing:** Real-time matrix calculating wholesale volume discounts.
+- **Vault Capacity Guard:** Enforces a simulated `5,000g` monthly pharmacy storage quota. Transactions exceeding this limit are actively rejected by the UI and the Server Action.
+- **Compliance Metadata:** Exposes strict batch numbers, future expiry dates, THC:CBD ratios, irradiation status, and downloadable Certificates of Analysis (CoAs).
+
+### 2. Telemedicine FHIR Triage Engine
+A split-screen simulator demonstrating interoperability with German government health data standards (Gematik).
+- **FHIR Ingestion:** Ingests raw, nested `MedicationRequest` JSON payloads.
+- **Zod Triage Pipeline:** Safely parses and flattens the JSON into typed patient dashboards.
+- **§3 MedCanG Enforcement:** Automatically rejects prescriptions lacking a Qualified Electronic Signature (QES) or violating the 365-day mandatory in-person consultation rule.
+
+### 3. Immutable Audit Vault
+Designed for BfArM regulatory audits, tracking every state mutation across the system.
+- **Actor Accountability:** Logs the exact JWT identity (e.g., `Pharmacy DE-BTM-88291`) performing the action.
+- **Cryptographic Chaining:** Appends a simulated SHA-256 hash to every event.
+- **Interaction Tracking:** Logs successful procurements, FHIR rejections, CoA document access, and unauthorized RBAC attempts.
+
+---
+
+## 🛡️ Security & Role-Based Access Control (RBAC)
+
+The system enforces strict separation of duties:
+*   **`guest`**: Blocked via simulated RLS 403 Terminal Error.
+*   **`medical_doctor`**: Can view batches and parse prescriptions, but is strictly blocked from the procurement checkout to enforce MedCanG §7 (Separation of Prescriber and Dispenser).
+*   **`verified_pharmacy`**: Full access to the B2B catalog, GDP shipping protocols, and the Audit Vault.
+
+---
+
+## 🚀 Local Development & Docker
+
+This repository is container-ready for enterprise Kubernetes pipelines.
+
+### Standard Setup
 ```bash
+# 1. Clone the repository
+git clone https://github.com/tradetemple/calyx-medcang-b2b.git
+cd calyx-medcang-b2b
+
+# 2. Install dependencies
+npm install
+
+# 3. Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

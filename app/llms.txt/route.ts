@@ -18,8 +18,8 @@ export async function GET() {
   const defaultLocale = config.defaultLocale as SupportedLocale;
   
   // Fetch site data
-  let siteName = "ZEYANA";
-  let siteDescription = "Luxury jewellery for every occasion. Discover our exquisite collection of necklaces, bracelets, earrings, and rings crafted with precision and passion. Shop now for timeless elegance and unparalleled craftsmanship.";
+  let siteName = "Calyx Medical B2B Prototype";
+  let siteDescription = "A live technical demonstration of compliant healthcare infrastructure. Calyx Medical features FHIR-based prescription triage, a GDP-compliant B2B pharmacy procurement and manifest checkout system, and an audit-ready immutable ledger. Purpose-built for businesses requiring strict cryptographic traceability, data privacy, and technical auditability.";
   
   try {
     const [dict, siteSettings] = await Promise.all([
@@ -44,12 +44,10 @@ export async function GET() {
   // Static pages from sitemap-static.xml/route.ts
   const staticPageRoutes = [
     { route: "", title: "Home" },
-    { route: "about", title: "About Us" },
     { route: "products", title: "Products" },
-    { route: "articles", title: "Articles" },
-    { route: "contact", title: "Contact" },
-    { route: "affiliate", title: "Affiliate Program" },
-    { route: "our-promise", title: "Our Promise" },
+    { route: "telemedicine", title: "FHIR Triad" },
+    { route: "audit", title: "Audit Vault" },
+    { route: "checkout", title: "Secure Checkout" },
     { route: "privacy", title: "Privacy Policy" },
     { route: "terms", title: "Terms & Conditions" },
   ];
@@ -62,11 +60,6 @@ export async function GET() {
   content += `## Sitemaps\n\n`;
   content += `- [Main SitemapIndex](${BASE_URL}/sitemap.xml)\n`;
   content += `- [Static Pages](${BASE_URL}/sitemap-static.xml)\n`;
-  content += `- [Products](${BASE_URL}/sitemap-products.xml)\n`;
-  content += `- [Articles](${BASE_URL}/sitemap-articles.xml)\n`;
-  content += `- [Product Categories](${BASE_URL}/sitemap-product-categories.xml)\n`;
-  content += `- [Article Categories](${BASE_URL}/sitemap-article-categories.xml)\n`;
-  content += `- [Authors](${BASE_URL}/sitemap-authors.xml)\n`;
   
   content += `\n## Main Pages\n\n`;
 

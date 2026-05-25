@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 // Define your Next.js configuration
 const nextConfig: NextConfig = {
+  output: 'standalone',
   compress: true,
   serverExternalPackages: [
     'twitter-api-v2', 

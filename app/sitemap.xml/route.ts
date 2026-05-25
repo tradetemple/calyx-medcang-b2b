@@ -1,6 +1,5 @@
 import { SitemapIndexEntry } from "@/lib/sitemap/types";
 import { getLastModifiedDate } from "@/lib/sitemap/utils";
-import { generateProductCategorySitemapPages } from "@/app/sitemap-product-categories.xml/route";
 // Removed import for generateAuthorSitemapPages as it's no longer exported
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL;
@@ -27,9 +26,6 @@ export async function GET(): Promise<Response> {
     lastModified: await getLastModifiedDate('app/sitemap-products.xml/route.ts'),
   });
   
-  // Add product category sitemaps
-  const productCategorySitemapPages = await generateProductCategorySitemapPages();
-  sitemapIndexEntries.push(...productCategorySitemapPages);
 
   const sitemapIndexXml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
