@@ -1,10 +1,9 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { MedicalProductSchema } from '@/types/medical-product'
-import { CartItem, CartItemSchema } from '@/types/cart'
+import { CartItem } from '@/types/cart'
 
 export type { CartItem }
-export { CartItemSchema }
 
 interface CartState {
   items: CartItem[]

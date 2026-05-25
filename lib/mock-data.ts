@@ -37,7 +37,7 @@ const abbreviateStrain = (name: string): string => {
     .toUpperCase();
 };
 
-export const generateMockProducts = (count: number): MedicalProduct[] => {
+const generateMockProducts = (count: number): MedicalProduct[] => {
   const products: MedicalProduct[] = [];
 
   for (let i = 1; i <= count; i++) {

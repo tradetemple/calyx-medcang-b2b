@@ -20,14 +20,14 @@ export const CategorySchema = z.object({
   slug: z.string(),
 });
 
-export const ProductCategoryJunctionSchema = z.object({
+const ProductCategoryJunctionSchema = z.object({
   category_id: z.string(),
   is_primary: z.boolean(),
   category: CategorySchema.optional(),
   originalSlug: z.string().optional(),
 });
 
-export const ProductTranslationSchema = z.object({
+const ProductTranslationSchema = z.object({
   locale: z.string(),
   name: z.string(),
   descriptive_name: z.string().optional(),
@@ -69,5 +69,4 @@ export type Tier = z.infer<typeof TierSchema>;
 export type PriceChart = z.infer<typeof PriceChartSchema>;
 export type Specification = z.infer<typeof SpecificationSchema>;
 export type Category = z.infer<typeof CategorySchema>;
-export type ProductCategoryJunction = z.infer<typeof ProductCategoryJunctionSchema>;
 export type MedicalProduct = z.infer<typeof MedicalProductSchema>;

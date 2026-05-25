@@ -3,8 +3,6 @@ import { cache } from 'react';
 import { mockProducts } from './mock-data';
 import { MedicalProduct } from '@/types/medical-product';
 
-export type { MedicalProduct };
-
 /**
  * Function #1: Lightweight product list for grids/cards
  */

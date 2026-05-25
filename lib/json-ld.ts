@@ -182,7 +182,7 @@ function jsonbToHowTos(jsonb: any): HowToItem[] {
  * @param faqData - FAQ data from database (JSONB format)
  * @returns FAQ schema object or null if no valid FAQs
  */
-export function generateFAQSchema(faqData: any): Record<string, any> | null {
+function generateFAQSchema(faqData: any): Record<string, any> | null {
   if (!faqData) return null;
 
   const faqs = jsonbToFaqs(faqData);

@@ -1,7 +1,7 @@
 import { EnhancedProduct } from './product-enhancement';
 
-export type SortBy = 'price' | 'name' | 'rating' | 'thc' | 'cbd' | 'batch' | 'irradiation' | 'liveStock';
-export type SortOrder = 'asc' | 'desc';
+type SortBy = 'price' | 'name' | 'rating' | 'thc' | 'cbd' | 'batch' | 'irradiation' | 'liveStock';
+type SortOrder = 'asc' | 'desc';
 
 /**
  * Strips non-numeric chars from strings like "<1.0%" or "22.5%"
