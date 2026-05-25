@@ -4,23 +4,13 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: 'standalone',
   compress: true,
-  serverExternalPackages: [
-    'twitter-api-v2', 
-    'jspdf', 
-    'fflate' // Add fflate here specifically
-  ],
+  serverExternalPackages: [],
   typescript: {
-    // !! WARN !!
-    // This allows production builds to successfully complete even if
-    // your project has type errors.
     ignoreBuildErrors: true,
   },
   images: {
     unoptimized: true,
-    remotePatterns:[
-      { protocol: 'https', hostname: 'fcbnaprqvjfyzzredkgy.supabase.co' },
-      { protocol: 'https', hostname: 'ae01.alicdn.com' }
-    ],
+    remotePatterns:[],
     localPatterns: [
       { pathname: '/**' },
     ],
@@ -31,29 +21,19 @@ const nextConfig: NextConfig = {
     optimizePackageImports:[
       'react-icons',
       'lucide-react',
-      '@heroicons/react',
-      'date-fns',
-      'lodash',
       '@radix-ui/react-dialog',
       '@radix-ui/react-toast',
-      '@radix-ui/react-tabs',
-      '@radix-ui/react-switch',
-      '@stripe/react-stripe-js',
-      '@stripe/stripe-js',
-      'react-hook-form',
+      '@radix-ui/react-slot',
       'react-international-phone',
       'zustand',
       'immer',
       'clsx',
       'tailwind-merge',
-      '@hello-pangea/dnd',
       'isomorphic-dompurify',
-      'stripe',
-      'swr',
       'uuid'
     ]
   },
-  // 🚀 PERFORMANCE FIX: Empty turbopack config to silence webpack warning
+  // PERFORMANCE FIX: Empty turbopack config to silence webpack warning
   // Turbopack handles chunking automatically and more efficiently than webpack
   turbopack: { root: process.cwd()},
   async redirects() {
@@ -81,21 +61,7 @@ const nextConfig: NextConfig = {
       "https://*.google.co.uk",
       "https://*.google.de",
       "https://static.cloudflareinsights.com",
-      "https://www.googletagmanager.com",
-      "https://wsrv.nl"
-    ];
-
-    const stripeDomains =[
-      "https://*.stripe.com",
-      "https://api.stripe.com",
-      "https://js.stripe.com",
-      "https://m.stripe.com",
-      "https://q.stripe.com",
-      "https://r.stripe.com",
-    ];
-
-    const truevoDomains =[
-      "https://*.truevo.com",
+      "https://www.googletagmanager.com"
     ];
 
     // 2. Build CSP as an Object (Extremely easy to read and manage)
@@ -106,10 +72,7 @@ const nextConfig: NextConfig = {
         "'unsafe-inline'",
         isDev ? "'unsafe-eval'" : "", // Dynamically adds eval only in Dev
         "https://cdn.jsdelivr.net",
-        "https://*.alicdn.com",
-        ...googleDomains,
-        ...stripeDomains,
-        ...truevoDomains,
+        ...googleDomains
       ],
       'style-src':[
         "'self'",
@@ -122,7 +85,6 @@ const nextConfig: NextConfig = {
         "blob:",
         "data:",
         "https://*",     // This wildcard natively allows ALL https:// images
-        "*.alicdn.com",  // Preserved from your config to allow non-protocol specific requests
       ],
       'media-src':[
         "'self'",
@@ -134,12 +96,8 @@ const nextConfig: NextConfig = {
       'object-src': ["'self'", "data:"],
       'connect-src':[
         "'self'",
-        "https://fcbnaprqvjfyzzredkgy.supabase.co",
-        "wss://fcbnaprqvjfyzzredkgy.supabase.co",
         "https://api.vatcheckapi.com",
-        ...googleDomains,
-        ...stripeDomains,
-        ...truevoDomains,
+        ...googleDomains
       ],
       'font-src':[
         "'self'",
@@ -147,9 +105,7 @@ const nextConfig: NextConfig = {
       ],
       'frame-src':[
         "'self'",
-        ...googleDomains,
-        ...stripeDomains,
-        ...truevoDomains,
+        ...googleDomains
       ],
       'worker-src': ["'self'", "blob:"],
     };
@@ -173,13 +129,6 @@ const nextConfig: NextConfig = {
             key: "Content-Security-Policy",
             value: cspValue
           }
-        ],
-      },
-      {
-        source: "/api/image-proxy",
-        headers:[
-          { key: "Cache-Control", value: "public, max-age=2592000, immutable" },
-          { key: "CDN-Cache-Control", value: "public, max-age=31536000" }
         ],
       },
       {

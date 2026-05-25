@@ -1,5 +1,5 @@
 #:schema node_modules/@opennextjs/cloudflare/wrangler-schema.json
-name = "calyx-medical"
+name = "calyx-medcang-b2b"
 compatibility_date = "2024-12-30"
 compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
 
@@ -12,14 +12,9 @@ assets = { directory = ".open-next/assets", binding = "ASSETS" }
 
 # Environment variables (set these in Cloudflare dashboard or .dev.vars for local)
 # Required variables:
-# - NEXT_PUBLIC_SUPABASE_URL
-# - SUPABASE_SERVICE_ROLE_KEY
-# - STRIPE_SECRET_KEY
-# - STRIPE_PUBLISHABLE_KEY
-# - NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
-# - GOOGLE_API_KEY
-# - GOOGLE_GEMINI_API_KEY
-# - RESEND_API_KEY
+# - ALLOWED_ORIGINS
+# - CRON_SECRET
+# - NODE_ENV
 # - etc.
 
 [[kv_namespaces]]
