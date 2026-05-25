@@ -24,7 +24,7 @@ const generateFutureExpiryDate = (seed: number) => {
 const BRANDS = ['IUVO', 'Demecan', 'Four20 Pharma', 'Cannamedical', 'Bloomwell', 'Cantourage', 'Sanity Group'];
 const STRAIN_NAMES = ['Ice Cream Cake', 'Kush Mints', 'Blue Cheese', 'Zkittlez', 'Pink Runtz', 'Zangria', 'Permanent Marker', 'RS11', 'Cereal Milk'];
 const TERPENES = ['Myrcene', 'Limonene', 'Caryophyllene', 'Linalool', 'Pinene', 'Terpinolene', 'Humulene'];
-const ORIGINS = ['Germany', 'Canada', 'Portugal', 'Denmark', 'Netherlands', 'Macedonia'];
+const ORIGINS = ['Germany', 'Canada', 'Portugal', 'Colombia', 'Czechia', 'Macedonia', 'Thailand'];
 
 /**
  * Abbreviates strain names (e.g., "Ice Cream Cake" -> "ICC")
@@ -53,7 +53,7 @@ export const generateMockProducts = (count: number): MedicalProduct[] => {
     let thc: number, cbd: number, ratio: string;
     
     if (typeRoll > 0.4) { // THC Dominant
-      thc = Math.floor(seededRandom(seed + 2) * (30 - 18 + 1) + 18);
+      thc = Math.floor(seededRandom(seed + 2) * (35 - 18 + 1) + 18);
       cbd = parseFloat((seededRandom(seed + 3) * 1).toFixed(1));
       ratio = `${thc}:1`;
     } else if (typeRoll > 0.15) { // Balanced
@@ -104,8 +104,8 @@ export const generateMockProducts = (count: number): MedicalProduct[] => {
 
     products.push({
       id: `med-${i.toString().padStart(3, '0')}`,
-      name: `${brand} ${abbreviation} ${ratio}`,
-      descriptive_name: `${strain} ${thc}/${cbd}`,
+      name: `${brand} ${abbreviation} ${thc}/${cbd}`,
+      descriptive_name: `${strain} ${ratio}`,
       slug: slug,
       displaySlug: slug,
       description: `Pharmaceutical grade medical cannabis flower. Batch tested for heavy metals, pesticides, and microbial purity.`,
