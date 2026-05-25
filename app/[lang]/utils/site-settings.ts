@@ -4,7 +4,7 @@ import { CACHE_TAGS, CACHE_TTL } from '@/lib/multi-layer-cache'
 
 export const getSiteSettings = unstable_cache(
   async (): Promise<SiteSettings> => {
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.zeyana.net';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calyx-medcang-b2b.gentle-leaf-7cab.workers.dev';
 
     const settings: SiteSettings = {
       // 1. Identity & Branding
