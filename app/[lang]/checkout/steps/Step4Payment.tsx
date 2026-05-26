@@ -24,7 +24,7 @@ export default function Step4Payment() {
       )
     },
     {
-      id: 'invoice_30', 
+      id: 'invoice_30',
       title: t.payment.methods[1].title,
       description: t.payment.methods[1].description,
       icon: (
