@@ -54,7 +54,7 @@ export const getSiteSettings = unstable_cache(
 
       // 8. Social Links
       social_links: {
-        github: "https://github.com/tradetemple",
+        github: "https://github.com/tradetemple/calyx-medcang-b2b",
         linkedIn: "https://www.linkedin.com/in/rasmus-g-2ab12b349/",
       },
 
@@ -63,7 +63,7 @@ export const getSiteSettings = unstable_cache(
       payment_methods: {
         wire_transfer: true,
         sepa_debit: true,
-        crypto: false, // Disabled for pharma compliance usually
+        crypto: false,
         invoice_net30: true
       },
       payment_details: {

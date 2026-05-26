@@ -25,7 +25,7 @@ export default function CartSummarySidebar() {
           <h2 className="text-[10px] uppercase tracking-[0.4em] font-black text-static-black">
             {t.summary.orderSummary}
           </h2>
-          <span className="text-[8px] text-text-main/40 uppercase tracking-widest font-bold">
+          <span className="text-[8px] text-slate-600 uppercase tracking-widest font-bold">
             {totalItems} {t.summary.units}
           </span>
         </div>

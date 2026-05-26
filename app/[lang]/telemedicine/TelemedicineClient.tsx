@@ -142,9 +142,6 @@ export default function TelemedicineClient(dict: telemedicineProps) {
 
   return (
     <div className="max-w-7xl mx-auto space-y-8">
-      {/* Header moved here to be part of the client layout if preferred, 
-          but usually better in server page if it doesn't need state. 
-          Keeping it here for visual consistency in the simulator. */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-6">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-slate-900 flex items-center gap-2">
@@ -157,7 +154,7 @@ export default function TelemedicineClient(dict: telemedicineProps) {
         </div>
         <div className="flex items-center gap-2">
           <span className="flex h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span className="text-xs font-medium text-slate-400 uppercase tracking-wider">{t.status}</span>
+          <span className="text-xs font-medium text-slate-600 uppercase tracking-wider">{t.status}</span>
         </div>
       </div>
 
@@ -195,9 +192,10 @@ export default function TelemedicineClient(dict: telemedicineProps) {
               value={jsonInput}
               onChange={(e) => setJsonInput(e.target.value)}
               spellCheck={false}
+              aria-label={t.leftColumn.jsonTerminal}
               className="w-full h-[500px] bg-slate-900 text-emerald-400 font-mono text-sm p-6 rounded-lg border border-slate-800 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none shadow-inner transition-all"
             />
-            <div className="absolute top-4 right-4 text-slate-700 text-[10px] font-mono uppercase">
+            <div className="absolute top-4 right-4 text-slate-300 text-[10px] font-mono uppercase">
               {t.leftColumn.jsonTerminal}
             </div>
           </div>
@@ -217,14 +215,14 @@ export default function TelemedicineClient(dict: telemedicineProps) {
             <>
               <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
                 <div className="bg-slate-50 border-b border-slate-200 px-6 py-4">
-                  <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400">{t.rightColumn.title}</h3>
+                  <h3 className="text-xs font-bold uppercase tracking-widest text-slate-600">{t.rightColumn.title}</h3>
                 </div>
                 
                 <div className="p-6 space-y-8">
                   {/* Patient & Prescription Info */}
                   <div className="grid grid-cols-2 gap-8">
                     <div className="space-y-3">
-                      <div className="flex items-center gap-2 text-slate-400">
+                      <div className="flex items-center gap-2 text-slate-600">
                         <User className="h-4 w-4" />
                         <span className="text-[10px] font-bold uppercase tracking-wider">{t.rightColumn.identityTitle}</span>
                       </div>
@@ -234,11 +232,11 @@ export default function TelemedicineClient(dict: telemedicineProps) {
                           <p className="text-sm font-mono text-slate-500">{triageResult.data.subject.id}</p>
                         </div>
                       ) : (
-                        <p className="text-sm text-slate-400 italic">{t.rightColumn.noData}</p>
+                        <p className="text-sm text-slate-600 italic">{t.rightColumn.noData}</p>
                       )}
                     </div>
                     <div className="space-y-3 border-l border-slate-100 pl-8">
-                      <div className="flex items-center gap-2 text-slate-400">
+                      <div className="flex items-center gap-2 text-slate-600">
                         <FileText className="h-4 w-4" />
                         <span className="text-[10px] font-bold uppercase tracking-wider">{t.rightColumn.prescriptionTitle}</span>
                       </div>
@@ -250,17 +248,17 @@ export default function TelemedicineClient(dict: telemedicineProps) {
                           <p className="text-sm text-slate-500">
                             {t.rightColumn.quantity} <span className="font-semibold text-slate-900">{triageResult.data.dispenseRequest.quantity.value}{triageResult.data.dispenseRequest.quantity.unit}</span>
                           </p>
-                          <p className="text-xs text-slate-400 mt-1">{t.rightColumn.ref} {triageResult.data.requester.display}</p>
+                          <p className="text-xs text-slate-600 mt-1">{t.rightColumn.ref} {triageResult.data.requester.display}</p>
                         </div>
                       ) : (
-                        <p className="text-sm text-slate-400 italic">{t.rightColumn.noData}</p>
+                        <p className="text-sm text-slate-600 italic">{t.rightColumn.noData}</p>
                       )}
                     </div>
                   </div>
 
                   {/* Compliance Checklist */}
                   <div className="space-y-4">
-                    <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-400">{t.rightColumn.complianceTitle}</h4>
+                    <h4 className="text-[10px] font-bold uppercase tracking-wider text-slate-600">{t.rightColumn.complianceTitle}</h4>
                     <div className="space-y-3">
                       <ChecklistRow 
                         label={t.rightColumn.fhirValidation} 
@@ -319,11 +317,11 @@ export default function TelemedicineClient(dict: telemedicineProps) {
               )}
             </>
           ) : (
-            <div className="h-full flex flex-col items-center justify-center text-slate-300 border-2 border-dashed border-slate-200 rounded-xl bg-white/50 p-12 text-center">
+            <div className="h-full flex flex-col items-center justify-center text-slate-500 border-2 border-dashed border-slate-200 rounded-xl bg-white/50 p-12 text-center">
               <div className="bg-slate-100 p-4 rounded-full mb-4">
                 <Activity className="h-12 w-12" />
               </div>
-              <p className="font-semibold text-slate-400">{t.rightColumn.awaitingInjestion}</p>
+              <p className="font-semibold text-slate-600">{t.rightColumn.awaitingInjestion}</p>
               <p className="text-sm max-w-[240px] mt-1">{t.rightColumn.instructUser}</p>
             </div>
           )}
@@ -348,7 +346,7 @@ function ChecklistRow({ label, passed, detail, dict }: { label: string, passed: 
         )}
         <div>
           <p className={cn("text-sm font-bold", passed ? "text-slate-800" : "text-red-900")}>{label}</p>
-          {detail && <p className="text-[10px] text-slate-400 font-mono mt-0.5">{detail}</p>}
+          {detail && <p className="text-[10px] text-slate-600 font-mono mt-0.5">{detail}</p>}
         </div>
       </div>
       <div className={cn(

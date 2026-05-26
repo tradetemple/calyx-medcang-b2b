@@ -1,4 +1,4 @@
-import { PriceChart as B2BPriceChart } from '@/types/medical-product'; // Ensure your types are imported
+import { PriceChart as B2BPriceChart } from '@/types/medical-product'; 
 
 /**
  * Calculates price information for a B2B Medical Product

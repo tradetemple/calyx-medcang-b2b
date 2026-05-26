@@ -29,18 +29,6 @@ const mockSiteSettings = {
   }
 };
 
-const getCategories = (locale: string) => {
-  const isDe = locale === 'de';
-  return [
-    { id: 'all', slug: 'all', name: isDe ? 'Alle Chargen' : 'All Batches' },
-    { id: 'flower', slug: 'flower', name: isDe ? 'Medizinische Blüten' : 'Medical Flower', category_image: null },
-    { id: 'non-irradiated', slug: 'non-irradiated', name: isDe ? 'Unbestrahlt' : 'Non-Irradiated', category_image: null },
-    { id: 'irradiated', slug: 'irradiated', name: isDe ? 'Bestrahlt' : 'Irradiated', category_image: null },
-    { id: 'high-thc', slug: 'high-thc', name: 'High THC (>22%)', category_image: null },
-    { id: 'balanced', slug: 'balanced', name: isDe ? 'Ausgeglichen (THC/CBD)' : 'Balanced (THC/CBD)', category_image: null }
-  ];
-};
-
 const getFaqContent = (locale: string) => {
   const isDe = locale === 'de';
   return {
@@ -148,7 +136,6 @@ export default async function ProductsPage(props: ProductsPageProps) {
 
   // 1. Load Hardcoded Data
   const { dict } = await getHomeData(lang);
-  const categories = getCategories(locale);
   const faqContent = getFaqContent(locale);
   const siteSettings = mockSiteSettings;
 
@@ -163,21 +150,7 @@ export default async function ProductsPage(props: ProductsPageProps) {
   const vatNumber = ''; 
   const t = dict.productsClient;
 
-  // 3. Category Mapping
-  const categoryMap: Record<string, string> = {};
-  allProducts.forEach(product => {
-    if (product.processedCategories) {
-      product.processedCategories.forEach((cat: any) => {
-        categoryMap[cat.originalSlug] = cat.name;
-      });
-    }
-  });
-
-  categories.forEach((cat: any) => {
-    if (!categoryMap[cat.slug]) categoryMap[cat.slug] = cat.name;
-  });
-
-  const enhancedAllProducts: EnhancedProduct[] = await enhanceProducts(allProducts, lang, categoryMap);
+  const enhancedAllProducts: EnhancedProduct[] = await enhanceProducts(allProducts, lang);
 
   // 4. Schema org logic
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.yourb2bportal.com';
@@ -258,7 +231,6 @@ export default async function ProductsPage(props: ProductsPageProps) {
         <div id="products-grid" className="w-full mx-auto py-6 px-4 sm:px-6">
           <ProductsClient
             allProducts={enhancedAllProducts}
-            categories={categories.map((cat: any) => ({ id: cat.slug, name: categoryMap[cat.slug] || cat.name, slug: cat.slug }))}
             initialSearchTerm=""
             lang={locale}
             dict={optimisedDict as any}

@@ -16,7 +16,7 @@ export function UserRolePill(dict: any) {
 
   if (userRole === 'guest') {
     return (
-      <div className="flex items-center gap-2 px-3 py-1 border border-rose-500/30 bg-rose-500/5 text-rose-500 rounded-none text-[8px] md:text-[10px] font-mono font-bold tracking-widest">
+      <div className="flex items-center gap-2 px-3 py-1 border border-rose-900/30 bg-rose-300/5 text-rose-900 rounded-none text-[8px] md:text-[10px] font-mono font-bold tracking-widest">
         <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse" />
         {t.unauthorised}
       </div>
@@ -24,7 +24,7 @@ export function UserRolePill(dict: any) {
   }
 
   return (
-    <div className="flex items-center gap-2 px-3 py-1 border border-emerald-500/30 bg-emerald-500/5 text-emerald-500 rounded-none text-[8px] md:text-[10px] font-mono font-bold tracking-widest transition-all hover:bg-emerald-500/10">
+    <div className="flex items-center gap-2 px-3 py-1 border border-emerald-900/30 bg-emerald-400/5 text-emerald-900 rounded-none text-[8px] md:text-[10px] font-mono font-bold tracking-widest transition-all hover:bg-emerald-500/10">
       <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
       {t.identified} {identifier}
     </div>

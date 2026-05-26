@@ -12,7 +12,7 @@ interface ProductAccordionProps {
  * Only one accordion item can be open at a time
  */
 export default function ProductAccordion({ children }: ProductAccordionProps) {
-    const [openItemId, setOpenItemId] = React.useState<string | null>('description') // Default to description open
+    const [openItemId, setOpenItemId] = React.useState<string | null>('description')
     const containerRef = React.useRef<HTMLDivElement>(null)
 
     const toggleItem = (itemId: string) => {

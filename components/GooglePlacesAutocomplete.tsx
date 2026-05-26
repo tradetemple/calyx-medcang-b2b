@@ -76,7 +76,7 @@ const Label = React.forwardRef<
   <label
     ref={ref}
     {...rest}
-    className={`block text-[10px] uppercase tracking-[0.2em] font-bold text-static-black/40 mb-1 ${className ?? ''}`}
+    className={`block text-[10px] uppercase tracking-[0.2em] font-bold text-slate-600 mb-1 ${className ?? ''}`}
   />
 ));
 Label.displayName = 'Label';

@@ -337,7 +337,7 @@ export default async function ProductDetailPage(props: {
             <div className="relative w-full">
               <div className="flex flex-col lg:flex-row">
 
-                <div className="w-full lg:w-[55%] flex flex-col md:space-y-8">
+                <div className="w-full lg:w-[55%] flex flex-col space-y-2 md:space-y-8">
                   <ProductHero
                     product={product}
                     translation={serverTranslation as any}

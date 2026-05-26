@@ -1,18 +1,15 @@
 'use client'
 
 import { useState, useEffect, useMemo, useRef } from 'react'
-import { useSearchParams } from 'next/navigation'
 import { EnhancedProduct } from '@/lib/product-enhancement'
 import ProductGrid from '@/components/products/ProductGrid'
 import ScrollAnimation from '@/components/ScrollAnimation'
 import { useScrollDirection } from '@/lib/hooks/useScrollDirection'
 import { useProductFiltersStore } from '@/stores/productFiltersStore'
-import { Category } from '@/types/medical-product'
 import { sortProducts } from '@/lib/product-sorting'
 
 interface ProductsClientProps {
   allProducts: EnhancedProduct[];
-  categories: Category[];
   initialSearchTerm: string;
   lang: string;
   dict: any;
@@ -23,7 +20,6 @@ const ITEMS_PER_PAGE = 6;
 
 export function ProductsClient({
   allProducts,
-  categories,
   initialSearchTerm,
   lang,
   dict,
@@ -31,8 +27,6 @@ export function ProductsClient({
 }: ProductsClientProps) {
   const locale = lang
   const t = dict.productsClient;
-  const searchParams = useSearchParams();
-  const urlCategory = searchParams?.get('category') || null;
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -45,9 +39,6 @@ export function ProductsClient({
     searchTerm: storeSearchTerm,
     sortBy,
     sortOrder,
-    setSelectedCategory,
-    setSearchTerm: setStoreSearchTerm,
-    setSorting,
     resetFilters,
   } = useProductFiltersStore();
 
@@ -57,29 +48,11 @@ export function ProductsClient({
       resetFilters();
     };
   }, [resetFilters]);
-
-  // Initialize from query params on mount only, then Zustand takes over
-  useEffect(() => {
-    // Only run on initial mount (when storeSelectedCategory is still at default 'all')
-    // and URL has a category
-    if (urlCategory && storeSelectedCategory === 'all') {
-      // Validate the category exists in current language
-      const hasCategory = categories.some(cat => cat.id.toLowerCase() === urlCategory.toLowerCase());
-      if (hasCategory) {
-        setSelectedCategory(urlCategory);
-      }
-    }
-  }, [urlCategory]); // Only depend on urlCategory to run once on mount
-
-  // Use store value as the selected category (user interactions update Zustand)
+  
   const activeCategorySlug = isMounted ? storeSelectedCategory : 'all';
   const activeSearchTerm = isMounted ? (storeSearchTerm || initialSearchTerm) : initialSearchTerm;
   const activeSortBy = isMounted ? sortBy : 'price'; 
   const activeSortOrder = isMounted ? sortOrder : 'asc';
-
-  const [searchTerm, setSearchTerm] = useState(storeSearchTerm || initialSearchTerm);
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [isSortOpen, setIsSortOpen] = useState(false);
 
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const loadMoreRef = useRef<HTMLDivElement>(null);
@@ -87,7 +60,6 @@ export function ProductsClient({
   const scrollDirection = useScrollDirection();
   const [isAtTop, setIsAtTop] = useState(true);
   const [isStuck, setIsStuck] = useState(false);
-  const headerRef = useRef<HTMLDivElement>(null);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
   // Track if we're at the top of the page
@@ -111,7 +83,7 @@ export function ProductsClient({
         // When sentinel is not visible, header is stuck
         setIsStuck(!entry.isIntersecting);
       },
-      { threshold: 0, rootMargin: '-96px 0px 0px 0px' } // Account for nav height
+      { threshold: 0, rootMargin: '-96px 0px 0px 0px' }
     );
 
     observer.observe(sentinel);
@@ -120,7 +92,6 @@ export function ProductsClient({
 
   // Calculate transform based on nav visibility - only apply when header is stuck
   const navIsVisible = scrollDirection === 'up' || isAtTop;
-  const translateY = (navIsVisible || !isStuck) ? '0px' : '-96px'; // Only move up when stuck AND nav is hidden
 
   const filteredProducts = useMemo(() => {
     let productsToFilter = allProducts.filter(product => product.status !== 'symbols');

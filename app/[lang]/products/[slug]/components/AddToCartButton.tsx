@@ -19,17 +19,15 @@ export default function AddToCartButton({
   price,
   selectedVariantImage,
 }: AddToCartButtonProps) {
-  // Use the new B2B Cart Store
+
   const addItemToCart = useB2BCartStore(state => state.addItem)
   const openSidebar = useB2BCartStore(state => state.openSidebar)
   const addAuditLog = useAuditStore(state => state.addLog)
   
   const [isAdding, setIsAdding] = useState(false);
 
-  // Validate against B2B minimums
   const isValidQty = () => defaultQuantity >= moqGrams;
 
-  // Button text with dynamic price for mobile only
   const buttonDisplayText = (
     <>
       {t?.productDetail?.cart?.addToCart || 'Add to Manifest'}{' '}
@@ -51,24 +49,22 @@ export default function AddToCartButton({
     setIsAdding(true);
 
     try {
-      // Prioritize selectedVariantImage then fallback
       const imageUrl = selectedVariantImage || product?.product_image || null;
       
       // Construct the exact snapshot matching MedicalProductSchema
       const productSnapshot = {
-        id: productId, // Fallback to prop if product is null
+        id: productId,
         name: product?.name || 'Unknown Strain',
         descriptive_name: product?.descriptive_name || '',
         slug: product?.slug || 'unknown-strain',
         product_image: imageUrl,
-        price_chart: product?.price_chart, // Preserves the tiered B2B pricing array
+        price_chart: product?.price_chart,
         moq_grams: moqGrams,
-        test_results: product?.test_results, // Crucial for regulatory batch tracking
+        test_results: product?.test_results,
         category: product?.category || 'Flower',
         status: product?.status || 'active'
       };
       
-      // Add to our strict B2B store (Passes through Zod validation)
       addItemToCart(productSnapshot, defaultQuantity);
       
       // GDP Audit Log

@@ -69,12 +69,12 @@ export default async function FAQDisplay({
 // Individual FAQ Item Component (Server Component)
 async function FAQItem({ faq, lang }: { faq: FAQItem; lang: string }) {
   return (
-    <div className="bg-primary/10 border border-border/20 rounded-none shadow-sm hover:shadow-md transition-shadow duration-200 faq-item">
+    <div className="bg-slate-50 border border-border/20 rounded-none shadow-sm hover:shadow-md transition-shadow duration-200 faq-item">
       <button className="flex items-center justify-between w-full p-3 md:p-6 text-left focus:outline-none faq-button">
         <ProcessedContentServer 
           htmlContent={faq.question}
           lang={lang}
-          className="text-[10px] md:text-sm uppercase tracking-wide font-semibold text-text-main pr-4 flex-1"
+          className="text-xs md:text-sm uppercase tracking-wide font-semibold text-text-main pr-4 flex-1"
         />
         <div className="flex-shrink-0 ml-4">
           <svg 

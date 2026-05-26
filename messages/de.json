@@ -162,7 +162,10 @@
       "moq": "MOQ",
       "estTotal": "Geschätzter Gesamtbetrag",
       "volDiscount": "Mengenrabatt",
-      "auditTrail": "Verschlüsselter GDP-Audit-Trail aktiv"
+      "auditTrail": "Verschlüsselter GDP-Audit-Trail aktiv",
+      "selected": "Ausgewählt:",
+      "increment": "Erhöhen.",
+      "decrement": "Verringern."
     },
     "cart": {
       "quantity": "Beschaffungsvolumen",
@@ -279,6 +282,7 @@
       "operatingLicense": "Lizenzprüfung",
       "fields": {
         "fullName": "Offizieller Apothekenname",
+        "email": "E-Mail der verantwortlichen Person",
         "addressLine1": "Anschrift Zeile 1",
         "addressLine2": "Anschrift Zeile 2",
         "city": "Stadt",
@@ -445,7 +449,7 @@
   "footer": {
     "securityProtocol": "Sicherheitsprotokoll: AES-256-GCM",
     "immutability": "Unveränderlichkeit: SHA-256 Verkettung",
-    "copyright": "&copy; 2026 CALYX SYSTEMS GERMANY // COMPLIANCE DIVISION"
+    "copyright": "© 2026 CALYX SYSTEMS GERMANY // COMPLIANCE DIVISION"
   }
   },
   "roleGuard": {

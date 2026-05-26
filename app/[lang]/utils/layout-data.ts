@@ -1,9 +1,6 @@
 import { unstable_cache } from 'next/cache';
 import { getDictionary } from '../dictionaries';
 
-// 🚨 Use Next.js unstable_cache to globally cache database responses 🚨
-// This prevents Supabase from being hit on every single page load.
-
 // KV cache helper for region-level caching
 interface KVNamespace {
   get(key: string, type: 'json' | 'text' | 'stream'): Promise<any>;
@@ -12,11 +9,10 @@ interface KVNamespace {
 }
 
 const getKV = () => {
-  // OpenNext/Cloudflare binding
   return (process.env.NEXT_CACHE_WORKERS_KV as unknown as KVNamespace) || null;
 };
 
-const KV_TTL = 3600; // 1 hour in seconds
+const KV_TTL = 3600;
 
 const getCachedDictionary = unstable_cache(
   async (lang: string) => {
@@ -48,7 +44,6 @@ const getCachedDictionary = unstable_cache(
   { revalidate: 3600, tags: ['dictionary'] }
 );
 
-// Minimal data for initial page load
 export const getMinimalLayoutData = async (lang: string) => {
   const [ dictionary] = await Promise.all([
     getCachedDictionary(lang)
@@ -57,7 +52,6 @@ export const getMinimalLayoutData = async (lang: string) => {
   return { dictionary };
 };
 
-// Separate function for metadata to avoid blocking layout
 export const getMetadataData = async (lang: string) => {
   const [dictionary] = await Promise.all([
     getCachedDictionary(lang),

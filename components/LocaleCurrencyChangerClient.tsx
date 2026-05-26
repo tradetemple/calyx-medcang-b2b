@@ -57,7 +57,7 @@ export default function LocaleCurrencyChangerClient({
 }: LocaleCurrencyChangerClientProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const { preferredCurrency, getActiveCurrency, setPreferredCurrency, clearPreferredCurrency, setDetectedCountry, getCountryBasedCurrency, isUsingCountryBasedCurrency } = useCurrencyStore();
+  const { preferredCurrency, getActiveCurrency, setPreferredCurrency, setDetectedCountry, getCountryBasedCurrency } = useCurrencyStore();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isLoading, setIsLoading] = useState<Record<string, boolean>>({});

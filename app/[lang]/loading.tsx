@@ -1,7 +1,6 @@
 export default function Loading() {
   return (
     <div className="bg-bg-main min-h-screen">
-      {/* Hero Section Skeleton */}
       <div className="relative h-[100vh] max-h-[calc(100vh-64px)] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-white" />
         

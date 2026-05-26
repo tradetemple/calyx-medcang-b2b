@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Inter } from 'next/font/google'
 
 export const inter = Inter({ 

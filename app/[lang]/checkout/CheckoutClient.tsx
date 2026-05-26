@@ -4,7 +4,6 @@ import { CheckoutProvider } from './context/CheckoutContext';
 import CheckoutFlow from './CheckoutFlow';
 import { CheckoutInput, CheckoutState } from '@/types/checkout-types';
 import { SiteSettings } from '@/types/database';
-import RoleGuard from '@/components/RoleGuard';
 
 interface CheckoutClientProps {
   initialInput: CheckoutInput;

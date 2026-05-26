@@ -89,12 +89,16 @@ export default function ProcurementController({
 
       {/* 2. QUANTITY CONTROLLER */}
       <div className="space-y-2 md:space-y-3 p-3 md:p-4 bg-white md:bg-slate-50 md:border border-slate-200">
+        <label className="hidden lg:block text-xs font-bold uppercase tracking-widest text-slate-800 block">
+          {t.quantityControl.title}
+        </label>
         <div className="flex items-center gap-4">
           <div className="flex items-center border border-slate-300 bg-white">
             <button 
               onClick={handleDecrement}
               className="p-2 md:p-3 hover:bg-slate-100 transition-colors border-r border-slate-300 disabled:opacity-30 text-slate-700"
               disabled={quantity <= moqGrams}
+              aria-label={t.quantityControl.decrement}
             >
               <Minus className="w-4 h-4" />
             </button>
@@ -102,6 +106,7 @@ export default function ProcurementController({
             <input 
               type="number" 
               value={quantity}
+              aria-label={`${t.quantityControl.selected} ${quantity}`}
               readOnly
               className="w-16 md:w-24 text-center font-mono bg-white font-bold text-xs md:text-lg focus:outline-none text-slate-900"
             />
@@ -110,6 +115,7 @@ export default function ProcurementController({
               onClick={handleIncrement}
               className="p-2 md:p-3 hover:bg-slate-100 transition-colors border-l border-slate-300 disabled:opacity-30 text-slate-700"
               disabled={quantity + 50 > remainingQuota}
+              aria-label={t.quantityControl.increment}
             >
               <Plus className="w-4 h-4" />
             </button>
@@ -121,9 +127,6 @@ export default function ProcurementController({
           </div>
 
           <div className="flex items-center justify-between">
-            <label className="hidden md:block text-xs font-bold uppercase tracking-widest text-slate-800 block">
-              {t.quantityControl.title}
-            </label>
             <span className="text-[10px] font-bold text-slate-900 bg-slate-200 px-2 py-0.5 border border-slate-300 font-mono">
                 {t.quantityControl.currentRate} {formatCurrency(currentUnitPrice, locale, 'EUR')}/g
             </span>
@@ -164,7 +167,7 @@ export default function ProcurementController({
         />
       </div>
 
-      <div className="flex items-center gap-2 justify-center py-2 text-slate-400">
+      <div className="flex items-center gap-2 justify-center py-2 text-slate-600">
         <Info className="w-3 h-3" />
         <span className="text-[10px] uppercase tracking-widest font-bold">
           {t.quantityControl.auditTrail}

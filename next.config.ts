@@ -70,7 +70,7 @@ const nextConfig: NextConfig = {
       'script-src':[
         "'self'",
         "'unsafe-inline'",
-        isDev ? "'unsafe-eval'" : "", // Dynamically adds eval only in Dev
+        "'unsafe-eval'", // Required for OpenNext and certain edge-runtime components
         "https://cdn.jsdelivr.net",
         ...googleDomains
       ],

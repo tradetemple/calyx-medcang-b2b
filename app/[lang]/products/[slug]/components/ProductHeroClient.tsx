@@ -15,7 +15,6 @@ export default function ProductHeroClient({ mainImage, additionalImages, product
   const variantImage = useProductVariantStore((state) => state.variantImages[productId]);
   const [selectedImage, setSelectedImage] = useState(mainImage);
   
-  // NEW: Delay mounting of the interactive gallery
   const [shouldMount, setShouldMount] = useState(false);
 
   useEffect(() => {

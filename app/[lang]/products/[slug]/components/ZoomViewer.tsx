@@ -242,7 +242,7 @@ export default function ZoomViewer({
         </>
       )}
 
-      {/* Floating Zoom Controls Bar - FIXED FIRMLY TO BOTTOM */}
+      {/* Floating Zoom Controls Bar */}
       {!isVideo && (
         <div 
           className="fixed bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-4 px-6 py-3 bg-black/80 backdrop-blur-md rounded-full border border-white/20 shadow-2xl z-[1000000]"

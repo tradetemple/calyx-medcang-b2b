@@ -13,7 +13,7 @@ interface CheckoutManifestItemProps {
 
 /**
  * A clean, professional component to display a line item in the checkout manifest.
- * It shows the exact batch, expiry, quantity, and tiered price. No B2C "upgrade" logic.
+ * It shows the exact batch, expiry, quantity, and tiered price.
  */
 export default function CheckoutManifestItem({ item }: CheckoutManifestItemProps) {
   const { checkoutState, dict, locale } = useCheckout();
@@ -60,7 +60,7 @@ export default function CheckoutManifestItem({ item }: CheckoutManifestItemProps
       <div className="flex-1 min-w-0">
         <h3 className="font-semibold text-slate-900 truncate">{item.product.name}</h3>
         
-        {/* --- CRUCIAL FOR CTOS: Immutable Batch & Expiry Data --- */}
+        {/* --- Immutable Batch & Expiry Data --- */}
         {batchInfo && (
           <div className="mt-1 space-y-0.5 text-xs text-slate-500 font-mono">
             <p>{t.batch} <span className="font-semibold text-slate-700">{batchInfo.batch_number}</span></p>

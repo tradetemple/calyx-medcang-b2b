@@ -74,9 +74,9 @@ export function rateLimit(maxRequests: number = 10, windowMs: number = 60000) {
  */
 export function getCorsHeaders(origin?: string) {
   const allowedOrigins = [
-    process.env.NEXT_PUBLIC_SITE_URL!,
+    process.env.NEXT_PUBLIC_SITE_URL,
     ...(process.env.ALLOWED_ORIGINS?.split(',') || [])
-  ].filter(Boolean);
+  ].filter(Boolean) as string[];
 
   const isAllowed = !origin || allowedOrigins.includes(origin);
 

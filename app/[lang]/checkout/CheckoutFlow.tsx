@@ -46,7 +46,7 @@ export default function CheckoutFlow({ lang }: { lang: string }) {
               <div className="flex gap-1 items-end mb-2">
                 {stepTitles.map((title, i) => (
                   <div key={i} className="flex-1"> {/* Each title now occupies exactly 1/4 of the width */}
-                    <div className={`text-[7px] md:text-[10px] uppercase tracking-[0.2em] font-bold ${step === i + 1 ? 'text-static-black' : 'text-text-main/30'}`}>
+                    <div className={`text-[7px] md:text-[10px] uppercase tracking-[0.2em] font-bold ${step === i + 1 ? 'text-static-black' : 'text-slate-600'}`}>
                       {title}
                     </div>
                   </div>
@@ -59,7 +59,7 @@ export default function CheckoutFlow({ lang }: { lang: string }) {
                   <div 
                     key={s} 
                     className={`flex-1 transition-colors duration-500 ${
-                      step >= s ? 'bg-static-black' : 'bg-static-black/10'
+                      step >= s ? 'bg-static-black' : 'bg-slate-600/30'
                     }`}
                   />
                 ))}

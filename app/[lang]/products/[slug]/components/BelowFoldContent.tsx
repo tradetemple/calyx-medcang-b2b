@@ -9,7 +9,6 @@ const DynamicPrice = dynamic(() => import('@/components/DynamicPrice'), {
 import { PriceChart as B2BPriceChart, Tier as PriceTier } from '@/types/medical-product';
 import ProductInfoAccordion from './ProductInfoAccordion';
 
-// Import the TabData type to ensure consistency
 interface CustomSpecification {
   name: string;
   value: string;
@@ -135,7 +134,7 @@ export default function BelowFoldContent({
           </div>
         </div>
       }>
-        <div className='w-full space-y-2 mt-8 py-8 px-3 md:px-8'>
+        <div className='w-full space-y-2 md:mt-8 py-4 md:py-8 px-3 md:px-8'>
           {/* Product Info Accordion */}
           <ProductInfoAccordion
             displayName={displayName}
@@ -221,9 +220,9 @@ export default function BelowFoldContent({
             <div className="max-w-3xl mx-auto px-4 md:px-8">
               <div className="flex items-center gap-3 mb-6 justify-center">
                 <TrendingDown className="w-5 h-5 text-blue-600" />
-                <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-slate-800">
+                <h3 className="text-sm font-bold uppercase tracking-[0.2em] text-slate-800">
                   {t.productDetail.priceChart || 'Wholesale Price Matrix'}
-                </h2>
+                </h3>
               </div>
               
               <div className="bg-white border border-slate-200 shadow-sm overflow-hidden">
@@ -249,10 +248,10 @@ export default function BelowFoldContent({
                               {tier.min}+ g
                             </span>
                           </td>
-                          <td className="px-6 py-4 text-right">
-                            <span className="font-mono font-bold text-emerald-600">
+                          <td className="px-6 py-4 text-right tracking-wider">
+                            <span className="font-mono font-black text-black">
                               <DynamicPrice basePrice={tier.price} lang={locale} />
-                              <span className="text-[10px] ml-1 text-slate-400">/g</span>
+                              <span className="text-xs ml-1">/g</span>
                             </span>
                           </td>
                         </tr>
@@ -260,7 +259,7 @@ export default function BelowFoldContent({
                   </tbody>
                 </table>
                 <div className="p-3 bg-slate-50 border-t border-slate-200 text-center">
-                  <p className="text-[10px] text-slate-400 uppercase font-bold tracking-tighter">
+                  <p className="text-[10px] text-slate-600 uppercase font-bold tracking-wider">
                     {t.productDetail.btmRates}
                   </p>
                 </div>

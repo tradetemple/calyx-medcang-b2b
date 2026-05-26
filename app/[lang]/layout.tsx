@@ -7,13 +7,12 @@ import type { Metadata } from 'next'
 import { Viewport } from 'next'
 
 export const viewport: Viewport = {
-  themeColor: '#102f5b', // Fixes the address bar color
+  themeColor: '#102f5b',
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 5, // Allows zooming for accessibility
+  maximumScale: 5,
 }
 
-// Optimized imports
 import Footer from '@/components/footer'
 import StoreHydration from '@/components/StoreHydration'
 import CurrencyProvider from '@/components/CurrencyProvider'
@@ -21,15 +20,12 @@ import { Toaster } from '@/components/ui/toaster'
 import { ThemeProvider } from './ThemeProvider'
 import { ThemeInitializer } from './ThemeInitializer'
 
-// Skeleton components
 import NavigationSkeleton from '@/components/NavigationSkeleton'
 import FooterSkeleton from '@/components/FooterSkeleton'
 
-// Cached data fetchers
 import { getMetadataData, getMinimalLayoutData } from './utils/layout-data'
 import { getSiteSettings } from './utils/site-settings'
 
-// Component that loads categories separately for navigation
 async function NavigationWithCategories({ lang, dict, siteSettings }: { lang: string; dict: any; siteSettings: any; }) {
   const navbarSiteSettings = {
     site_name: siteSettings.site_name,
@@ -41,7 +37,6 @@ async function NavigationWithCategories({ lang, dict, siteSettings }: { lang: st
   return <NavigationBarOptimized lang={lang} dict={dict} siteSettings={navbarSiteSettings} />
 }
 
-// Component that loads categories separately for footer
 async function FooterWithCategories({ lang, dict, siteSettings }: { lang: string; dict: any; siteSettings: any; }) {
   const footerSiteSettings = {
     social_links: siteSettings.social_links,
@@ -119,12 +114,12 @@ export default async function RootLayout({
 }) {
   const { lang } = await params;
 
-  // Fetch critical layout data at the top level
   const { dictionary } = await getMinimalLayoutData(lang);
 
   return (
     <html lang={lang} className={`${inter.variable}`} suppressHydrationWarning>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: 'window.__name = window.__name || ((f, n) => f);' }} />
         <ThemeInitializer />
       </head>
       <body className={`${inter.className}`}>
@@ -134,21 +129,18 @@ export default async function RootLayout({
             <div className="flex flex-col min-h-screen bg-bg-main">
               <StoreHydration />
 
-              {/* Suspense isolated to Navigation */}
               <Suspense fallback={<NavigationSkeleton />}>
                 <NavigationWithCategories lang={lang} dict={dictionary} siteSettings={siteSettings} />
               </Suspense>
 
               <ClientProviders lang={lang} dict={dictionary.cart}>
                 
-                {/* 🚨 CHILDREN ARE NO LONGER BLOCKED BY SUSPENSE 🚨 */}
                 <main className="flex-grow">
                   {children}
                 </main>
                 
               </ClientProviders>
 
-              {/* Suspense isolated to Footer */}
               <Suspense fallback={<FooterSkeleton />}>
                 <FooterWithCategories lang={lang} dict={dictionary.footer} siteSettings={siteSettings} />
               </Suspense>

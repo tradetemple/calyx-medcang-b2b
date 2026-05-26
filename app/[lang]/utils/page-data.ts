@@ -13,7 +13,7 @@ const getKV = () => {
   return (process.env.NEXT_CACHE_WORKERS_KV as unknown as KVNamespace) || null;
 };
 
-const KV_TTL = 3600; // 1 hour in seconds
+const KV_TTL = 3600;
 
 // Cache dictionary with KV
 const getCachedDictionary = unstable_cache(
@@ -46,7 +46,6 @@ const getCachedDictionary = unstable_cache(
   { revalidate: 3600, tags: ['dictionary'] }
 );
 
-// Home page data fetching
 export const getHomeData = async (lang: string) => {
   const [dict] = await Promise.all([
     getCachedDictionary(lang),

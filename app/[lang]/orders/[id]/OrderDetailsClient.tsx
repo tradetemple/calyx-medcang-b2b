@@ -129,7 +129,7 @@ function getOrderItemDisplayPrice(item: OrderItem, order: Order, isB2B = false):
 
   // For B2C orders with VAT number, remove VAT
   if (order.vat_number && order.vat_number.trim().length > 0) {
-    return converted / 1.25;
+    return converted / 1.19;
   }
 
   return converted;
@@ -171,7 +171,7 @@ interface InvoiceDownloadProps {
   invoice?: boolean;
 }
 
-function InvoiceDownload({ orderId, locale, token, t, invoice = false }: InvoiceDownloadProps) {
+function InvoiceDownload({ t, invoice = false }: InvoiceDownloadProps) {
 
   const invoiceUrl = `/docs/sample-ledger.pdf`;
 
@@ -268,7 +268,7 @@ function ShippingTracking({ orderId, status, t }: ShippingTrackingProps) {
   const fetchTrackingInfo = async () => {
     setLoading(true);
     setError(null);
-    setTrackingData(null); // Reset on new fetch
+    setTrackingData(null);
 
     try {
       const response = await fetch(`/api/tracking/${orderId}`);

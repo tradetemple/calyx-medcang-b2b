@@ -1,5 +1,4 @@
 import Script from 'next/script'
-// import { SiteSettings } from '@/types/database' // Removed unused import
 
 // Function to generate the IIFE script content - prevents hydration mismatches
 function getThemeScriptContent() {

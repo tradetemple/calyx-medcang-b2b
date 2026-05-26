@@ -10,7 +10,6 @@ interface ProductInfoAccordionProps {
   t: any
 }
 
-// Dynamically import the client component
 const ProductAccordion = dynamic(() => import('./ProductAccordion'), {
   loading: () => (
     <div className="space-y-4">
@@ -91,9 +90,9 @@ function ProductInfoItem({
   return (
     <div className="bg-slate-50 border border-border/20 rounded-none shadow-sm hover:shadow-md transition-shadow duration-200 product-info-item">
       <button className="flex items-center justify-between w-full p-3 md:p-6 text-left focus:outline-none product-info-button">
-        <h3 className="text-[10px] md:text-sm uppercase tracking-wide font-semibold text-text-main pr-4 flex-1">
+        <h2 className="text-xs md:text-sm uppercase tracking-wide font-semibold text-text-main pr-4 flex-1">
           {section.title}
-        </h3>
+        </h2>
         <div className="flex-shrink-0 ml-4">
           <svg 
             className="w-5 h-5 text-text-secondary transition-transform duration-300 ease-in-out product-info-icon"
@@ -107,12 +106,12 @@ function ProductInfoItem({
       </button>
       
       <div className="overflow-hidden product-info-content">
-        <div className="px-4 md:px-6 pb-4 md:pb-6 product-info-inner-content">
+        <div className="px-4 md:px-6 pb-4 md:pb-6 product-info-inner-content mt-3">
           {section.type === 'description' ? (
             <ProcessedContentServer 
               htmlContent={section.content as string}
               lang={locale}
-              className="text-xs md:text-base text-text-secondary leading-relaxed prose prose-sm prose-a:text-secondary prose-a:no-underline md:prose-base max-w-none"
+              className="text-xs md:text-base text-black leading-relaxed prose prose-sm prose-a:text-secondary prose-a:no-underline md:prose-base max-w-none"
             />
           ) : (
             <>
@@ -120,14 +119,14 @@ function ProductInfoItem({
                 <ProcessedContentServer 
                   htmlContent={section.content}
                   lang={locale}
-                  className="text-xs md:text-base text-text-secondary leading-relaxed prose prose-sm prose-a:text-secondary prose-a:no-underline md:prose-base max-w-none"
+                  className="text-xs md:text-base text-black leading-relaxed prose prose-sm prose-a:text-secondary prose-a:no-underline md:prose-base max-w-none"
                 />
               ) : (
                 <div className="space-y-3">
                   {(section.content as Specification[]).map((spec, index) => (
                     <div key={index} className="flex justify-between items-start border-b border-border/10 pb-2">
-                      <span className="text-text-main font-medium text-sm">{spec.name}</span>
-                      <span className="text-text-secondary text-sm text-right ml-4">{spec.value}</span>
+                      <span className="text-text-main font-semibold text-xs md:text-sm">{spec.name}</span>
+                      <span className="text-text-secondary text-xs md:text-sm text-right ml-4">{spec.value}</span>
                     </div>
                   ))}
                 </div>

@@ -77,7 +77,7 @@ export default function ProductHero({
 
   return (
     <>
-      {/* Image Gallery - Both Mobile and Desktop (appears first on mobile) */}
+      {/* Image Gallery - Both Mobile and Desktop */}
       <div className="relative w-full mb-2 md:mb-6 lg:mb-0 flex justify-center bg-transparent" style={{ aspectRatio: '1 / 1.15' }}>
         
         {/* Static LCP image - ALWAYS visible, no z-index competition */}
@@ -105,8 +105,8 @@ export default function ProductHero({
         />
       </div>
 
-      {/* Mobile: Show title (after image, but NO duplicated purchase section) */}
-      <div className="lg:hidden md:space-y-6 px-2 pb-2 md:px-0">
+      {/* Mobile: Show title */}
+      <div className="lg:hidden px-2">
         {/* Product Title */}
         <div>
           <h1 className="text-lg font-bold leading-tight md:mb-2">
@@ -132,8 +132,8 @@ export default function ProductHero({
             
             <div className='inline-flex gap-2 items-center'>
               <div className="flex items-baseline gap-2">
-                <span className="text-xl font-bold bg-status-error py-1 px-3 text-static-white uppercase tracking-wide">
-                    <DynamicPrice basePrice={price} lang={locale} />
+                <span className="text-lg font-bold bg-secondary py-1 px-3 text-static-white tracking-wide">
+                    {t.productDetail.from} <span className='uppercase'><DynamicPrice basePrice={price} lang={locale} /></span>/g
                 </span>
               </div>
             </div>

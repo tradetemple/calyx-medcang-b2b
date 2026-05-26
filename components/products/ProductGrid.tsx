@@ -198,7 +198,7 @@ export default function ProductGrid({ products, lang, dict }: ProductGridProps) 
                   <Link href={product.productUrl} className="font-bold text-slate-900 block truncate">
                     {product.displayName}
                   </Link>
-                  <p className="text-[10px] font-bold text-slate-400 uppercase mb-2 truncate">{product.descriptive_name}</p>
+                  <p className="text-[10px] font-bold text-slate-600 uppercase mb-2 truncate">{product.descriptive_name}</p>
                   <div className="flex items-center justify-between">
                     <span className="font-mono font-bold text-blue-600">
                       <DynamicPrice lang={lang} basePrice={product.rawPrice} />/g
@@ -209,14 +209,14 @@ export default function ProductGrid({ products, lang, dict }: ProductGridProps) 
                   </div>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-slate-100">
+              <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-slate-100 tracking-widest">
                 <div>
-                  <p className="text-[9px] uppercase text-slate-400 font-bold">{`${t.labels.batch} / ${t.labels.exp}`}</p>
+                  <p className="text-[9px] uppercase text-slate-600 font-bold">{`${t.labels.batch} / ${t.labels.exp}`}</p>
                   <p className="text-[10px] font-mono font-bold text-slate-700">{testResults.batch_number || '-'}</p>
-                  <p className="text-[10px] font-mono text-slate-500">{testResults.expiry_date || '-'}</p>
+                  <p className="text-[10px] font-mono text-slate-600">{testResults.expiry_date || '-'}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-[9px] uppercase text-slate-400 font-bold">{t.labels.liveStock}</p>
+                  <p className="text-[9px] uppercase text-slate-600 font-bold">{t.labels.liveStock}</p>
                   <p className="text-xs font-mono font-bold">{isOOS ? '0' : product.live_stock_grams}g</p>
                 </div>
               </div>

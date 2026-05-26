@@ -17,7 +17,7 @@ This repository demonstrates the application of Backend-For-Frontend (BFF) patte
 The architecture prioritizes data integrity, regulatory enforcement, and zero-latency distribution through a serverless edge infrastructure.
 
 ### Edge-First Infrastructure
-- **Cloudflare Pages & Workers:** The application utilizes OpenNext to deploy Next.js 15 directly to Cloudflare's Edge, bypassing traditional Node.js server bottlenecks.
+- **Cloudflare Pages & Workers:** The application utilizes OpenNext to deploy Next.js 16 directly to Cloudflare's Edge, bypassing traditional Node.js server bottlenecks.
 - **Distributed State & Caching:**
     - **Workers KV:** Utilized for high-speed edge caching of configuration state and transient inventory data.
     - **R2 ISR (Incremental Static Regeneration):** Heavy assets and pre-rendered catalog pages are cached in R2 buckets, enabling instantaneous global distribution without triggering complete application rebuilds.

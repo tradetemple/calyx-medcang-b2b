@@ -90,8 +90,8 @@ export default function Step1Address() {
     setShowManualFields(true);
   };
 
-  const inputClasses = "w-full px-0 py-3 text-static-black rounded-none border-b border-static-black/10 bg-transparent focus:border-static-black outline-none transition-all text-sm placeholder:text-text-main/20";
-  const labelClasses = "block text-[10px] uppercase tracking-[0.2em] font-bold text-static-black/40 mb-1";
+  const inputClasses = "w-full px-0 py-3 text-static-black rounded-none border-b border-static-black/10 bg-transparent focus:border-static-black outline-none transition-all text-sm placeholder:text-slate-600/30";
+  const labelClasses = "block text-[10px] uppercase tracking-[0.2em] font-bold text-slate-600 mb-1";
 
   return (
     <div className="space-y-12 animate-in fade-in duration-500">
@@ -99,7 +99,7 @@ export default function Step1Address() {
         <button
           type="button"
           onClick={handleAutofill}
-          className="text-[9px] uppercase tracking-widest font-bold text-static-black/40 hover:text-static-black transition-colors border border-static-black/10 px-3 py-2"
+          className="text-[9px] uppercase tracking-widest font-bold text-slate-600 hover:text-black transition-colors border border-slate-600/30 px-3 py-2"
         >
           {t.actions.autofill}
         </button>
@@ -135,7 +135,7 @@ export default function Step1Address() {
           
           <div className="space-y-1">
             <label htmlFor="email" className={labelClasses}>
-              {t.shipping.email} <span className="text-status-error">*</span>
+              {t.shipping.fields.email} <span className="text-status-error">*</span>
             </label>
             <input
               type="email"

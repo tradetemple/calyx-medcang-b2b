@@ -17,13 +17,12 @@ export default function MobileStickyPurchase({ children }: MobileStickyPurchaseP
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // When the sentinel is visible, we're at the bottom - stop being sticky
         setIsSticky(!entry.isIntersecting);
       },
       {
         root: null,
         threshold: 0,
-        rootMargin: '0px 0px -100px 0px', // Trigger slightly before reaching the sentinel
+        rootMargin: '0px 0px -100px 0px',
       }
     );
 
