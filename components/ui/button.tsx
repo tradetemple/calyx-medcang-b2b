@@ -13,10 +13,10 @@ const buttonVariants = cva(
         destructive:
           "bg-status-error/20 text-status-error hover:bg-status-error/40",
         outline:
-          "bg-surface-active text-text-main hover:bg-secondary hover:text-static-white",
+          "bg-slate-50 text-text-main hover:bg-secondary hover:text-static-white",
         secondary:
           "bg-secondary text-static-white hover:bg-secondary/80",
-        ghost: "bg-primary/10 hover:bg-surface-hover text-text-main",
+        ghost: "bg-slate-50 hover:bg-slate-100 text-text-main",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

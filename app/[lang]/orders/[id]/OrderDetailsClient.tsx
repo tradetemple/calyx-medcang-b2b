@@ -144,7 +144,7 @@ interface TabProps {
 
 function TabNavigation({ activeTab, setActiveTab, tabs }: TabProps) {
   return (
-    <div className="flex border-b border-surface-active mb-6">
+    <div className="flex border-b border-slate-100 mb-6">
       {tabs.map((tab) => (
         <button
           key={tab.id}

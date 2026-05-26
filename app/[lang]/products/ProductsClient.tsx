@@ -142,7 +142,7 @@ export function ProductsClient({
       <div ref={sentinelRef} className="h-px -mt-px" />
 
       <ScrollAnimation>
-        <div className="bg-surface-hover/30 backdrop-blur-md rounded-xl overflow-visible mx-auto max-w-full">
+        <div className="bg-slate-50/30 backdrop-blur-md rounded-xl overflow-visible mx-auto max-w-full">
           <div className="md:p-6">
             {filteredProducts.length > 0 ? (
               <>

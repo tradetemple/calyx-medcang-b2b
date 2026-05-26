@@ -17,7 +17,7 @@ export const getSiteSettings = unstable_cache(
       favicon: "/favicon.ico?v=2",
       site_url: siteUrl,
       support_email: "tradetempleab@gmail.com",
-      company_address: "Friedrichstraße 123, 10117 Berlin, Germany",
+      company_address: "ONI 747-N Billo, 106 43 Stockholm, Sweden",
       updated_at: new Date().toISOString(),
       is_b2b: true,
       

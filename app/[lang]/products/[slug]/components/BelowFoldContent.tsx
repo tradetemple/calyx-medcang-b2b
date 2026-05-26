@@ -76,16 +76,16 @@ interface BelowFoldContentProps {
 
 function PriceChartLoading() {
   return (
-    <div className="bg-surface p-4 md:py-16">
+    <div className="bg-slate-50 p-4 md:py-16">
       <div className="container mx-auto px-4 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          <div className="h-8 w-48 bg-surface-hover animate-pulse rounded mb-8 mx-auto"></div>
-          <div className="bg-surface-hover/30 rounded-xl border border-border overflow-hidden">
+          <div className="h-8 w-48 bg-slate-50 animate-pulse rounded mb-8 mx-auto"></div>
+          <div className="bg-slate-50/30 rounded-xl border border-border overflow-hidden">
             <div className="p-6 space-y-4">
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="grid grid-cols-2 gap-4">
-                  <div className="h-6 bg-surface animate-pulse rounded"></div>
-                  <div className="h-6 bg-surface animate-pulse rounded"></div>
+                  <div className="h-6 bg-slate-100 animate-pulse rounded"></div>
+                  <div className="h-6 bg-slate-100 animate-pulse rounded"></div>
                 </div>
               ))}
             </div>
@@ -126,9 +126,9 @@ export default function BelowFoldContent({
         <div className="w-full py-8">
           <div className="max-w-4xl space-y-4">
             {[...Array(3)].map((_, i) => (
-              <div key={i} className="bg-surface-hover border border-border/20 rounded-lg p-4">
-                <div className="h-6 bg-surface animate-pulse rounded mb-2"></div>
-                <div className="h-4 bg-surface animate-pulse rounded w-3/4"></div>
+              <div key={i} className="bg-slate-50 border border-border/20 rounded-lg p-4">
+                <div className="h-6 bg-slate-100 animate-pulse rounded mb-2"></div>
+                <div className="h-4 bg-slate-100 animate-pulse rounded w-3/4"></div>
               </div>
             ))}
           </div>
@@ -151,7 +151,7 @@ export default function BelowFoldContent({
           <div className="w-full bg-white p-3 md:p-8">
             <div className="space-y-4">
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-4 bg-surface animate-pulse rounded w-full"></div>
+                <div key={i} className="h-4 bg-slate-50 animate-pulse rounded w-full"></div>
               ))}
             </div>
           </div>

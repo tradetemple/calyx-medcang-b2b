@@ -2,25 +2,21 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { getHomeData } from '@/app/[lang]/utils/page-data'
 
-// Import your JSON-LD utilities (adjust the import path if your json-ld.ts is located elsewhere)
 import { safeJsonStringify } from '@/lib/json-ld'
 import { getSiteSettings } from './utils/site-settings'
 
-// Force static generation and revalidation
 export const revalidate = false
 export const dynamic = 'force-static'
 
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
 
-  // Fetch all data in parallel using cached utilities
   const { dict } = await getHomeData(lang);
-  const siteSettings = await getSiteSettings(); // Assuming this is a synchronous call that retrieves cached settings
+  const siteSettings = await getSiteSettings();
 
   if (!siteSettings) throw new Error('Site settings not found');
 
   const t = dict.home;
-  // --- JSON-LD SCHEMA GENERATION ---
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.zeyana.com';
   
   const websiteSchema = {
@@ -33,20 +29,17 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
     inLanguage: lang,
   };
 
-  // Filter out nulls
   const validSchemas = [websiteSchema].filter(Boolean);
 
-  // If there are multiple schemas, wrap them in a @graph object to prevent Array parsing errors
   const finalSchema = validSchemas.length === 1 
     ? validSchemas[0] 
     : {
         '@context': 'https://schema.org',
         '@graph': validSchemas
       };
-  // ---------------------------------
 
   return (
-    <div className="bg-bg-main text-static-black selection:bg-accent selection:text-white">
+    <div className="bg-bg-main text-static-black selection:bg-secondary selection:text-white">
 
       <Head>
         <script
@@ -57,16 +50,13 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         />
       </Head>
 
-      {/* 1. HERO SECTION */}
       <div className="relative min-h-[70vh] md:min-h-[92vh] flex items-center justify-center overflow-hidden">
         
-        {/* Dark Overlay */}
         <div className="absolute inset-0 bg-slate-50 z-10" />
 
         <div className="relative z-20 max-w-5xl mx-auto text-center px-4 flex flex-col items-center py-20 gap-2 md:gap-6 mb-4 md:mb-12">
           <h1 className="text-3xl md:text-5xl font-regular tracking-wide font-merriweather-main text-black tracking-tight leading-[1.1] drop-shadow-2xl">
             {t.hero.headline.part1} <br className="hidden md:block" /> 
-            {/* Added 'pr-2' to prevent the italic slant from being cut off */}
             <span className='italic font-bold from-secondary to-black text-black pr-1 md:pr-2'>
               {t.hero.headline.highlight} 
             </span> 
@@ -133,7 +123,6 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
           </div>
         </div>
       </div>
-
     </div>
   )
 }

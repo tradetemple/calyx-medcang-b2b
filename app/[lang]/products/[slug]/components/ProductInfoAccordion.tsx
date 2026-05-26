@@ -15,7 +15,7 @@ const ProductAccordion = dynamic(() => import('./ProductAccordion'), {
     <div className="space-y-4">
       <div className="animate-pulse">
         {[...Array(2)].map((_, i) => (
-          <div key={i} className="bg-surface border border-border/20 rounded-lg p-4 md:p-6">
+          <div key={i} className="bg-slate-50 border border-border/20 rounded-lg p-4 md:p-6">
             <div className="h-6 bg-border/20 rounded w-3/4"></div>
           </div>
         ))}
