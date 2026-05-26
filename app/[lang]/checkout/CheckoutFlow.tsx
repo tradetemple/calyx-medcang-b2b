@@ -71,7 +71,7 @@ export default function CheckoutFlow({ lang }: { lang: string }) {
               {checkoutState.errors.length > 0 && (
                   <div className="mb-8 space-y-2 p-6 bg-status-error/5 border border-status-error/20 text-status-error text-[10px] uppercase tracking-widest font-bold">
                     {checkoutState.errors.map((err, i) => (
-                        <div key={i}>{dict.checkout.errors[err] || err}</div>
+                        <div key={i}>{dict.checkout?.errors?.[err] || dict.errors?.validation?.[err] || err}</div>
                     ))}
                   </div>
               )}

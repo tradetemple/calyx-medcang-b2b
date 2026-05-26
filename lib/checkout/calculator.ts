@@ -13,39 +13,38 @@ import { calculateTieredPrice, convertAmount } from '@/lib/checkout/pricing';
  * B2B Medical Checkout Calculator
  */
 export async function calculateCheckoutState(input: CheckoutInput): Promise<CheckoutState> {
-  let validatedInput: CheckoutInput;
+  const validation = CheckoutInputSchema.safeParse(input);
   const errors: string[] = [];
-
-  try {
-    validatedInput = CheckoutInputSchema.parse(input);
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      error.issues.forEach((issue: z.ZodIssue) => {
-        errors.push(`${issue.path.join('.')}: ${issue.message}`);
-      });
-    } else {
-      errors.push('Invalid checkout input data');
-    }
-    // Return early with errors if validation fails
-    // We provide some fallback values for required fields in CheckoutState
-    return {
-      subtotal: 0,
-      shippingCost: 0,
-      feeAmount: 0,
-      finalTotal: 0,
-      errors,
-      warnings: [],
-      targetCurrency: input.targetCurrency || 'EUR',
-      locale: input.locale || 'en',
-      convertedSubtotal: 0,
-      convertedShippingCost: 0,
-      convertedFeeAmount: 0,
-      convertedFinalTotal: 0,
-      amountMinor: 0,
-      paymentMethod: input.paymentMethod || 'sepa_invoice',
-      cartItems: input.cartItems || [],
-    };
+  
+  if (!validation.success) {
+    validation.error.issues.forEach((issue: any) => {
+      const fieldPath = issue.path.join('.');
+      const value = fieldPath.split('.').reduce((obj: any, key: string) => obj?.[key], input);
+      const isNotEmpty = value !== undefined && value !== null && value !== '';
+      
+      // Suppress validation errors for empty fields on initial load
+      // We only show "invalid" errors if the user has actually entered something
+      if (issue.code === 'invalid_string' && issue.validation === 'email') {
+        if (isNotEmpty) {
+          errors.push('invalidEmail');
+        }
+      } else if (issue.code === 'too_small' || issue.code === 'invalid_type') {
+        // Only push 'required' if we have some data but it's invalid (e.g. too short)
+        // Note: For initial empty fields, we don't push anything to the errors array
+        if (isNotEmpty) {
+           errors.push('required');
+        }
+      } else {
+        // Fallback for other Zod errors
+        if (isNotEmpty) {
+          errors.push(issue.message);
+        }
+      }
+    });
   }
+
+  // Use validated data if successful, otherwise fallback to raw input for calculations
+  const data = validation.success ? validation.data : input;
 
   const {
     cartItems,
@@ -54,7 +53,7 @@ export async function calculateCheckoutState(input: CheckoutInput): Promise<Chec
     locale,
     targetCurrency = 'EUR',
     currencyRates = { 'EUR': 1 },
-  } = validatedInput;
+  } = data;
 
   const warnings: string[] = [];
 
