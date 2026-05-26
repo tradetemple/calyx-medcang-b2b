@@ -1,10 +1,10 @@
 import { MedicalProduct, Specification } from '@/types/medical-product';
 
 const FLOWER_IMAGES = [
-  '/images/strains/flower-1.webp',
-  '/images/strains/flower-2.webp',
-  '/images/strains/flower-3.webp',
-  '/images/strains/flower-4.webp'
+  'https://fcbnaprqvjfyzzredkgy.supabase.co/storage/v1/object/public/Public/calyx/products/flower-1.webp',
+  'https://fcbnaprqvjfyzzredkgy.supabase.co/storage/v1/object/public/Public/calyx/products/flower-2.webp',
+  'https://fcbnaprqvjfyzzredkgy.supabase.co/storage/v1/object/public/Public/calyx/products/flower-3.webp',
+  'https://fcbnaprqvjfyzzredkgy.supabase.co/storage/v1/object/public/Public/calyx/products/flower-4.webp'
 ];
 
 // Simple seeded random number generator to ensure deterministic mock data
