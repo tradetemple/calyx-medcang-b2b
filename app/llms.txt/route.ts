@@ -5,7 +5,7 @@ import { getSiteSettings } from '@/app/[lang]/utils/site-settings';
 import { getLocalizedPath } from "@/lib/sitemap/utils";
 import { SupportedLocale } from "@/lib/sitemap/types";
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;
 
 export async function GET() {
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL;
@@ -14,10 +14,8 @@ export async function GET() {
     return new NextResponse('NEXT_PUBLIC_SITE_URL is not defined', { status: 500 });
   }
 
-  // Use default locale for the main listing
   const defaultLocale = config.defaultLocale as SupportedLocale;
   
-  // Fetch site data
   let siteName = "Calyx Medical B2B Prototype";
   let siteDescription = "A live technical demonstration of compliant healthcare infrastructure. Calyx Medical features FHIR-based prescription triage, a GDP-compliant B2B pharmacy procurement and manifest checkout system, and an audit-ready immutable ledger. Purpose-built for businesses requiring strict cryptographic traceability, data privacy, and technical auditability.";
   
@@ -38,10 +36,8 @@ export async function GET() {
     }
   } catch (error) {
     console.error("Error fetching site data for llms.txt", error);
-    // Fallback values already set
   }
 
-  // Static pages from sitemap-static.xml/route.ts
   const staticPageRoutes = [
     { route: "", title: "Home" },
     { route: "products", title: "Products" },

@@ -2,16 +2,51 @@ import {
   CheckoutInput, 
   CheckoutState, 
   ShippingMethod, 
-  CartItem 
+  CheckoutInputSchema
 } from '@/types/checkout-types';
+import { CartItem } from '@/types/cart';
 import { getDictionary } from '@/app/[lang]/dictionaries';
+import { z } from 'zod';
 import { calculateTieredPrice, convertAmount } from '@/lib/checkout/pricing';
 
 /**
  * B2B Medical Checkout Calculator
- * Strictly typed, zero "any", focused on Gram-based tiered pricing.
  */
 export async function calculateCheckoutState(input: CheckoutInput): Promise<CheckoutState> {
+  let validatedInput: CheckoutInput;
+  const errors: string[] = [];
+
+  try {
+    validatedInput = CheckoutInputSchema.parse(input);
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      error.issues.forEach((issue: z.ZodIssue) => {
+        errors.push(`${issue.path.join('.')}: ${issue.message}`);
+      });
+    } else {
+      errors.push('Invalid checkout input data');
+    }
+    // Return early with errors if validation fails
+    // We provide some fallback values for required fields in CheckoutState
+    return {
+      subtotal: 0,
+      shippingCost: 0,
+      feeAmount: 0,
+      finalTotal: 0,
+      errors,
+      warnings: [],
+      targetCurrency: input.targetCurrency || 'EUR',
+      locale: input.locale || 'en',
+      convertedSubtotal: 0,
+      convertedShippingCost: 0,
+      convertedFeeAmount: 0,
+      convertedFinalTotal: 0,
+      amountMinor: 0,
+      paymentMethod: input.paymentMethod || 'sepa_invoice',
+      cartItems: input.cartItems || [],
+    };
+  }
+
   const {
     cartItems,
     shippingAddress,
@@ -19,9 +54,8 @@ export async function calculateCheckoutState(input: CheckoutInput): Promise<Chec
     locale,
     targetCurrency = 'EUR',
     currencyRates = { 'EUR': 1 },
-  } = input;
+  } = validatedInput;
 
-  const errors: string[] = [];
   const warnings: string[] = [];
 
   // 1. Dictionaries for B2B specific messaging
