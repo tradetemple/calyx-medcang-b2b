@@ -17,7 +17,7 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   if (!siteSettings) throw new Error('Site settings not found');
 
   const t = dict.home;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.zeyana.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calyx.thelynx.ai';
   
   const websiteSchema = {
     '@context': 'https://schema.org',

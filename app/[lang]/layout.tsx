@@ -62,7 +62,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   });
 
   return {
-    metadataBase: new URL(siteUrl || 'https://www.zeyana.net'),
+    metadataBase: new URL(siteUrl || 'https://calyx.thelynx.ai'),
     title: dictionary.Metadata.title,
     description: dictionary.Metadata.description,
     icons: {

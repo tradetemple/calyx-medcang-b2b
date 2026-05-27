@@ -234,7 +234,7 @@ export async function generateProductSchema({
   includeFAQ = false,
   faqData
 }: GenerateProductSchemaOptions): Promise<Record<string, any>> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.zeyana.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calyx.thelynx.ai';
   const currency = getCurrencyFromLocale(locale);
   const rates = siteSettings.currency_conversion_rates || {};
   const rate = rates[currency] || 1;
@@ -780,7 +780,7 @@ export async function generateProductListSchema({
   mainEntityOfPageId,
   authors 
 }: GenerateProductListSchemaOptions): Promise<Record<string, any>> {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.zeyana.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calyx.thelynx.ai';
   const t = dict.productsClient;
   const tSchema = dict.schema;
 
