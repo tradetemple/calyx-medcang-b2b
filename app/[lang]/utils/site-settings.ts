@@ -4,7 +4,7 @@ import { CACHE_TAGS, CACHE_TTL } from '@/lib/multi-layer-cache'
 
 export const getSiteSettings = unstable_cache(
   async (): Promise<SiteSettings> => {
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calyx-medcang-b2b.gentle-leaf-7cab.workers.dev';
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calyx.thelynx.ai';
 
     const settings: SiteSettings = {
       id: "1",
@@ -50,7 +50,7 @@ export const getSiteSettings = unstable_cache(
 
       social_links: {
         github: "https://github.com/tradetemple/calyx-medcang-b2b",
-        linkedIn: "https://www.linkedin.com/in/rasmus-g-2ab12b349/",
+        linkedIn: "https://www.linkedin.com/in/rasmus-granquist/",
       },
 
       shipping_countries: ['DE', 'CZ', 'PL', 'AT'],
