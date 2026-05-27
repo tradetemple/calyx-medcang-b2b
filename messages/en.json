@@ -457,7 +457,7 @@
   "roleGuard": {
     "loading": "Initializing security context...",
     "simulator": {
-      "uiTitle": "SECURE_ROLE_SIMULATOR",
+      "uiTitle": "SECURE ROLE SIMULATOR",
       "prompt": "Select Identity Claim",
       "guestUnauthorized": "guest (unauthorized)",
       "verifiedPharmacy": "verified_pharmacy",

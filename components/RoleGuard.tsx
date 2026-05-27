@@ -35,7 +35,7 @@ export default function RoleGuard({
     <div className="fixed bottom-4 right-4 z-[9999]">
       <button
         onClick={() => setShowRoleSimulator(!showRoleSimulator)}
-        className="bg-white/20 backdrop-blur-sm border border-slate-700 text-slate-900 px-3 py-2 rounded-lg text-xs font-mono transition-all shadow-2xl flex items-center gap-2"
+        className="bg-slate-100 border border-slate-700 text-slate-900 px-3 py-2 rounded-lg text-xs font-mono transition-all shadow-2xl flex items-center gap-2"
         title="Role Simulator (CTO Demo Mode)"
       >
         <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
