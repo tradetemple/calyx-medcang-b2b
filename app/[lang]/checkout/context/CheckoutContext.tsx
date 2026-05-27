@@ -2,7 +2,8 @@
 
 import { createContext, useContext, useState, useEffect, useCallback, ReactNode, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import { CheckoutInput, CheckoutState, CartItem } from '@/types/checkout-types';
+import { CheckoutInput, CheckoutState } from '@/types/checkout-types';
+import { CartItem } from '@/types/cart';
 import { SiteSettings } from '@/types/database';
 import { getUpdatedCheckoutState } from '../checkoutActions';
 import { useB2BCartStore } from '@/stores/optimized-cart-store';
@@ -21,7 +22,6 @@ interface CheckoutContextType {
   countryDict: any;
   locale: string;
   handleCheckout: (paymentMethod?: string) => Promise<void>;
-  // --- ADD THESE BACK ---
   goToNextStep: () => Promise<boolean>;
   goToPreviousStep: () => void;
 }
@@ -55,7 +55,6 @@ export function CheckoutProvider({
   const router = useRouter();
   const hasSyncedInitialCart = useRef(false);
 
-  // Sync Store to Input
   useEffect(() => {
     if (cartItems.length > 0 || hasSyncedInitialCart.current) {
       setCheckoutInput(prev => ({
@@ -79,7 +78,6 @@ export function CheckoutProvider({
     }
   }, [checkoutInput, locale]);
 
-  // Recalculate on item change
   useEffect(() => {
     if (hasSyncedInitialCart.current) {
       refreshCheckoutState();
@@ -90,10 +88,8 @@ export function CheckoutProvider({
     setCheckoutInput(prev => ({ ...prev, ...updates }));
   }, []);
 
-  // --- RE-IMPLEMENTED NAVIGATION LOGIC ---
   const goToNextStep = async () => {
     if (step === 1) {
-      // Basic B2B Validation
       const { shippingAddress, userEmail } = checkoutInput;
       if (
         !userEmail ||
@@ -122,11 +118,9 @@ export function CheckoutProvider({
   const handleCheckout = async (paymentMethod?: string) => {
     const addLog = useAuditStore.getState().addLog;
     setIsLoading(true);
-    // DEMO MODE: Simulate API call and redirect to mock order page
     setTimeout(() => {
       const selectedPaymentMethod = paymentMethod || checkoutInput.paymentMethod || 'invoice_30';
       addLog('ORDER_CREATED', `Order successfully created for ${checkoutInput.companyName || checkoutInput.userEmail}. Total: ${checkoutState.targetCurrency} ${checkoutState.convertedFinalTotal.toFixed(2)}`, 'SUCCESS');
-      // Store current checkout details in sessionStorage for the demo order page
       const demoOrderData = {
         cartItems: checkoutInput.cartItems,
         shippingAddress: checkoutInput.shippingAddress,

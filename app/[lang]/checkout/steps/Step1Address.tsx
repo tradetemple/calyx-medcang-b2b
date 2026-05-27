@@ -106,7 +106,6 @@ export default function Step1Address() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-12">
-      {/* Contact Section */}
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="space-y-1">
@@ -258,7 +257,6 @@ export default function Step1Address() {
         </div>
       </div>
 
-      {/* Address Section */}
       <div className="space-y-8">
         <div className="space-y-1">
           <GooglePlacesAutocomplete

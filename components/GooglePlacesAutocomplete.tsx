@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
-declare const google: any;
 import React, { useState, useEffect, useRef, ChangeEvent } from 'react';
 import { createPortal } from 'react-dom';
 import { Loader } from '@googlemaps/js-api-loader';
 
-/* ---------- styles ---------- */
 const styles = `
   .google-places-dropdown {
     background-color: hsl(var(--color-static-white)) !important;
@@ -68,7 +65,6 @@ const styles = `
   }
 `;
 
-/* ---------- local Label ---------- */
 const Label = React.forwardRef<
   HTMLLabelElement,
   React.LabelHTMLAttributes<HTMLLabelElement>
@@ -81,7 +77,6 @@ const Label = React.forwardRef<
 ));
 Label.displayName = 'Label';
 
-/* ---------- types ---------- */
 interface Address {
   address_line1: string;
   address_line2?: string;
@@ -98,7 +93,7 @@ interface Prediction {
     main_text: string;
     secondary_text?: string;
   };
-  _place?: any; // Stores the new API Place object to preserve session tokens
+  _place?: any;
 }
 
 interface GooglePlacesAutocompleteProps {
@@ -116,7 +111,6 @@ interface GooglePlacesAutocompleteProps {
   manualEntryLabel?: string;
 }
 
-/* ---------- component ---------- */
 export default function GooglePlacesAutocomplete({
   onAddressSelected,
   label,
@@ -157,7 +151,6 @@ export default function GooglePlacesAutocomplete({
       apiKey: process.env.NEXT_PUBLIC_GOOGLE_AUTOCOMPLETE_API_KEY!,
       version: 'weekly',
     });
-    // Migrate to importLibrary to ensure we load the modern modules correctly
     loader.importLibrary('places').then((places: any) => {
       placesRef.current = places;
       sessionTokenRef.current = new places.AutocompleteSessionToken();
@@ -199,7 +192,6 @@ export default function GooglePlacesAutocomplete({
 
     debounceTimerRef.current = window.setTimeout(async () => {
       try {
-        // Use the new AutocompleteSuggestion API instead of AutocompleteService
         const response = await placesRef.current.AutocompleteSuggestion.fetchAutocompleteSuggestions({
           input: value,
           sessionToken: sessionTokenRef.current,
@@ -217,8 +209,6 @@ export default function GooglePlacesAutocomplete({
                   main_text: p.mainText.text,
                   secondary_text: p.secondaryText?.text,
                 },
-                // .toPlace() is the Google-recommended way to convert a suggestion 
-                // to a Place Details request while preserving the session token billing.
                 _place: p.toPlace(),
               };
             });
@@ -243,7 +233,6 @@ export default function GooglePlacesAutocomplete({
     try {
       const place = prediction._place;
       
-      // Use the new place.fetchFields() API instead of PlacesService.getDetails()
       await place.fetchFields({ fields: ['addressComponents', 'formattedAddress'] });
 
       if (place.addressComponents) {
@@ -257,7 +246,6 @@ export default function GooglePlacesAutocomplete({
         let streetNumber = '';
         let route = '';
 
-        // Note: New API fields use camelCase ('addressComponents', 'longText', 'shortText')
         for (const comp of place.addressComponents) {
           const types = comp.types;
           if (types.includes('street_number')) streetNumber = comp.longText;
@@ -277,7 +265,6 @@ export default function GooglePlacesAutocomplete({
         onAddressSelected(address);
         setPredictions([]);
         
-        // Refresh session token after checkout/selection
         sessionTokenRef.current = new placesRef.current.AutocompleteSessionToken();
         clearManualEntryTimer();
         setShowManualEntry(false);

@@ -1,6 +1,5 @@
 'use client'
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import MobileMenuButtons from './MobileMenuClient';
 import React from 'react';
 
@@ -34,13 +33,11 @@ export default function MobileMenu({
   footerDict
 }: MobileMenuProps) {
   
-  // Social links
   const socialLinks = siteSettings ? [
     { url: siteSettings.social_links?.github, label: footerDict?.bottomRow?.githubAria || "Github" },
     { url: siteSettings.social_links?.linkedIn, label: footerDict?.bottomRow?.linkedInAria || "LinkedIn" },
   ].filter(link => Boolean(link.url)) : [];
 
-  // Menu sections for desktop multi-level navigation
   const menuSections = [
     {
       id: 'site',

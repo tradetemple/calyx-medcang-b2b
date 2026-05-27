@@ -3,7 +3,6 @@ import { getLocaleAndCurrencyFromCountry } from '@/lib/country-locale-mapping';
 
 export async function GET(request: NextRequest) {
   try {
-    // Try to get country from various headers
     const country = request.headers.get('x-vercel-ip-country') ||
                    request.headers.get('cf-ipcountry') ||
                    null;
@@ -33,6 +32,6 @@ export async function GET(request: NextRequest) {
       locale: 'en', 
       currency: 'EUR',
       source: 'error_fallback'
-    }, { status: 200 }); // Return 200 to avoid client errors
+    }, { status: 200 });
   }
 }

@@ -96,7 +96,6 @@ function PriceChartLoading() {
   );
 }
 
-// Server Component for below-the-fold content with streaming
 export default function BelowFoldContent({
   product,
   translation,
@@ -121,7 +120,6 @@ export default function BelowFoldContent({
 
   return (
     <>
-      {/* FAQ Section */}
       <Suspense fallback={
         <div className="w-full py-8">
           <div className="max-w-4xl space-y-4">
@@ -135,7 +133,6 @@ export default function BelowFoldContent({
         </div>
       }>
         <div className='w-full space-y-2 md:mt-8 py-4 md:py-8 px-3 md:px-8'>
-          {/* Product Info Accordion */}
           <ProductInfoAccordion
             displayName={displayName}
             displaySpecifications={product.specifications}
@@ -145,7 +142,6 @@ export default function BelowFoldContent({
         </div>
       </Suspense>
 
-      {/* Detailed Description Section */}
       {detailedDesc && (
         <Suspense fallback={
           <div className="w-full bg-white p-3 md:p-8">
@@ -158,7 +154,6 @@ export default function BelowFoldContent({
         }>
           <div className="w-full bg-white p-3 md:p-8 mb-12">
             
-            {/* Breadcrumb - Server Rendered */}
             <nav className="text-[10px] md:text-xs uppercase tracking-wide text-text-secondary mb-2 md:mb-4">
               <a href={`/${locale}/products`} className="hover:text-secondary transition-colors">
                 {t.productDetail.products}
@@ -175,23 +170,15 @@ export default function BelowFoldContent({
             </nav>
 
             <div className="md:pt-2 flex flex-col">
-              {/* Checkbox utilized as pure-CSS state toggle without client JS */}
               <input type="checkbox" id="desc-toggle" className="peer hidden" aria-hidden="true" />
               
-              {/* 
-                Content Container:
-                Direct sibling to input! Expands via peer-checked.
-                Targets the nested .fade-overlay to gracefully dissolve it out pure CSS via opacity-0.
-              */}
               <div className="relative overflow-hidden max-h-[80px] peer-checked:max-h-[3000px] peer-checked:[&>.fade-overlay]:opacity-0 transition-all duration-500 ease-in-out md:!max-h-none">
                 
                 <ProductDescription description={detailedDesc} lang={locale} />
 
-                {/* Pure CSS Fade Overlay anchored to the bottom */}
                 <div className="fade-overlay absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none transition-opacity duration-300 md:hidden"></div>
               </div>
 
-              {/* Read More Toggle */}
               <label 
                 htmlFor="desc-toggle" 
                 className="md:hidden inline-flex items-center self-center text-secondary font-medium text-sm cursor-pointer mt-2 peer-checked:hidden w-max"
@@ -200,7 +187,6 @@ export default function BelowFoldContent({
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-1"><path d="m6 9 6 6 6-6"/></svg>
               </label>
 
-              {/* Show Less Toggle */}
               <label 
                 htmlFor="desc-toggle" 
                 className="md:hidden hidden items-center text-secondary self-center font-medium text-sm cursor-pointer mt-4 peer-checked:flex w-max"
@@ -213,7 +199,6 @@ export default function BelowFoldContent({
         </Suspense>
       )}
 
-      {/* B2B Price Matrix Section */}
       {product.price_chart?.tiers && chart.tiers.length > 0 && (
         <Suspense fallback={<PriceChartLoading />}>
           <section className="bg-white py-12">
@@ -238,9 +223,8 @@ export default function BelowFoldContent({
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
-                    {/* NO MORE Object.entries() - We map directly over tiers */}
                     {chart.tiers
-                      .sort((a: PriceTier, b: PriceTier) => a.min - b.min) // Ensure tiers are in order
+                      .sort((a: PriceTier, b: PriceTier) => a.min - b.min)
                       .map((tier: PriceTier, index: number) => (
                         <tr key={index} className="hover:bg-blue-50/30 transition-colors">
                           <td className="px-6 py-4">

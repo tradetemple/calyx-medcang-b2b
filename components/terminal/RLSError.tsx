@@ -10,10 +10,6 @@ interface RLSErrorProps {
   dict: any;
 }
 
-/**
- * Terminal-style 403 error component that demonstrates Row Level Security (RLS) violations.
- * This component is designed to teach CTOs and developers about database-level security.
- */
 export default function RLSError({ 
   title, 
   message,
@@ -21,21 +17,18 @@ export default function RLSError({
   requiredRole: customRequiredRole,
   dict
 }: RLSErrorProps) {
-  // Simulated PostgREST error details
   const policyName = customPolicyName || '"Pharmacies only"';
   const tableName = 'batches';
   const policyType = 'SELECT';
 
   const t = dict;
   
-  // Client-side only timestamp to avoid hydration mismatch
   const [timestamp, setTimestamp] = React.useState<string>('');
   
   React.useEffect(() => {
     setTimestamp(new Date().toISOString());
   }, []);
 
-  // Show placeholder during initial render to prevent hydration mismatch
   if (!timestamp) {
     return (
       <div className="min-h-screen bg-black text-green-500 font-mono p-4 md:p-8 flex flex-col items-center justify-center">
@@ -46,7 +39,6 @@ export default function RLSError({
 
   return (
     <div className="min-h-screen bg-black text-green-500 font-mono p-3 md:p-8 flex flex-col items-center justify-center">
-      {/* Terminal Header */}
       <div className="w-full max-w-4xl mb-8">
         <div className="flex items-center gap-2 mb-4">
           <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -57,7 +49,6 @@ export default function RLSError({
           </span>
         </div>
 
-        {/* Error Header */}
         <div className="bg-black border-2 border-red-500/50 rounded-lg p-3 md:p-6 shadow-2xl shadow-red-900/20">
           <div className="flex items-center gap-3 mb-4">
             <div className="p-1 hidden md:block bg-red-500/20 rounded-md flex items-center justify-center border border-red-500">
@@ -85,7 +76,6 @@ export default function RLSError({
             </div>
           </div>
 
-          {/* Error Details */}
           <div className="space-y-3">
             <div className="flex items-start md:gap-3 text-xs md:text-sm">
               <span className="text-yellow-500 font-bold mr-2 md:min-w-[100px]">{t.details.activePolicy}</span>
@@ -111,7 +101,6 @@ export default function RLSError({
             </div>
           </div>
 
-          {/* Code Example */}
           <div className="mt-6 bg-gray-900/50 rounded-lg p-2 md:p-4 border border-gray-700">
             <div className="flex items-center gap-2 mb-2">
               <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
@@ -133,7 +122,6 @@ CREATE POLICY "Pharmacies only" ON batches
             </pre>
           </div>
 
-          {/* Solution Section */}
           <div className="mt-6 bg-green-900/10 rounded-lg p-3 md:p-4 border border-green-500/30">
             <h3 className="text-green-400 font-bold mb-2 flex items-center gap-2 text-sm md:text-base">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -149,7 +137,6 @@ CREATE POLICY "Pharmacies only" ON batches
         </div>
       </div>
 
-      {/* Footer */}
       <div className="my-8 text-center">
         <p className="text-gray-500 text-xs md:text-sm">
           {t.footer.notice}

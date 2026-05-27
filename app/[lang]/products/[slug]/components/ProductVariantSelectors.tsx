@@ -6,11 +6,10 @@ import { formatCurrency } from '@/i18n/utils';
 import QuotaMeter from '@/components/cart/QuotaMeter';
 import { useB2BCartStore } from '@/stores/optimized-cart-store';
 import { useAuditStore } from '@/stores/useAuditStore';
-import AddToCartButton from './AddToCartButton'; // Direct import since we stripped the wrapper
+import AddToCartButton from './AddToCartButton';
 
-// Cleaned up props: Removed useless B2C props like siteSettings, isKgPrice
 interface ProcurementControllerProps {
-  product: any; // Ideally typed to MedicalProduct from our Zod schema
+  product: any;
   moqGrams: number;
   t: any;
   locale: string;
@@ -24,28 +23,23 @@ export default function ProcurementController({
   t,
   locale
 }: ProcurementControllerProps) {
-  // --- LIVE REGULATORY QUOTA FROM CART ---
   const items = useB2BCartStore(state => state.items);
   const addAuditLog = useAuditStore(state => state.addLog);
   
-  // O(n) simple calculation since items now hold quantityGrams directly!
   const currentUsageGrams = useMemo(() => {
     return items.reduce((total, item) => total + item.quantityGrams, 0);
   }, [items]);
 
   const remainingQuota = MONTHLY_QUOTA_GRAMS - currentUsageGrams;
 
-  // State for the procurement volume slider
   const [quantity, setQuantity] = useState<number>(moqGrams);
 
-  // --- DYNAMIC PRICING ENGINE ---
   const tiers = product?.price_chart?.tiers || [];
-  const fallbackPrice = (product?.price_per_kg || 0) / 1000; // Convert kg price to gram price if no tiers exist
+  const fallbackPrice = (product?.price_per_kg || 0) / 1000; 
 
   const currentUnitPrice = useMemo(() => {
     if (tiers.length === 0) return fallbackPrice;
 
-    // Sort tiers descending to find the highest 'min' that is <= quantity
     const activeTier = [...tiers]
       .sort((a, b) => b.min - a.min)
       .find(tier => quantity >= tier.min);
@@ -55,10 +49,9 @@ export default function ProcurementController({
 
   const totalPrice = quantity * currentUnitPrice;
 
-  // --- LOGIC ---
   const handleIncrement = () => {
     setQuantity(prev => {
-      const next = prev + 50; // B2B Med increments usually step by 50g
+      const next = prev + 50; 
       if (next > remainingQuota) {
         addAuditLog('QUOTA_EXCEEDED', `Attempted to exceed monthly BtM limit with ${next}g of ${product.name}`, 'FAILURE');
         return prev;
@@ -71,7 +64,6 @@ export default function ProcurementController({
     setQuantity(prev => (prev - 50 >= moqGrams ? prev - 50 : prev));
   };
 
-  // Status check
   if (product.status === 'inactive' || product.status === 'outofstock') {
     return (
       <div className="p-4 bg-slate-100 border border-slate-200 rounded-none">
@@ -84,10 +76,8 @@ export default function ProcurementController({
 
   return (
     <div className="md:space-y-6">
-      {/* 1. REGULATORY QUOTA METER */}
       <QuotaMeter t={t} pendingGrams={quantity} />
 
-      {/* 2. QUANTITY CONTROLLER */}
       <div className="space-y-2 md:space-y-3 p-3 md:p-4 bg-white md:bg-slate-50 md:border border-slate-200">
         <label className="hidden lg:block text-xs font-bold uppercase tracking-widest text-slate-800 block">
           {t.quantityControl.title}
@@ -134,7 +124,6 @@ export default function ProcurementController({
         </div>
       </div>
 
-      {/* 3. PRICE BREAKDOWN */}
       <div className="md:pt-4 md:border-t border-slate-200 flex items-center justify-between px-2">
         <div className='hidden md:block'>
           <span className="text-xs text-slate-500 uppercase font-bold tracking-widest">{t.quantityControl.estTotal}</span>
@@ -143,7 +132,6 @@ export default function ProcurementController({
           </p>
         </div>
         
-        {/* Visual cue that they hit a discount tier */}
         {tiers.length > 1 && quantity >= tiers[1]?.min && (
             <div className="flex items-center gap-1 text-emerald-600 m-auto md:m-0">
                 <TrendingDown className="w-4 h-4" />
@@ -152,7 +140,6 @@ export default function ProcurementController({
         )}
       </div>
 
-      {/* 4. ADD TO CART ACTION */}
       <div className="pt-2 px-2">
         <AddToCartButton
           productId={product.id}

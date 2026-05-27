@@ -16,7 +16,7 @@ export default function NavigationBarWrapper({ children }: NavigationBarWrapperP
       setIsAtTop(window.scrollY < 10);
     };
 
-    handleScroll(); // Check initial position
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);

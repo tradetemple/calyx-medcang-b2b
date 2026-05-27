@@ -6,7 +6,6 @@ import OptimizedProductImage from '@/components/products/OptimizedProductImage';
 import OptimizedProductVideo from '@/components/products/OptimizedProductVideo';
 import Portal from '@/components/Portal';
 
-// We rename this to FullscreenLightbox in our minds, as that's what it actually is
 const ZoomViewer = dynamic(() => import('./ZoomViewer'), { 
   ssr: false,
 });
@@ -29,7 +28,6 @@ export default function ImageGalleryClient({
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [heroLoaded, setHeroLoaded] = useState(false);
 
-  // --- HOVER ZOOM STATE ---
   const [showMagnifier, setShowMagnifier] = useState(false);
   const [magnifierPos, setMagnifierPos] = useState({ x: 0, y: 0 });
 
@@ -51,7 +49,6 @@ export default function ImageGalleryClient({
     setHeroLoaded(true);
   },[]);
 
-  // Calculate mouse position for zoom panning
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!showMagnifier) return;
     const { left, top, width, height } = e.currentTarget.getBoundingClientRect();
@@ -90,7 +87,6 @@ export default function ImageGalleryClient({
     <>
       <div className="w-full flex flex-col h-full">
         
-        {/* HERO IMAGE CONTAINER - Hidden since static image is already visible */}
         <div className="relative w-full overflow-hidden bg-white flex items-center justify-center group" style={{ height: 'calc(100% - 68px)' }}>
           
           <button
@@ -109,7 +105,7 @@ export default function ImageGalleryClient({
 
           <div
             key={mainImage}
-            className="w-full h-full relative cursor-crosshair" // Changed cursor to crosshair
+            className="w-full h-full relative cursor-crosshair"
             onMouseEnter={() => !isVideoUrl(mainImage) && setShowMagnifier(true)}
             onMouseLeave={() => setShowMagnifier(false)}
             onMouseMove={handleMouseMove}
@@ -123,7 +119,6 @@ export default function ImageGalleryClient({
                 alt={t?.common?.product || "Product"}
                 fill
                 className="object-contain object-center"
-                showSpaceIcon={false}
                 controls={true}
                 muted={true}
                 onError={() => {
@@ -149,17 +144,16 @@ export default function ImageGalleryClient({
               />
             )}
 
-            {/* TRUE HOVER MAGNIFIER - ONLY MOUNTS/LOADS ON INTERACTION */}
             {showMagnifier && !isVideoUrl(mainImage) && (
               <div className="hidden md:block absolute inset-0 z-30 pointer-events-none bg-white overflow-hidden">
                 <img 
-                  src={mainImage} // This bypasses the optimizer proxy to pull the original high-res Supabase file
+                  src={mainImage}
                   alt="Zoomed Product"
                   className="absolute max-w-none"
                   style={{
-                    width: '250%',     // 2.5x Zoom Scale
+                    width: '250%',
                     height: '250%',
-                    left: `-${magnifierPos.x * 1.5}%`, // Panning math calculation
+                    left: `-${magnifierPos.x * 1.5}%`,
                     top: `-${magnifierPos.y * 1.5}%`,
                     objectFit: 'cover'
                   }}
@@ -169,7 +163,6 @@ export default function ImageGalleryClient({
           </div>
         </div>
 
-        {/* THUMBNAILS CONTAINER */}
         {allMedia.length > 1 && (
           <div className="flex flex-wrap items-center bg-white min-h-[40px] md:min-h-[68px]">
             {allMedia.map((media, index) => (
@@ -194,7 +187,6 @@ export default function ImageGalleryClient({
                     alt={`Video thumbnail ${index + 1}`}
                     fill
                     className="object-cover thumbnail"
-                    showSpaceIcon={false}
                     controls={false}
                     muted={true}
                     isThumbnail={true}

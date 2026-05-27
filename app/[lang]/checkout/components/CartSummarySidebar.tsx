@@ -10,13 +10,11 @@ export default function CartSummarySidebar() {
   const t = dict;
   const [isExpanded, setIsExpanded] = useState(false);
 
-  // Use cart items from checkoutState if available (contains translations), otherwise fallback to input
   const displayItems = checkoutState.cartItems || checkoutInput.cartItems;
   const totalItems = displayItems.reduce((acc, item) => acc + item.quantityGrams, 0);
 
   return (
     <div className="animate-in fade-in duration-700">
-      {/* Mobile Header - Click to Expand/Collapse */}
       <div
         className="md:hidden flex items-center justify-between border-b border-static-black/10 pb-4 cursor-pointer active:opacity-70 transition-opacity"
         onClick={() => setIsExpanded(!isExpanded)}
@@ -45,7 +43,6 @@ export default function CartSummarySidebar() {
         </svg>
       </div>
 
-      {/* Desktop Header - Always Visible */}
       <div className="hidden md:flex items-baseline justify-between border-b border-static-black/10 pb-6">
         <h2 className="md:text-xs uppercase tracking-[0.4em] font-black text-static-black">
           {t.summary.orderSummary}
@@ -55,7 +52,6 @@ export default function CartSummarySidebar() {
         </span>
       </div>
 
-      {/* Collapsible Content */}
       <div className={`py-2 space-y-10 ${isExpanded ? 'block' : 'hidden md:block'}`}>
         {displayItems.map((item) => (
           <CheckoutManifestItem key={item.id} item={item} />

@@ -1,8 +1,6 @@
 'use client'
 
-/**
- * CLS-safe cart count badge that maintains consistent dimensions
- */
+
 export function CLSSafeCartBadge({ 
   count, 
   className = '',
@@ -18,7 +16,6 @@ export function CLSSafeCartBadge({
     lg: 'h-6 w-6 text-sm'
   }
 
-  // Always render the badge container to maintain layout stability
   return (
     <span 
       className={`

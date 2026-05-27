@@ -11,7 +11,6 @@ export default function AnimatedBanner({ texts, intervalMs = 4000 }: AnimatedBan
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    // Prevent interval if there's no data or only 1 item
     if (!texts || texts.length <= 1) return;
 
     const interval = setInterval(() => {

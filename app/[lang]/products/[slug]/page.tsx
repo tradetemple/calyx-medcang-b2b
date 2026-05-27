@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Metadata } from 'next'
 import Head from 'next/head';
 import { calculatePriceInfo } from './utils'
@@ -12,16 +11,13 @@ import { formatCurrency, getCurrencyFromLocale } from '@/i18n/utils';
 import { getHomeData } from '@/app/[lang]/utils/page-data';
 import RoleGuard from '@/components/RoleGuard';
 
-// Shared cache for the request lifecycle
 const getSharedProduct = cache(async (locale: string, slug: string) => {
   return await getProductDetailsBySlug(locale, slug);
 });
 
-// ISR Configuration - Static generation
 export const dynamic = 'force-static';
 export const revalidate = false;
 
-// --- HARDCODED B2B DATA ---
 const mockSiteSettings = {
   site_name: 'B2B Pharma Portal',
   locales: ['en', 'de'],
@@ -308,7 +304,6 @@ export default async function ProductDetailPage(props: {
     ),
   };
 
-  // Create an empty mock reviews array
   const mockReviews: any[] = [];
 
   const heroSiteSettings = {

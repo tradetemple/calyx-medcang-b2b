@@ -46,14 +46,12 @@ export default function AuditVaultPage(dict: AuditVaultProps) {
   const { logs, clearLogs, _initialLogs } = useAuditStore();
   const t = dict.dict
 
-  // Merge logs with initial placeholder logs if logs are empty (for first-time use/display)
   const displayLogs = logs.length > 0 ? logs : (_initialLogs || []);
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 font-mono p-4 md:p-8 selection:bg-emerald-500/30">
       <div className="max-w-7xl mx-auto space-y-6">
         
-        {/* Header Section */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800 pb-6">
           <div className="space-y-1">
             <div className="flex items-center justify-between text-emerald-500 text-xs font-bold tracking-[0.2em] uppercase">
@@ -86,7 +84,6 @@ export default function AuditVaultPage(dict: AuditVaultProps) {
           </div>
         </div>
 
-        {/* Terminal Section */}
         <div className="bg-slate-900/30 border border-slate-800 rounded-sm overflow-hidden backdrop-blur-sm shadow-2xl">
           <div className="bg-slate-900/80 px-4 py-2 border-b border-slate-800 flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -129,7 +126,6 @@ export default function AuditVaultPage(dict: AuditVaultProps) {
           </div>
         </div>
 
-        {/* Technical Footer */}
         <div className="flex flex-col md:flex-row justify-between gap-4 text-[9px] text-slate-400 uppercase tracking-widest font-bold pt-4">
           <div className="flex gap-4">
             <span>{t.footer.securityProtocol}</span>
@@ -141,7 +137,6 @@ export default function AuditVaultPage(dict: AuditVaultProps) {
         </div>
       </div>
 
-      {/* CRT Scanline Effect Overlay */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] z-50" style={{ backgroundSize: '100% 2px, 3px 100%' }} />
     </div>
   );

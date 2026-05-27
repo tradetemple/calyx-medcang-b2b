@@ -35,10 +35,8 @@ export default function MobileStickyPurchase({ children }: MobileStickyPurchaseP
 
   return (
     <>
-      {/* Sentinel element that marks the "landing zone" */}
       <div ref={sentinelRef} className="h-1 lg:hidden" aria-hidden="true" />
       
-      {/* Purchase bar that transitions from sticky to relative */}
       <div
         ref={containerRef}
         className={`

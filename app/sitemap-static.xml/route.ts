@@ -5,7 +5,7 @@ import { getLastModifiedDate, createAddToGroup, getLocalizedPath } from "@/lib/s
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;
 
 export async function GET(): Promise<Response> {
   if (!BASE_URL) {
@@ -15,7 +15,6 @@ export async function GET(): Promise<Response> {
 
   const locales = config.locales as SupportedLocale[];
 
-  // Define your static pages along with their file paths.
   const staticPageRoutes = [
     { route: "", file: "app/[lang]/page.tsx" },
     { route: "products", file: "app/[lang]/products/page.tsx" },

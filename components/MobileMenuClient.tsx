@@ -4,9 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { FiLogOut, FiUser, FiChevronRight, FiChevronDown } from 'react-icons/fi';
-import { TbPigMoney } from "react-icons/tb";
-import CartCountBadge from './cart/CartCountBadge';
+import { FiChevronRight } from 'react-icons/fi';
 import CategoryFilterLink from './products/CategoryFilterLink';
 
 interface MenuItem {

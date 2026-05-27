@@ -1,6 +1,6 @@
 
 import { getSiteSettings } from '@/app/[lang]/utils/site-settings';
-import CurrencyClientProvider from './CurrencyClientProvider'; // Import the new client provider
+import CurrencyClientProvider from './CurrencyClientProvider';
 import React from 'react';
 
 export default async function CurrencyProvider({ children }: { children: React.ReactNode }) {
@@ -10,7 +10,6 @@ export default async function CurrencyProvider({ children }: { children: React.R
     currencyRates = siteSettings.currency_conversion_rates || {};
   } catch (error) {
     console.error("Failed to fetch site settings for CurrencyProvider:", error);
-    // currencyRates will remain an empty object, so the client knows there's an issue.
   }
 
   return (

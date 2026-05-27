@@ -1,12 +1,10 @@
 import { Star } from 'lucide-react';
 import Link from 'next/link';
 
-// Utility function for conditional class names
 const cn = (...classes: (string | boolean | undefined)[]) => {
   return classes.filter(Boolean).join(' ');
 };
 
-// StarRating component matching ReviewSection style
 export function StarRating({
   value,
   size = 'small',
@@ -18,11 +16,10 @@ export function StarRating({
   size?: 'small' | 'default' | 'large';
   showCount?: boolean;
   count?: number;
-  reviewsLink?: string; // Optional link to reviews section
+  reviewsLink?: string;
 }) {
   const stars = Array.from({ length: 5 }, (_, i) => i + 1);
 
-  // Responsive size map: [mobile, desktop]
   const sizeMap = {
     small: { mobile: 12, desktop: 16 },
     default: { mobile: 16, desktop: 20 },

@@ -59,23 +59,11 @@ export async function GET() {
   
   content += `\n## Main Pages\n\n`;
 
-  // Generate links for default locale
   for (const page of staticPageRoutes) {
-    // getLocalizedPath handles finding the path for the locale from config
-    // Note: getLocalizedPath implementation details might vary, but assuming it returns the path segment
     const localizedPath = getLocalizedPath(page.route, defaultLocale);
-    
-    // Sometimes getLocalizedPath returns undefined if not found, but for static routes it should exist if they are in config.pathnames
-    // If localizedPath is just the path (e.g. "about"), we prepend locale if needed.
-    // Based on sitemap-static: 
-    // const url = localizedPath && localizedPath !== '' ? `${BASE_URL}/${locale}/${localizedPath}` : `${BASE_URL}/${locale}`;
     
     let url = `${BASE_URL}/${defaultLocale}`;
     if (localizedPath && localizedPath !== '') {
-        // localizedPath might already have leading slash or not. 
-        // In sitemap-static they do `${BASE_URL}/${locale}/${localizedPath}` which implies it doesn't have leading slash or they handle double slash.
-        // Let's assume standard behavior.
-        // If localizedPath starts with /, remove it to avoid double slash with /${locale}/
         const cleanPath = localizedPath.startsWith('/') ? localizedPath.substring(1) : localizedPath;
         url = `${BASE_URL}/${defaultLocale}/${cleanPath}`;
     }

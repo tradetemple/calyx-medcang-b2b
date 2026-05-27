@@ -21,8 +21,6 @@ import {
   ComplianceResult 
 } from '@/types/fhir';
 
-// --- 2. Mock Data ---
-
 const VALID_PAYLOAD = {
   "resourceType": "MedicationRequest",
   "id": "e-rezept-7721-abc",
@@ -51,7 +49,7 @@ const INVALID_PAYLOAD = {
   "subject": {
     "display": "Max Mustermann",
     "id": "PAT-9921",
-    "last_in_person_consultation": "2025-01-10" // > 365 days from May 2026
+    "last_in_person_consultation": "2025-01-10"
   },
   "medicationCodeableConcept": {
     "coding": [{ "display": "IUVO ICC 30/1" }]
@@ -61,11 +59,9 @@ const INVALID_PAYLOAD = {
   },
   "requester": {
     "display": "Dr. Elena Schmidt",
-    "qes_verified": false // QES Violation
+    "qes_verified": false 
   }
 };
-
-// --- 3. Client Component ---
 
 interface telemedicineProps {
   dict: any;
@@ -104,7 +100,6 @@ export default function TelemedicineClient(dict: telemedicineProps) {
         compliance.fhirValid = true;
         parsedData = validation.data;
 
-        // MedCanG 365-Day Rule
         const today = new Date('2026-05-22');
         const lastConsultation = new Date(parsedData.subject.last_in_person_consultation);
         const diffTime = Math.abs(today.getTime() - lastConsultation.getTime());
@@ -306,7 +301,6 @@ export default function TelemedicineClient(dict: telemedicineProps) {
                 </div>
               </div>
 
-              {/* Error Trace (Only if FHIR schema fails) */}
               {!triageResult.compliance.fhirValid && triageResult.compliance.errors.length > 0 && (
                 <div className="bg-slate-900 rounded-lg p-4 font-mono text-[11px] text-red-400 border border-red-900/50">
                   <p className="text-white mb-2 uppercase font-bold tracking-widest text-[10px]">{t.rightColumn.errorTrace}</p>

@@ -1,10 +1,7 @@
-/* eslint-disable */
 import { NextRequest } from 'next/server';
 
-// Rate limiting store (in production, use Redis or similar)
 const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
 
-// Security audit log store (in production, use persistent storage)
 const securityAuditLog: SecurityAuditEntry[] = [];
 
 interface SecurityAuditEntry {
@@ -23,14 +20,6 @@ interface RateLimitResult {
   resetTime?: number;
 }
 
-interface CSRFValidationResult {
-  valid: boolean;
-  error?: string;
-}
-
-/**
- * Enhanced rate limiting middleware with security logging
- */
 export function rateLimit(maxRequests: number = 10, windowMs: number = 60000) {
   return (request: NextRequest): RateLimitResult => {
     const forwardedFor = request.headers.get('x-forwarded-for');
@@ -47,7 +36,7 @@ export function rateLimit(maxRequests: number = 10, windowMs: number = 60000) {
     }
 
     if (current.count >= maxRequests) {
-      // Log rate limit violation
+
       logSecurityEvent({
         event: 'RATE_LIMIT_EXCEEDED',
         ipAddress: ip,
@@ -69,9 +58,6 @@ export function rateLimit(maxRequests: number = 10, windowMs: number = 60000) {
   };
 }
 
-/**
- * CORS headers for API routes
- */
 export function getCorsHeaders(origin?: string) {
   const allowedOrigins = [
     process.env.NEXT_PUBLIC_SITE_URL,
@@ -88,39 +74,28 @@ export function getCorsHeaders(origin?: string) {
   };
 }
 
-/**
- * Log security events for audit trail
- */
 function logSecurityEvent(entry: Omit<SecurityAuditEntry, 'timestamp'>): void {
   const auditEntry: SecurityAuditEntry = {
     ...entry,
     timestamp: new Date().toISOString()
   };
   
-  // Add to in-memory store (in production, send to persistent storage)
   securityAuditLog.push(auditEntry);
   
-  // Keep only last 1000 entries in memory
   if (securityAuditLog.length > 1000) {
     securityAuditLog.shift();
   }
   
-  // Log to console for development/debugging
   if (entry.severity === 'HIGH' || entry.severity === 'CRITICAL') {
     console.warn('SECURITY AUDIT:', JSON.stringify(auditEntry, null, 2));
   }
   
-  // In production, send to external security monitoring service
   if (process.env.NODE_ENV === 'production') {
     sendToSecurityMonitoring(auditEntry);
   }
 }
 
-/**
- * Send security events to external monitoring service (placeholder)
- */
 function sendToSecurityMonitoring(entry: SecurityAuditEntry): void {
   // Implement integration with security monitoring service
-  // For now, just log to console
 }
 

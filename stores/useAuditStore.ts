@@ -29,7 +29,6 @@ export const useAuditStore = create<AuditState>()(
     (set) => ({
       logs: [],
 
-      // Initial dummy logs for first-time use
       _initialLogs: [
         {
           id: crypto.randomUUID(),
@@ -109,7 +108,6 @@ export const useAuditStore = create<AuditState>()(
           hash: generateRealHash(),
         };
 
-        // Validate with Zod
         const validatedLog = AuditEventSchema.parse(newLog);
 
         set((state) => ({

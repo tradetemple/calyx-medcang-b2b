@@ -7,7 +7,6 @@ export const getSiteSettings = unstable_cache(
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calyx-medcang-b2b.gentle-leaf-7cab.workers.dev';
 
     const settings: SiteSettings = {
-      // 1. Identity & Branding
       id: "1",
       site_name: "CALYX MEDICAL B2B",
       site_logo: "/full-logo.svg",
@@ -21,7 +20,6 @@ export const getSiteSettings = unstable_cache(
       updated_at: new Date().toISOString(),
       is_b2b: true,
       
-      // 2. Clinical Color Palette (Slate & Medical Blue)
       primary_color: "#2a76e0",
       secondary_color: "#235ff5",
       background_color: "#111111",
@@ -30,7 +28,6 @@ export const getSiteSettings = unstable_cache(
       static_black_color: "#000000",
       static_white_color: "#ffffff",
 
-      // 6. i18n & Currency Logic
       locales: ['en', 'de'],
       default_locale: 'en',
       currency_conversion_rates: {
@@ -38,7 +35,6 @@ export const getSiteSettings = unstable_cache(
         'GBP': 0.86,
       },
 
-      // 7. Localized SEO Addresses (JSON-LD)
       locale_addresses: {
         en: {
           streetAddress: "123 Pharma Logistics Way",
@@ -52,13 +48,11 @@ export const getSiteSettings = unstable_cache(
         }
       },
 
-      // 8. Social Links
       social_links: {
         github: "https://github.com/tradetemple/calyx-medcang-b2b",
         linkedIn: "https://www.linkedin.com/in/rasmus-g-2ab12b349/",
       },
 
-      // 9. B2B Payment & Logistics
       shipping_countries: ['DE', 'CZ', 'PL', 'AT'],
       payment_methods: {
         wire_transfer: true,

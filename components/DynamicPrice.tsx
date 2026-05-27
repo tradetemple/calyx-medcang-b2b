@@ -1,4 +1,3 @@
-// components/DynamicPrice.tsx
 'use client'
 import { useEffect, useState, useMemo } from 'react'
 import { formatCurrency } from '@/i18n/utils'
@@ -16,7 +15,6 @@ export default function DynamicPrice({
 }: any) {
   const { currencyRates } = useCurrencyContext();
   
-  // Use specific selectors to ensure reactivity
   const preferredCurrency = useCurrencyStore((state) => state.preferredCurrency);
   const detectedCountry = useCurrencyStore((state) => state.detectedCountry);
   const getActiveCurrency = useCurrencyStore((state) => state.getActiveCurrency);
@@ -25,15 +23,12 @@ export default function DynamicPrice({
   useEffect(() => setIsMounted(true), []);
 
   const displayPrice = useMemo(() => {
-    // 1. ALWAYS default to the Server-Safe Value first
     const defaultCurrency = 'EUR'; 
     
-    // If not mounted, use Base Price / EUR to match Server HTML exactly
     if (!isMounted && !fixedCurrency) {
         return formatCurrency(basePrice || 0, lang, defaultCurrency);
     }
 
-    // 2. Client-side logic once mounted
     const currentCurrency = fixedCurrency || getActiveCurrency(lang);
     
     if (fixedAmount !== undefined) {
@@ -52,6 +47,5 @@ export default function DynamicPrice({
     return formatCurrency(amount * rate, lang, currentCurrency);
   }, [basePrice, fixedAmount, fixedCurrency, isVatExempt, vatRate, isB2B, lang, isMounted, preferredCurrency, detectedCountry, getActiveCurrency, currencyRates]);
 
-  // Use suppressHydrationWarning because exchange rates are dynamic
   return <span suppressHydrationWarning>{displayPrice}</span>
 }

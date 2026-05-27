@@ -1,6 +1,5 @@
 import type { NextConfig } from "next";
 
-// Define your Next.js configuration
 const nextConfig: NextConfig = {
   output: 'standalone',
   compress: true,
@@ -33,8 +32,6 @@ const nextConfig: NextConfig = {
       'uuid'
     ]
   },
-  // PERFORMANCE FIX: Empty turbopack config to silence webpack warning
-  // Turbopack handles chunking automatically and more efficiently than webpack
   turbopack: { root: process.cwd()},
   async redirects() {
     return[
@@ -43,18 +40,16 @@ const nextConfig: NextConfig = {
     ]
   },
   async headers() {
-    const isDev = process.env.NODE_ENV === 'development';
 
-    // 1. Group external domains logically so you never have to repeat them
     const googleDomains =[
       "https://*.google.com",
       "https://*.googleapis.com",
       "https://*.gstatic.com",
       "https://*.google-analytics.com",
-      "https://*.analytics.google.com", // Fixes: region1.analytics.google.com
+      "https://*.analytics.google.com",
       "https://*.googletagmanager.com",
       "https://*.doubleclick.net",
-      "https://*.g.doubleclick.net",    // Fixes: googleads.g.doubleclick.net
+      "https://*.g.doubleclick.net",
       "https://*.merchant-center-analytics.goog",
       "https://*.googlesyndication.com", 
       "https://*.googleadservices.com",
@@ -64,13 +59,12 @@ const nextConfig: NextConfig = {
       "https://www.googletagmanager.com"
     ];
 
-    // 2. Build CSP as an Object (Extremely easy to read and manage)
     const cspDirectives = {
       'default-src': ["'self'"],
       'script-src':[
         "'self'",
         "'unsafe-inline'",
-        "'unsafe-eval'", // Required for OpenNext and certain edge-runtime components
+        "'unsafe-eval'",
         "https://cdn.jsdelivr.net",
         ...googleDomains
       ],
@@ -84,7 +78,7 @@ const nextConfig: NextConfig = {
         "'self'",
         "blob:",
         "data:",
-        "https://*",     // This wildcard natively allows ALL https:// images
+        "https://*",
       ],
       'media-src':[
         "'self'",
@@ -110,12 +104,9 @@ const nextConfig: NextConfig = {
       'worker-src': ["'self'", "blob:"],
     };
 
-    // 3. Auto-generate the CSP string and filter duplicates natively
     const cspValue = Object.entries(cspDirectives)
       .map(([directive, sources]) => {
-        // Filter out empty strings (like 'unsafe-eval' when in production)
         const validSources = sources.filter(Boolean);
-        // Remove accidental duplicates using Set
         const uniqueSources = [...new Set(validSources)];
         return `${directive} ${uniqueSources.join(' ')}`;
       })

@@ -4,13 +4,10 @@ import { withRegionalCache } from "@opennextjs/cloudflare/overrides/incremental-
 import memoryQueue from "@opennextjs/cloudflare/overrides/queue/memory-queue";
 
 export default defineCloudflareConfig({
-  // Wrap R2 in the regional cache for lightning-fast edge delivery,
-  // but leave out the buggy 'shouldLazilyUpdateOnCacheHit' flag!
   incrementalCache: withRegionalCache(r2IncrementalCache, {
     mode: "long-lived"
   }),
   
-  // Keep these disabled to avoid D1/Queue setup overhead
   tagCache: "dummy",
   queue: memoryQueue
 });

@@ -16,12 +16,10 @@ export const EnhancedProductSchema = MedicalProductSchema.extend({
 
 export type EnhancedProduct = z.infer<typeof EnhancedProductSchema>;
 
-// Helper to generate a slug fallback from the title
 const generateSlug = (text: string): string => {
   return text.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]+/g, '');
 };
 
-// Helper to get price info
 const getPriceInfo = (priceChart: any, defaultPrice: number, isKgPrice: boolean) => {
   if (priceChart && Array.isArray(priceChart.tiers) && priceChart.tiers.length > 0) {
     const minPrice = Math.min(...priceChart.tiers.map((t: any) => t.price));

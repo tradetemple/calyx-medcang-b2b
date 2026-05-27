@@ -1,7 +1,6 @@
 import { unstable_cache } from 'next/cache';
 import { getDictionary } from '../dictionaries';
 
-// KV cache helper for region-level caching
 interface KVNamespace {
   get(key: string, type: 'json' | 'text' | 'stream'): Promise<any>;
   put(key: string, value: string | ArrayBuffer | ReadableStream, options?: { expirationTtl?: number }): Promise<void>;

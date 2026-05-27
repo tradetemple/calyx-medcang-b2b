@@ -208,7 +208,9 @@
       "total": "Netto-Gesamt (zzgl. 7% MwSt.)"
     },
     "checkout": {
-      "button": "Manifest signieren & Prüfen"
+      "button": "Manifest signieren & Prüfen",
+      "blocked": "PROCURMENT_BLOCKED",
+      "doctorNotice": "MedCanG §7: Ärzten ist der direkte Bezug von Betäubungsmitteln gesetzlich untersagt."
     }
   },
   "checkout": {

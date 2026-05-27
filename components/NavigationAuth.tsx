@@ -33,7 +33,6 @@ export default async function NavigationAuth({
   footerDict
 }: NavigationAuthProps) {
 
-  // Get the current URL from headers
   const headersList = await headers();
   const requestUrl = headersList.get('x-url') ||
     headersList.get('x-pathname') ||
@@ -60,7 +59,6 @@ export default async function NavigationAuth({
   let user = null;
   let isAdmin = false;
 
-  // Build full navigation with auth-dependent items
   const navigation: NavigationItem[] = [
     ...baseNavigation,
   ];

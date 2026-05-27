@@ -7,11 +7,8 @@ import { setUserRoleAction, clearUserRoleAction } from '@/lib/actions/auth'
 
 export default function StoreHydration() {
   useEffect(() => {
-    // 1. Manually rehydrate the Zustand store from localStorage
     useUserRoleStore.persist.rehydrate();
 
-    // 2. Synchronize localStorage state with the Next.js Server Cookie
-    // This bridges the gap if the user refreshes and the cookie was lost/out-of-sync
     const syncServerState = async () => {
       const { userRole } = useUserRoleStore.getState();
       if (userRole && userRole !== 'guest') {
@@ -21,13 +18,11 @@ export default function StoreHydration() {
     
     syncServerState();
 
-    // 3. Handle specific URL cleanup commands (e.g., Logging out)
     if (window.location.search.includes('clear_cart_data=true')) {
       useB2BCartStore.getState().clearCart();
-      useUserRoleStore.getState().clearUserRole(); // Clear Zustand
-      clearUserRoleAction().catch(console.error);  // Clear Server Cookie
+      useUserRoleStore.getState().clearUserRole();
+      clearUserRoleAction().catch(console.error);
       
-      // Clean up the URL for a polished demo experience
       if (window.history.replaceState) {
         const url = new URL(window.location.href);
         url.searchParams.delete('clear_cart_data');
@@ -36,5 +31,5 @@ export default function StoreHydration() {
     }
   }, []);
 
-  return null; // Invisible global worker component
+  return null;
 }

@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -13,7 +12,7 @@ interface OrderItem {
   quantity_grams: number;
   price_per_kg: number;
   selected_color?: string;
-  option_details?: string | null; // Updated to expect a string (image URL)
+  option_details?: string | null;
   product: {
     id: string;
     name: string;
@@ -45,7 +44,6 @@ interface Order {
     state: string;
     postal_code: string;
     country: string;
-    // Compliance fields
     gln?: string;
     pharmacy_license?: string;
     btm_license?: string;
@@ -102,12 +100,10 @@ function getOrderItemImageUrl(item: OrderItem): string | null {
       return null;
     }
 
-    // If option_details is directly the image URL string
     if (typeof item.option_details === 'string' && item.option_details.length > 0) {
       return item.option_details;
     }
 
-    // Fallback to product image if no option_details or it's not a valid image URL string
     return item.product.product_image || null;
   } catch {
     return item?.product?.product_image || null;
@@ -117,17 +113,14 @@ function getOrderItemImageUrl(item: OrderItem): string | null {
 
 function getOrderItemDisplayPrice(item: OrderItem, order: Order, isB2B = false): number {
   
-  // The tier price in price_chart (and price_per_kg in this context) is price per gram
   const rawPrice = item.quantity_grams * item.price_per_kg;
     
   const converted = order.currency_rate ? rawPrice * order.currency_rate : rawPrice;
 
   if (getPaymentType(order.payment_method) === 'crypto') return converted;
 
-  // For B2B orders, prices are always without VAT
   if (isB2B) return converted;
 
-  // For B2C orders with VAT number, remove VAT
   if (order.vat_number && order.vat_number.trim().length > 0) {
     return converted / 1.19;
   }
@@ -135,7 +128,6 @@ function getOrderItemDisplayPrice(item: OrderItem, order: Order, isB2B = false):
   return converted;
 }
 
-// Tab component for payment and shipping sections
 interface TabProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
@@ -162,7 +154,6 @@ function TabNavigation({ activeTab, setActiveTab, tabs }: TabProps) {
   );
 }
 
-// Invoice Download Component
 interface InvoiceDownloadProps {
   orderId: string;
   locale: string;
@@ -195,7 +186,6 @@ function InvoiceDownload({ t, invoice = false }: InvoiceDownloadProps) {
   );
 }
 
-// Enhanced Payment Method Component
 interface PaymentMethodDisplayProps {
   paymentMethod: string | PaymentMethodDetails;
   t: any;
@@ -258,13 +248,11 @@ interface ShippingTrackingProps {
 }
 
 function ShippingTracking({ orderId, status, t }: ShippingTrackingProps) {
-  // Use the specific interface for state
   const [trackingData, setTrackingData] = useState<TrackingData | null>(null);
   const [loading, setLoading] = useState(false);
   const [, setError] = useState<string | null>(null);
   const [copiedOrderId, setCopiedOrderId] = useState(false);
 
-  // Use the improved fetch logic
   const fetchTrackingInfo = async () => {
     setLoading(true);
     setError(null);
@@ -283,7 +271,7 @@ function ShippingTracking({ orderId, status, t }: ShippingTrackingProps) {
       if (data.tracking_number) {
         setTrackingData({ trackingNumber: data.tracking_number });
       } else {
-        setTrackingData({ trackingNumber: '' }); // Represents "not shipped"
+        setTrackingData({ trackingNumber: '' });
       }
 
     } catch (err) {
@@ -300,7 +288,6 @@ function ShippingTracking({ orderId, status, t }: ShippingTrackingProps) {
     setTimeout(() => setCopiedOrderId(false), 1500)
   };
 
-  // Restore the getStatusIcon function
   const getStatusIcon = (currentStatus: string) => {
     switch (currentStatus.toLowerCase()) {
       case 'processing':
@@ -330,11 +317,9 @@ function ShippingTracking({ orderId, status, t }: ShippingTrackingProps) {
     }
   };
 
-  // This is the full component structure from your original code
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        {/* This is the UI section you wanted back */}
         <div className="flex items-center space-x-3">
           {getStatusIcon(status)}
           <div>
@@ -385,11 +370,9 @@ function ShippingTracking({ orderId, status, t }: ShippingTrackingProps) {
 
 
 
-      {/* This section now uses the new logic */}
       {!loading && (
         <>
           {trackingData ? (
-            // State after fetch: either has a number or is empty string
             trackingData.trackingNumber ? (
               <div className="p-4 bg-white/60 rounded-none">
                 <h4 className="font-semibold text-text-main mb-2">{t.sections.shipping.trackingInformation}</h4>
@@ -406,7 +389,6 @@ function ShippingTracking({ orderId, status, t }: ShippingTrackingProps) {
               </div>
             )
           ) : (
-            // Initial state before fetching
             <div className="p-4 bg-white/60 rounded-none text-center">
               <p className="text-black text-sm">
                 {t.sections.shipping.clickRefresh}
@@ -452,7 +434,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
             guest_email: parsed.userEmail,
             shipping_address: parsed.shippingAddress,
             order_items: parsed.cartItems.map((item: any, index: number) => {
-              // Find the correct tiered price per gram based on quantity
               let tieredPrice = 0;
               const tiers = item.product.price_chart?.tiers;
               if (tiers && tiers.length > 0) {
@@ -485,7 +466,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
     }
   }, [params.id, searchParams]);
 
-  // Prepare Google Customer Reviews data once
 
   const tabs = [
     {
@@ -508,12 +488,10 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
     },
   ];
 
-  // On component mount, check for token in localStorage if not in URL
   useEffect(() => {
     const orderId = params.id as string
     const token = searchParams.get('token')
 
-    // If no token in URL, check localStorage and redirect if found
     if (!token) {
       const storedToken = localStorage.getItem(`order_token_${orderId}`)
 
@@ -521,15 +499,12 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
         router.push(`/${locale}/orders/${orderId}?token=${encodeURIComponent(storedToken)}`)
       }
     } else {
-      // If token is in URL, store it in localStorage
       localStorage.setItem(`order_token_${orderId}`, token)
 
-      // Also store it in sessionStorage as a backup
       sessionStorage.setItem(`order_token_${orderId}`, token)
     }
   }, [params.id, searchParams, router, locale])
 
-  // Helper function to get order status style
   const getStatusStyle = (status: string) => {
     switch (status.toLowerCase()) {
       case 'processing':
@@ -549,7 +524,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 pb-0">
       <div className="max-w-7xl mx-auto">
         <div className="max-w-7xl mx-auto">
-          {/* Page Header with Order ID and Status */}
           <div className="mb-8 flex flex-col md:!flex-row justify-between items-start md:items-center">
             <div className="flex-1">
               <h1 className="text-xl md:text-3xl font-semibold font-merriweather-main text-static-black tracking-wide">
@@ -580,9 +554,7 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-2 md:gap-6">
-            {/* Left column - Order Details & Shipping */}
             <div className="lg:col-span-2 space-y-2 md:space-y-6">
-              {/* Order Summary */}
               <div className="bg-slate-50 rounded-none overflow-hidden">
                 <div className="p-4 pb-0 md:p-6">
                   <h2 className="text-2xl font-semibold text-black flex items-center">
@@ -595,7 +567,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
 
                 <div>
                   {order.order_items.map((item) => {
-                    // Explicitly check if kg_price is false - treat undefined/null as true for backward compatibility
                     const isKgBased = item.product.kg_price !== false;
 
                     return (
@@ -643,7 +614,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
                   })}
                 </div>
 
-                {/* Fee Breakdown Section - similar to checkout */}
                 <div className="p-3 bg-white mx-4 md:mx-6 rounded-none flex-col text-xs space-y-4">
                   <div className="flex justify-between items-center uppercase">
                     <span className="text-black">{t.sections.orderInfo.subtotal}</span>
@@ -665,7 +635,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
                       </span>
                     </div>
                   )}
-                  {/* Shipping row: only show if freight_ex_vat > 0 (hide if free shipping) */}
                   {typeof order.freight_ex_vat === 'number' && order.freight_ex_vat > 0 && (
                     <div className="flex justify-between items-center uppercase">
                       <span className="text-black">{t.sections.orderInfo.shipping || 'Shipping'}</span>
@@ -674,7 +643,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
                       </span>
                     </div>
                   )}
-                  {/* VAT row: only show if order.vat > 0 and order does NOT have a vat_number (i.e., not VAT-exempt) */}
                   {(order.vat && order.vat > 0) ? (
                     <div className="flex justify-between items-center uppercase">
                       <span className="text-black">{t.sections.orderInfo.vat}</span>
@@ -683,7 +651,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
                       </span>
                     </div>
                   ) : null}
-                  {/* Fee row: only show if order.fees > 0 (hide if no fees) */}
                   {typeof order.fees === 'number' && order.fees > 0 && (
                     <div className="flex justify-between items-center uppercase">
                       <span className="text-black">{t.sections.orderInfo.transactionFee || 'Transaction Fee'}</span>
@@ -704,7 +671,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
                 </div>
               </div>
 
-              {/* Shipping Address */}
               <div className="bg-slate-50 rounded-none ">
                 <div className="p-4 pb-0 md:p-6 md:!pb-0">
                   <h2 className="text-base md:text-2xl font-semibold text-black flex items-center">
@@ -735,7 +701,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
                       <p>{order.shipping_address.country}</p>
                     </div>
 
-                    {/* MedCanG Compliance Fields */}
                     <div className="mt-4 pt-4 border-t border-secondary/10 space-y-3">
                       <h3 className="text-[10px] uppercase tracking-[0.2em] font-bold text-black">{t.sections.compliance.title}</h3>
                       
@@ -766,7 +731,6 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
                 </div>
               </div>
 
-              {/* Billing Address - if different from shipping */}
               {order.billing_address && (
                 <div className="bg-slate-50 rounded-none mt-6">
                   <div className="p-4 pb-0 md:p-6 md:!pb-0">
@@ -802,9 +766,7 @@ export default function OrderDetailsClient({ order: initialOrder, siteSettings, 
               )}
             </div>
 
-            {/* Right column - Payment & Shipping Information */}
             <div className="lg:col-span-1 space-y-6">
-              {/* Payment & Shipping Tabs */}
               <div className="bg-slate-50 rounded-none">
                 <div className="px-4 pt-4 pb-0">
                   <TabNavigation activeTab={activeTab} setActiveTab={setActiveTab} tabs={tabs} />

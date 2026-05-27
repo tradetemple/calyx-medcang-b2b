@@ -1,10 +1,9 @@
 import { SitemapIndexEntry } from "@/lib/sitemap/types";
 import { getLastModifiedDate } from "@/lib/sitemap/utils";
-// Removed import for generateAuthorSitemapPages as it's no longer exported
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL;
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;
 
 export async function GET(): Promise<Response> {
   if (!BASE_URL) {
@@ -14,13 +13,11 @@ export async function GET(): Promise<Response> {
 
   const sitemapIndexEntries: SitemapIndexEntry[] = [];
 
-  // Add static sitemap
   sitemapIndexEntries.push({
     url: `${BASE_URL}/sitemap-static.xml`,
     lastModified: await getLastModifiedDate('app/sitemap-static.xml/route.ts'),
   });
 
-  // Add product sitemap
   sitemapIndexEntries.push({
     url: `${BASE_URL}/sitemap-products.xml`,
     lastModified: await getLastModifiedDate('app/sitemap-products.xml/route.ts'),

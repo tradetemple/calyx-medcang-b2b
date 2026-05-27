@@ -13,7 +13,6 @@ export default async function TermsPage({ params }: { params: Promise<{ lang: st
       ? ((dict.terms as unknown) as { sections: Record<string, { list?: string[] }> }).sections
       : {};
 
-  // Define sections for navigation
   const sections = [
     { id: 'section1', title: t.sections.section1.title },
     { id: 'section2', title: t.sections.section2.title },
@@ -67,7 +66,6 @@ export default async function TermsPage({ params }: { params: Promise<{ lang: st
         </div>
 
         <div className="flex flex-col lg:!flex-row gap-8">
-          {/* Navigation Sidebar */}
           <div className="lg:w-1/4">
             <div className="bg-primary/10 rounded-none border-2 border-primary/20 p-6 sticky top-12">
               <h2 className="text-xl font-semibold text-static-black mb-4">

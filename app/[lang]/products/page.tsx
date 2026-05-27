@@ -19,8 +19,6 @@ export async function generateStaticParams() {
   return generateLocalizedStaticParams();
 }
 
-// --- HARDCODED B2B DATA (Replaces Supabase Calls) ---
-
 const mockSiteSettings = {
   locales: ['en', 'de'],
   locale_addresses: {
@@ -69,14 +67,12 @@ const getFaqContent = (locale: string) => {
   };
 };
 
-// --- METADATA GENERATION ---
-
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const { lang } = await params;
   const locale = lang;
   const { dict } = await getHomeData(lang);
   const t = dict.Metadata.products;
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.yourb2bportal.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calyx.thelynx.ai';
 
   let translatedProductsPath = '/products';
   try {
@@ -123,8 +119,6 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-// --- MAIN COMPONENT ---
-
 interface ProductsPageProps {
   params: Promise<{ lang: string }>;
 }
@@ -134,12 +128,10 @@ export default async function ProductsPage(props: ProductsPageProps) {
   const { lang } = params;
   const locale = lang;
 
-  // 1. Load Hardcoded Data
   const { dict } = await getHomeData(lang);
   const faqContent = getFaqContent(locale);
   const siteSettings = mockSiteSettings;
 
-  // 2. Fetch Products (Now uses mock-data.ts, zero latency)
   const [allProducts, locationData] = await Promise.all([
     getProductsForListView(locale, 100), 
     getLocaleLocationData(locale),
@@ -152,10 +144,9 @@ export default async function ProductsPage(props: ProductsPageProps) {
 
   const enhancedAllProducts: EnhancedProduct[] = await enhanceProducts(allProducts, lang);
 
-  // 4. Schema org logic
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.yourb2bportal.com';
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://calyx.thelynx.ai';
   const englishCountryName = await getEnglishCountryName(locationData.country, locale, dict as any);
-  const countryCode = countryCodeMap[englishCountryName] || 'DE'; // Default to DE for cannabis market
+  const countryCode = countryCodeMap[englishCountryName] || 'DE';
   const geoCoordinates = getCountryGeoCoordinates(englishCountryName);
   const localeAddress = (siteSettings.locale_addresses as any)?.[locale] || {};
 

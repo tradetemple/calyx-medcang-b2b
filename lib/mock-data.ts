@@ -7,18 +7,16 @@ const FLOWER_IMAGES = [
   'https://fcbnaprqvjfyzzredkgy.supabase.co/storage/v1/object/public/Public/calyx/products/flower-4.webp'
 ];
 
-// Simple seeded random number generator to ensure deterministic mock data
 const seededRandom = (seed: number) => {
   const x = Math.sin(seed) * 10000;
   return x - Math.floor(x);
 };
 
 const generateFutureExpiryDate = (seed: number) => {
-  // Current context: May 19, 2026
-  const start = new Date(2026, 4, 20).getTime(); // May 20, 2026
-  const end = new Date(2027, 11, 31).getTime(); // Dec 31, 2027
+  const start = new Date(2026, 4, 20).getTime();
+  const end = new Date(2027, 11, 31).getTime();
   const randomTime = start + seededRandom(seed) * (end - start);
-  return new Date(randomTime).toISOString().split('T')[0]; // Format: YYYY-MM-DD
+  return new Date(randomTime).toISOString().split('T')[0];
 };
 
 const BRANDS = ['IUVO', 'Demecan', 'Four20 Pharma', 'Cannamedical', 'Bloomwell', 'Cantourage', 'Sanity Group'];
@@ -26,9 +24,6 @@ const STRAIN_NAMES = ['Ice Cream Cake', 'Kush Mints', 'Blue Cheese', 'Zkittlez',
 const TERPENES = ['Myrcene', 'Limonene', 'Caryophyllene', 'Linalool', 'Pinene', 'Terpinolene', 'Humulene'];
 const ORIGINS = ['Germany', 'Canada', 'Portugal', 'Colombia', 'Czechia', 'Macedonia', 'Thailand'];
 
-/**
- * Abbreviates strain names (e.g., "Ice Cream Cake" -> "ICC")
- */
 const abbreviateStrain = (name: string): string => {
   return name
     .split(' ')
@@ -44,33 +39,28 @@ const generateMockProducts = (count: number): MedicalProduct[] => {
     const brand = BRANDS[i % BRANDS.length];
     const strain = STRAIN_NAMES[i % STRAIN_NAMES.length];
     
-    // Use i as a seed for different properties to ensure consistency
     const seed = i * 1337; 
     
-    // 1. SELECT PRODUCT TYPE (Ratios)
-    // We simulate 3 types: THC-Dominant (1:30), Balanced (1:1), CBD-Dominant (20:1)
     const typeRoll = seededRandom(seed + 1);
     let thc: number, cbd: number, ratio: string;
     
-    if (typeRoll > 0.4) { // THC Dominant
+    if (typeRoll > 0.4) {
       thc = Math.floor(seededRandom(seed + 2) * (35 - 18 + 1) + 18);
       cbd = parseFloat((seededRandom(seed + 3) * 1).toFixed(1));
       ratio = `${thc}:1`;
-    } else if (typeRoll > 0.15) { // Balanced
+    } else if (typeRoll > 0.15) {
       thc = Math.floor(seededRandom(seed + 4) * (10 - 5 + 1) + 5);
       cbd = Math.floor(seededRandom(seed + 5) * (12 - 7 + 1) + 7);
       ratio = '1:1';
-    } else { // CBD Dominant
+    } else { 
       thc = parseFloat((seededRandom(seed + 6) * 1).toFixed(1));
       cbd = Math.floor(seededRandom(seed + 7) * (20 - 10 + 1) + 10);
       ratio = `1:${cbd}`;
     }
 
-    // 2. LOGISTICS & COMPLIANCE DATA
     const isIrradiated = seededRandom(seed + 8) > 0.5;
     const terpenePercentage = (seededRandom(seed + 9) * (4.5 - 1.2) + 1.2).toFixed(2);
     
-    // Deterministic shuffle for terpenes
     const topTerps = [...TERPENES]
       .map(t => ({ t, sort: seededRandom(seed + 10 + TERPENES.indexOf(t)) }))
       .sort((a, b) => a.sort - b.sort)
@@ -84,8 +74,6 @@ const generateMockProducts = (count: number): MedicalProduct[] => {
     const image = FLOWER_IMAGES[i % FLOWER_IMAGES.length];
     const slug = `${brand.toLowerCase().replace(/\s/g, '-')}-${strain.toLowerCase().replace(/\s/g, '-')}-${thc}-${cbd}`;
 
-    // 3. CONSTRUCT DEEP COMPLIANCE SPECIFICATIONS (Specification[])
-    // This format is what your accordion expects
     const specs: Specification[] = [
       { name: 'Genotype', value: i % 3 === 0 ? 'Indica' : i % 3 === 1 ? 'Sativa' : 'Hybrid' },
       { name: 'THC Content', value: `${thc}%` },
@@ -119,7 +107,6 @@ const generateMockProducts = (count: number): MedicalProduct[] => {
       live_stock_grams: Math.floor(seededRandom(seed + 22) * 25000) + 500,
       is_featured: i <= 5,
       
-      // Tiered B2B Pricing Matrix
       price_chart: {
         tiers:[
           { min: 50, price: baseGramPrice + 0.50 },
@@ -128,7 +115,6 @@ const generateMockProducts = (count: number): MedicalProduct[] => {
         ]
       },
 
-      // INJECTED SPECIFICATIONS
       specifications: specs,
 
       test_results: {

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import OrderDetailsClient from './OrderDetailsClient'
 import { getSiteSettings } from '@/app/[lang]/utils/site-settings'
 import { getDictionary } from '@/app/[lang]/dictionaries';
@@ -70,7 +69,6 @@ const OrderDetailsPage = async (props: any) => {
   const { params } = props;
   const { lang, id } = await params;
 
-  // Mock data for demonstration purposes
   const orderData: any = {
     id: id || 'DEMO-123456',
     status: 'processing',

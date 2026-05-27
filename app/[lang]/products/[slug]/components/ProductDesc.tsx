@@ -1,8 +1,8 @@
-import ProcessedContentServer from '@/components/content/ProcessedContentServer'; // Import the server wrapper
+import ProcessedContentServer from '@/components/content/ProcessedContentServer'; 
 
 interface ProductDescriptionProps {
   description: string;
-  lang: string; // Add lang prop
+  lang: string;
 }
 
 export default function ProductDescription({ description, lang }: ProductDescriptionProps) {

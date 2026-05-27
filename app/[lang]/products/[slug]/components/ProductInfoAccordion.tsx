@@ -31,7 +31,6 @@ export default function ProductInfoAccordion({
   locale,
   t
 }: ProductInfoAccordionProps) {
-  // Filter valid sections
   const sections = []
   
   if (displayDescription) {
@@ -73,7 +72,6 @@ export default function ProductInfoAccordion({
   )
 }
 
-// Individual Product Info Item Component (Server Component)
 function ProductInfoItem({ 
   section, 
   locale 

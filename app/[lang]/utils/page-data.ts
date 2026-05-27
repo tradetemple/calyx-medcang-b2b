@@ -1,7 +1,6 @@
 import { unstable_cache } from 'next/cache';
 import { getDictionary } from '../dictionaries';
 
-// KV cache helper for region-level caching
 interface KVNamespace {
   get(key: string, type: 'json' | 'text' | 'stream'): Promise<any>;
   put(key: string, value: string | ArrayBuffer | ReadableStream, options?: { expirationTtl?: number }): Promise<void>;
@@ -9,13 +8,11 @@ interface KVNamespace {
 }
 
 const getKV = () => {
-  // OpenNext/Cloudflare binding
   return (process.env.NEXT_CACHE_WORKERS_KV as unknown as KVNamespace) || null;
 };
 
 const KV_TTL = 3600;
 
-// Cache dictionary with KV
 const getCachedDictionary = unstable_cache(
   async (lang: string) => {
     const kv = getKV();

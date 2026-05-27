@@ -23,26 +23,20 @@ export function NavbarActions({ lang, dict }: NavbarActionsProps) {
 
   if (!mounted || !isLoaded) return null;
 
-  // Only show if user is authenticated (not a guest)
   if (userRole === 'guest') return null;
 
-  // Check if current path matches allowed paths
   const decodedPathname = decodeURIComponent(pathname);
 
-  // Get localized path segments from config
   const productsPath = (config.pathnames['/products'] as any)?.[lang] || '/products';
   const productsSlugPath = (config.pathnames['/products/[slug]'] as any)?.[lang] || '/products/[slug]';
   const checkoutPath = (config.pathnames['/checkout'] as any)?.[lang] || '/checkout';
 
-  // Helper to check if pathname matches a localized pattern
-  // Note: patterns like /produkte/[slug] need to be handled by checking the prefix
   const productsSlugPrefix = productsSlugPath.replace('[slug]', '');
 
   const isAllowedPath = 
     decodedPathname === `/${lang}${productsPath}` || 
     decodedPathname.startsWith(`/${lang}${productsSlugPrefix}`) || 
     decodedPathname === `/${lang}${checkoutPath}` ||
-    // Also support fallback/default paths just in case
     decodedPathname === `/${lang}/products` || 
     decodedPathname.startsWith(`/${lang}/products/`) || 
     decodedPathname === `/${lang}/checkout`;

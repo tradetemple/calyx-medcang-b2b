@@ -14,7 +14,6 @@ interface ProductGridProps {
   dict: any;
 }
 
-// STRICT TYPE PARSER: Safely converts stringified JSON or returns the array
 const getSpecsArray = (specs: any): { name: string; value: string }[] => {
   if (!specs) return [];
   if (Array.isArray(specs)) return specs;
@@ -29,13 +28,11 @@ const getSpecsArray = (specs: any): { name: string; value: string }[] => {
   return [];
 };
 
-// SPEC EXTRACTOR: Safely finds the value by name
 const getSpecValue = (specs: any, key: string): string | null => {
   const specArray = getSpecsArray(specs);
   return specArray.find(s => s.name === key)?.value || null;
 };
 
-// TEST RESULTS PARSER
 const getTestResults = (results: any): Record<string, any> => {
   if (!results) return {};
   if (typeof results === 'object' && !Array.isArray(results)) return results;
@@ -79,7 +76,6 @@ export default function ProductGrid({ products, lang, dict }: ProductGridProps) 
 
   return (
     <div className="space-y-4">
-      {/* DESKTOP VIEW */}
       <div className="hidden md:block">
         <div className="w-full rounded-none border border-slate-200 bg-white overflow-hidden shadow-sm">
           <div className="max-h-[75vh] overflow-y-auto overflow-x-auto custom-scrollbar">
@@ -182,7 +178,6 @@ export default function ProductGrid({ products, lang, dict }: ProductGridProps) 
         </div>
       </div>
 
-      {/* MOBILE VIEW */}
       <div className="md:hidden space-y-3">
         {products.map((product) => {
           const testResults = getTestResults(product.test_results);

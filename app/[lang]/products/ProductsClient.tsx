@@ -33,7 +33,6 @@ export function ProductsClient({
     setIsMounted(true);
   }, []);
 
-  // Use Zustand store instead of URL parameters
   const {
     selectedCategory: storeSelectedCategory,
     searchTerm: storeSearchTerm,
@@ -42,7 +41,6 @@ export function ProductsClient({
     resetFilters,
   } = useProductFiltersStore();
 
-  // Reset filters when component unmounts (language change or leaving page)
   useEffect(() => {
     return () => {
       resetFilters();
@@ -62,7 +60,6 @@ export function ProductsClient({
   const [isStuck, setIsStuck] = useState(false);
   const sentinelRef = useRef<HTMLDivElement>(null);
 
-  // Track if we're at the top of the page
   useEffect(() => {
     const handleScroll = () => {
       setIsAtTop(window.scrollY < 10);
@@ -73,14 +70,12 @@ export function ProductsClient({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Detect when the header becomes sticky using Intersection Observer
   useEffect(() => {
     const sentinel = sentinelRef.current;
     if (!sentinel) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // When sentinel is not visible, header is stuck
         setIsStuck(!entry.isIntersecting);
       },
       { threshold: 0, rootMargin: '-96px 0px 0px 0px' }
@@ -90,20 +85,15 @@ export function ProductsClient({
     return () => observer.disconnect();
   }, []);
 
-  // Calculate transform based on nav visibility - only apply when header is stuck
-  const navIsVisible = scrollDirection === 'up' || isAtTop;
-
   const filteredProducts = useMemo(() => {
     let productsToFilter = allProducts.filter(product => product.status !== 'symbols');
     
-    // 1. Filter Category
     if (activeCategorySlug !== 'all') {
       productsToFilter = productsToFilter.filter(product =>
         product.processedCategories?.some((cat: any) => cat.slug === activeCategorySlug)
       );
     }
     
-    // 2. Filter Search
     if (activeSearchTerm) {
       const lower = activeSearchTerm.toLowerCase();
       productsToFilter = productsToFilter.filter(product =>
@@ -113,7 +103,6 @@ export function ProductsClient({
       );
     }
     
-    // 3. Apply Centralized Column Sorting
     return sortProducts(productsToFilter, activeSortBy as any, activeSortOrder as any);
   }, [allProducts, activeCategorySlug, activeSearchTerm, activeSortBy, activeSortOrder]);
 

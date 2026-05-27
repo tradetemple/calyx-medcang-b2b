@@ -41,7 +41,6 @@ export default function GlobalSearch({ lang, dict }: GlobalSearchProps) {
     setIsOpen(true);
     document.body.style.overflow = 'hidden';
     
-    // Fetch products if not already fetched
     if (products.length === 0 && !isLoading) {
       setIsLoading(true);
       fetch(`/api/products/search?locale=${lang}`)
@@ -65,7 +64,6 @@ export default function GlobalSearch({ lang, dict }: GlobalSearchProps) {
     document.body.style.overflow = '';
   }, []);
 
-  // Auto-focus input when opened
   useEffect(() => {
     if (isOpen && inputRef.current) {
       setTimeout(() => {
@@ -74,7 +72,6 @@ export default function GlobalSearch({ lang, dict }: GlobalSearchProps) {
     }
   }, [isOpen]);
 
-  // Handle escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -108,7 +105,6 @@ export default function GlobalSearch({ lang, dict }: GlobalSearchProps) {
   }, [products, query, sortBy, sortOrder]);
 
   const handleResultsClick = (e: React.MouseEvent) => {
-    // Check if the click was on a sortable header or filter control
     const target = e.target as HTMLElement;
     const isSortClick = !!target.closest('th');
     

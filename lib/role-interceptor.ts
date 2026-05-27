@@ -1,54 +1,37 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { UserRole } from '@/stores/userRoleStore';
 
-/**
- * Role-based access control utility
- * Intercepts requests and renders a terminal-style 403 error for unauthorized access
- */
-
 interface RoleAccessOptions {
   allowedRoles: UserRole[];
   redirectPath?: string;
   errorMessage?: string;
 }
 
-/**
- * Check if user has required role and return appropriate response
- */
 export function checkRoleAccess(
   request: NextRequest,
   options: RoleAccessOptions
 ): NextResponse | null {
   const { allowedRoles, redirectPath = '/' } = options;
 
-  // Get user role from cookie or session
   const userRole = getUserRoleFromRequest(request);
 
-  // If user has required role, allow request to proceed
   if (allowedRoles.includes(userRole)) {
-    return null; // null means allow request to continue
+    return null;
   }
 
-  // If user is guest and trying to access protected route, show terminal error
   if (userRole === 'guest') {
     return renderTerminalError(request);
   }
 
-  // For other roles, redirect to home
   return NextResponse.redirect(new URL(redirectPath, request.url));
 }
 
-/**
- * Get user role from request cookies
- */
 function getUserRoleFromRequest(request: NextRequest): UserRole {
-  // Use request.cookies instead of cookies() headers to avoid the crash
+
   const userRoleCookie = request.cookies.get('user_role');
   
-  // Default to guest if no role found
   const role = userRoleCookie?.value || 'guest';
   
-  // Validate role
   if (['guest', 'verified_pharmacy', 'medical_doctor'].includes(role)) {
     return role as UserRole;
   }
@@ -56,9 +39,6 @@ function getUserRoleFromRequest(request: NextRequest): UserRole {
   return 'guest';
 }
 
-/**
- * Render terminal-style 403 error page
- */
 function renderTerminalError(request: NextRequest): NextResponse {
   const errorHtml = `
     <!DOCTYPE html>
@@ -296,47 +276,4 @@ CREATE POLICY "Pharmacies only" ON batches
       'Content-Type': 'text/html',
     },
   });
-}
-
-/**
- * Check if user has required role (client-side)
- */
-function checkRoleAccessClient(allowedRoles: UserRole[]): boolean {
-  if (typeof window === 'undefined') return false;
-  
-  // Get role from localStorage
-  const storedRole = localStorage.getItem('user-role-storage');
-  if (!storedRole) return false;
-  
-  try {
-    const state = JSON.parse(storedRole);
-    return allowedRoles.includes(state.userRole);
-  } catch {
-    return false;
-  }
-}
-
-/**
- * Set user role in cookie (for server-side)
- * @deprecated Use setUserRoleAction from @/lib/actions/auth instead
- */
-async function setUserRoleInCookie(role: UserRole): Promise<void> {
-  const { cookies } = await import('next/headers');
-  const cookieStore = await cookies();
-  cookieStore.set('user_role', role, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 60 * 60 * 24 * 7, // 1 week
-    path: '/',
-  });
-}
-
-/**
- * Clear user role from cookie
- * @deprecated Use clearUserRoleAction from @/lib/actions/auth instead
- */
-async function clearUserRoleCookie(): Promise<void> {
-  const { cookies } = await import('next/headers');
-  const cookieStore = await cookies();
-  cookieStore.delete('user_role');
 }

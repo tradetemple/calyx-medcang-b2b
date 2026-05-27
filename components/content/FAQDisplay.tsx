@@ -14,7 +14,6 @@ interface FAQDisplayProps {
   title?: string
 }
 
-// Dynamically import the client component
 const FAQAccordion = dynamic(() => import('./FAQAccordion'), {
   loading: () => (
     <div className="max-w-4xl mx-auto space-y-4">
@@ -29,17 +28,13 @@ const FAQAccordion = dynamic(() => import('./FAQAccordion'), {
   )
 })
 
-/**
- * FAQ Display Component - Server Component
- * Renders FAQ section with dynamically imported client-side accordion functionality
- */
 export default async function FAQDisplay({
   faqs,
   lang,
   className = '',
   title = 'Frequently Asked Questions'
 }: FAQDisplayProps) {
-  // Filter out empty FAQs
+
   const validFaqs = faqs.filter(faq =>
     faq.question && faq.question.trim() !== '' &&
     faq.answer && faq.answer.trim() !== ''
@@ -66,7 +61,6 @@ export default async function FAQDisplay({
   )
 }
 
-// Individual FAQ Item Component (Server Component)
 async function FAQItem({ faq, lang }: { faq: FAQItem; lang: string }) {
   return (
     <div className="bg-slate-50 border border-border/20 rounded-none shadow-sm hover:shadow-md transition-shadow duration-200 faq-item">

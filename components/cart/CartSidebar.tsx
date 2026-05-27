@@ -16,7 +16,6 @@ export default function CartSidebar( { dict, lang }: { dict: any; lang: string }
   const router = useRouter()
   const pathname = usePathname()
 
-  // Grab the current language for accurate locale currency formatting
   const t = dict
 
   const isSidebarOpen = useB2BCartStore((state) => state.isSidebarOpen)
@@ -25,7 +24,6 @@ export default function CartSidebar( { dict, lang }: { dict: any; lang: string }
   const addLog = useAuditStore((state) => state.addLog)
   const { userRole } = useUserRoleStore()
 
-  // Auto-close sidebar on route change
   useEffect(() => {
     closeSidebar()
   }, [pathname, closeSidebar])
@@ -102,7 +100,6 @@ export default function CartSidebar( { dict, lang }: { dict: any; lang: string }
               <div className="flex justify-between font-mono text-sm text-slate-800 mb-4">
                 <span className='text-xs md:text-sm mr-4'>{t.summary.total}</span>
                 <span className="font-bold">
-                  {/* Replaced hardcoded € with DynamicPrice */}
                   <DynamicPrice 
                     basePrice={baseTotal} 
                     lang={lang}
@@ -121,11 +118,11 @@ export default function CartSidebar( { dict, lang }: { dict: any; lang: string }
                 disabled={userRole === 'medical_doctor'}
                 aria-label={t.checkout.button}
               >
-                {userRole === 'medical_doctor' ? 'PROCURMENT_BLOCKED' : t.checkout.button}
+                {userRole === 'medical_doctor' ? t.checkout.blocked : t.checkout.button}
               </button>
               {userRole === 'medical_doctor' && (
                 <p className="mt-2 text-[8px] text-rose-500 font-mono text-center leading-tight uppercase tracking-tighter">
-                  MedCanG §7: Medical Doctors are legally prohibited from direct procurement of narcotics.
+                  {t.checkout.doctorNotice}
                 </p>
               )}
             </div>

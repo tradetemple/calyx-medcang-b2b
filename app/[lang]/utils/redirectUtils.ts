@@ -12,6 +12,5 @@ export async function handleUuidRedirect(
 ): Promise<string | null> {
   // In this mock environment, we do not support UUID-to-slug redirection
   // This is a stub to satisfy types and remove Supabase dependencies
-  // We return null to ensure the calling component continues its normal logic (loading by slug)
   return null
 }

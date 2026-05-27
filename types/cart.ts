@@ -28,8 +28,8 @@ export const ShippingAddressSchema = z.object({
 export const AddToCartButtonPropsSchema = z.object({
   productId: z.string(),
   moqGrams: z.number(),
-  addToCartText: z.string().optional(), // Made optional to match usage
-  quantityLabel: z.string().optional(), // Made optional to match usage
+  addToCartText: z.string().optional(),
+  quantityLabel: z.string().optional(),
   defaultUnit: z.string().optional(),
   unitOptions: z.array(z.object({
     value: z.string(),

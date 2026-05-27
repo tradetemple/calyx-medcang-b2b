@@ -5,7 +5,7 @@ export function useScrollDirection() {
   const [prevOffset, setPrevOffset] = useState(0);
 
   useEffect(() => {
-    const threshold = 10; // Minimum scroll amount to trigger
+    const threshold = 10;
     let ticking = false;
 
     const updateScrollDirection = () => {

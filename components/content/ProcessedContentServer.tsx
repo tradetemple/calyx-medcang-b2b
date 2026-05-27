@@ -8,13 +8,9 @@ interface ProcessedContentServerProps {
   className?: string
 }
 
-/**
- * Server component that processes HTML content (replaces links) then passes to client component for sanitization.
- */
 export default async function ProcessedContentServer({ htmlContent, lang, className }: ProcessedContentServerProps) {
   let processedContent = htmlContent
 
-  // --- Process Product Links ---
   const productLinkRegex = /<a href="product-link:\/\/([a-f0-9-]+)">(.*?)<\/a>/g;
   const productIdsToFetch: Set<string> = new Set();
   let productMatch;
@@ -51,7 +47,6 @@ export default async function ProcessedContentServer({ htmlContent, lang, classN
     });
   }
 
-  // --- Process Video Placeholders ---
   processedContent = processedContent.replace(
     /<video-placeholder src="([^"]+)"([^>]*)><\/video-placeholder>/g,
     (match, src, attributes) => {
@@ -73,9 +68,7 @@ export default async function ProcessedContentServer({ htmlContent, lang, classN
     }
   )
 
-  // --- Replace h1 tags with h2 tags ---
   processedContent = processedContent.replace(/<h1([^>]*)>(.*?)<\/h1>/gi, '<h2$1>$2</h2>')
 
-  // Pass processed content to client component for sanitization
   return <ProcessedContent htmlContent={processedContent} className={className} />
 }

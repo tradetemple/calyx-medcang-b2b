@@ -1,6 +1,5 @@
 'use client'
 
-import React from 'react'
 import Image from 'next/image'
 
 interface FooterLogoProps {
@@ -13,7 +12,6 @@ export default function FooterLogo({
   siteName, 
   siteLogo
 }: FooterLogoProps) {
-  // Always use the regular logo in light mode
   const logoSrc = siteLogo
   
   return (

@@ -11,7 +11,7 @@ import { AddToCartButtonProps } from '@/types/cart'
 export default function AddToCartButton({
   productId,
   moqGrams,
-  defaultQuantity = 50, // B2B MOQ Default
+  defaultQuantity = 50,
   t,
   disabled = false,
   product,
@@ -51,7 +51,6 @@ export default function AddToCartButton({
     try {
       const imageUrl = selectedVariantImage || product?.product_image || null;
       
-      // Construct the exact snapshot matching MedicalProductSchema
       const productSnapshot = {
         id: productId,
         name: product?.name || 'Unknown Strain',
@@ -67,7 +66,6 @@ export default function AddToCartButton({
       
       addItemToCart(productSnapshot, defaultQuantity);
       
-      // GDP Audit Log
       addAuditLog('PROCUREMENT_ADD', `Added ${defaultQuantity}g of ${productSnapshot.name} to manifest`, 'SUCCESS');
 
       openSidebar();

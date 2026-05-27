@@ -2,8 +2,8 @@ import { z } from 'zod';
 
 export const AuditEventSchema = z.object({
   id: z.uuid(),
-  timestamp: z.string(), // ISO String
-  actor: z.string(),     // e.g., "Pharmacy-DE-8372"
+  timestamp: z.string(),
+  actor: z.string(),    
   action: z.enum([
     'AUTH_LOGIN',
     'PROCUREMENT_ADD',
@@ -22,9 +22,9 @@ export const AuditEventSchema = z.object({
     'ORDER_CREATED',
     'AUTH_SESSION_ESTABLISHED'
   ]),
-  details: z.string(),   // e.g., "Added 500g of IUVO ICC 30/1"
+  details: z.string(),   
   status: z.enum(['SUCCESS', 'WARNING', 'FAILURE']),
-  hash: z.string(),      // A mock SHA-256 hash to simulate immutability
+  hash: z.string(),    
 });
 
 export type AuditEvent = z.infer<typeof AuditEventSchema>;

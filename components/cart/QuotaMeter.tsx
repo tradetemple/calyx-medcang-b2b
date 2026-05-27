@@ -8,17 +8,15 @@ import { useB2BCartStore } from '@/stores/optimized-cart-store';
 interface QuotaMeterProps {
   className?: string;
   showLabel?: boolean;
-  pendingGrams?: number; // grams currently selected in quantity selector (for preview)
+  pendingGrams?: number;
   t: any;
 }
 
 const MONTHLY_QUOTA_GRAMS = 5000;
 
 export default function QuotaMeter({ className, showLabel = true, pendingGrams = 0, t }: QuotaMeterProps) {
-  // Use our new strict B2B store
   const items = useB2BCartStore(state => state.items);
 
-  // Simply sum the quantityGrams of all items in the cart
   const currentUsageGrams = useMemo(() => {
     return items.reduce((total, item) => total + item.quantityGrams, 0);
   }, [items]);

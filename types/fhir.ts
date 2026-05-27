@@ -7,7 +7,7 @@ export const FHIRMedicationRequestSchema = z.object({
   subject: z.object({
     display: z.string(),
     id: z.string(),
-    last_in_person_consultation: z.string(), // ISO Date string
+    last_in_person_consultation: z.string(),
   }),
   medicationCodeableConcept: z.object({
     coding: z.array(z.object({

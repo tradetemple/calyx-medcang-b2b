@@ -23,7 +23,7 @@ export const useB2BCartStore = create<CartState>()(
       isSidebarOpen: false,
 
       addItem: (rawProduct, quantityGrams) => {
-        // Gatekeeper: SafeParse on input
+
         const parsed = MedicalProductSchema.safeParse(rawProduct)
         if (!parsed.success) {
           console.error("Cart Schema Rejection:", parsed.error)
@@ -47,7 +47,7 @@ export const useB2BCartStore = create<CartState>()(
             items: [
               ...state.items,
               {
-                id: crypto.randomUUID(), // Native browser UUID
+                id: crypto.randomUUID(),
                 product,
                 quantityGrams,
                 addedAt: Date.now(),

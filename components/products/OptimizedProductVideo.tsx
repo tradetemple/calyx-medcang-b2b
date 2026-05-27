@@ -16,7 +16,6 @@ interface OptimizedProductVideoProps {
     autoPlay?: boolean
     loop?: boolean
     poster?: string
-    showSpaceIcon?: boolean
     isThumbnail?: boolean
 }
 
@@ -34,7 +33,6 @@ export default function OptimizedProductVideo({
     autoPlay = false,
     loop = false,
     poster,
-    showSpaceIcon = true,
     isThumbnail = false
 }: OptimizedProductVideoProps) {
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -56,14 +54,8 @@ export default function OptimizedProductVideo({
     }, [src, onLoad, onError])
 
     const handleVideoClick = (e: React.MouseEvent<HTMLVideoElement>) => {
-        // CRITICAL FIX: 
-        // If this is a thumbnail, we MUST let the event bubble up so the 
-        // parent <button> in ImageGalleryClient receives the click and switches the image.
         if (isThumbnail) return;
 
-        // If this is the main video, we STOP propagation.
-        // This prevents the ImageGalleryClient from opening the "fullscreen overlay" 
-        // when you are just trying to click play/pause on the video controls.
         e.stopPropagation();
     }
 
@@ -79,7 +71,6 @@ export default function OptimizedProductVideo({
         ref: videoRef,
         src,
         className: `${className} product-gallery`,
-        // Disable controls on thumbnails so it looks like a clean image
         controls: isThumbnail ? false : controls,
         muted,
         autoPlay,
@@ -90,27 +81,17 @@ export default function OptimizedProductVideo({
         'aria-label': alt,
         onClick: handleVideoClick, 
         ...(width && height && !fill ? { width, height } : {}),
-        // VISUAL FIX: 
-        // object-cover ensures the video fills the container without letterboxing
-        // This removes blank space and provides a more immersive gallery experience
         ...(fill ? { style: { width: '100%', height: '100%', objectFit: 'cover' as const } } : {})
     }
 
     return (
-        // VISUAL FIX: 
-        // bg-black creates the "black bars" for the letterboxing effect
-        // flex/center ensures the video stays in the middle of the black box
         <div className={`relative bg-black flex items-center justify-center overflow-hidden ${fill ? 'w-full h-full' : ''}`}>
             
-            {/* If it's a thumbnail, we add pointer-events-none to the video element itself 
-                to ensure the click passes cleanly to the wrapper/button, 
-                though the handleVideoClick logic above also handles this. */}
             <video 
                 {...videoProps} 
                 className={`${videoProps.className} ${isThumbnail ? 'pointer-events-none' : ''}`}
             />
 
-            {/* Play button overlay for thumbnails */}
             {isThumbnail && (
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="bg-black/60 rounded-full p-2">

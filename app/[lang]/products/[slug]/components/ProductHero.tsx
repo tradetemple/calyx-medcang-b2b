@@ -20,14 +20,12 @@ interface ProductHeroProps {
   siteUrl: string;
 }
 
-// Server Component for critical above-the-fold content
 export default function ProductHero({
   product,
   translation,
   locale,
   t,
   price,
-  siteUrl,
 }: ProductHeroProps) {
   
   if (product.product_image) {
@@ -49,7 +47,6 @@ export default function ProductHero({
 
   const displayName = translation?.name || product.name;
 
-  // Parse additional images for the hero section
   let additionalImages: string[] = [];
   const rawAdditionalImages: any = (product as any).additional_images;
   if (rawAdditionalImages) {
@@ -80,10 +77,8 @@ export default function ProductHero({
 
   return (
     <>
-      {/* Image Gallery - Both Mobile and Desktop */}
       <div className="relative w-full mb-2 md:mb-6 lg:mb-0 flex justify-center bg-transparent" style={{ aspectRatio: '1 / 1.15' }}>
         
-        {/* Static LCP image - ALWAYS visible, no z-index competition */}
         {product.product_image && (
           <img 
             src={getCdnUrl(product.product_image, { width: 800 })}
@@ -99,7 +94,6 @@ export default function ProductHero({
           />
         )}
         
-        {/* Interactive gallery overlays AFTER hydration */}
         <ProductHeroClient
           productId={product.id}
           mainImage={product.product_image || ''}
@@ -108,9 +102,7 @@ export default function ProductHero({
         />
       </div>
 
-      {/* Mobile: Show title */}
       <div className="lg:hidden px-2">
-        {/* Product Title */}
         <div>
           <h1 className="text-lg font-bold leading-tight md:mb-2">
             <span className="text-static-black leading-wide font-medium">
@@ -118,7 +110,6 @@ export default function ProductHero({
             </span>
           </h1>
 
-          {/* Star Rating Display */}
           {(product as any).review_count != null && (product as any).review_count > 0 && (product as any).average_rating != null && (
             <div className="my-[4px] md:mt-4">
               <StarRating 

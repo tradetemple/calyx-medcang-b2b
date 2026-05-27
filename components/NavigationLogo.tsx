@@ -16,13 +16,10 @@ export default function NavigationLogo({
 }: NavigationLogoProps) {
   const [mounted, setMounted] = useState(false)
   
-  // Mark component as mounted to avoid hydration mismatch
   useEffect(() => {
     setMounted(true)
   }, [])
   
-  // During SSR and initial render, default to dark mode logo to match ThemeProvider's SSR default
-  // This prevents the flash when the page loads
   const logoSrc = (!mounted) && darkModeLogo ? darkModeLogo : siteLogo
   
   return (

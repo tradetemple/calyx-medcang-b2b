@@ -18,14 +18,13 @@ export default function ProductHeroClient({ mainImage, additionalImages, product
   const [shouldMount, setShouldMount] = useState(false);
 
   useEffect(() => {
-    // Wait for the browser to be "Idle" (LCP is usually done by then)
     const timer = setTimeout(() => {
       if ('requestIdleCallback' in window) {
         window.requestIdleCallback(() => setShouldMount(true));
       } else {
         setShouldMount(true);
       }
-    }, 2000); // 2-second head start for the LCP image
+    }, 2000); 
     
     return () => clearTimeout(timer);
   }, []);
@@ -34,7 +33,7 @@ export default function ProductHeroClient({ mainImage, additionalImages, product
     if (variantImage) setSelectedImage(variantImage);
   }, [variantImage]);
 
-  if (!shouldMount) return null; // STOPS hydration-block for 2 seconds
+  if (!shouldMount) return null; 
 
   const allImages = Array.from(new Set([mainImage, ...additionalImages]));
 

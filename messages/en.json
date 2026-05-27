@@ -208,7 +208,9 @@
       "total": "Net Total (excl. 7% Medical VAT)"
     },
     "checkout": {
-      "button": "Sign Manifest & Verify"
+      "button": "Sign Manifest & Verify",
+      "blocked": "PROCURMENT_BLOCKED",
+      "doctorNotice": "MedCanG §7: Medical Doctors are legally prohibited from direct procurement of narcotics."
     }
   },
   "checkout": {

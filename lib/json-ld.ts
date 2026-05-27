@@ -1,10 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getCurrencyFromLocale } from '@/i18n/utils';
 import { getCountryGeoCoordinates } from '@/i18n/location-utils';
 import config from '@/i18n/config';
-import { calculatePriceInfo } from '@/app/[lang]/products/[slug]/utils'; // Assuming this utility is universal enough
+import { calculatePriceInfo } from '@/app/[lang]/products/[slug]/utils';
 
-// Helper function to get the English country name based on the localized name
 export async function getEnglishCountryName(localizedCountryName: string, currentLocale: string, dict: any): Promise<string> {
   if (currentLocale === 'en') return localizedCountryName;
 
@@ -16,10 +14,9 @@ export async function getEnglishCountryName(localizedCountryName: string, curren
       return key;
     }
   }
-  return 'United Kingdom'; // Default fallback
+  return 'United Kingdom';
 }
 
-// ISO 3166-1 alpha-2 country code map
 export const countryCodeMap: Record<string, string> = {
   'United Kingdom': 'GB',
   'France': 'FR',
@@ -38,7 +35,6 @@ export const countryCodeMap: Record<string, string> = {
   'Canada': 'CA'
 };
 
-// Safely extract plain text from HTML content
 function extractPlainText(htmlContent: string | null | undefined): string {
   if (!htmlContent) return '';
   try {
@@ -54,18 +50,6 @@ function extractPlainText(htmlContent: string | null | undefined): string {
   }
 }
 
-// Safely format a date to ISO string
-function safeFormatDate(date: string | null | undefined): string {
-  if (!date) return new Date().toISOString();
-  try {
-    return new Date(date).toISOString();
-  } catch (error) {
-    console.error('Error formatting date:', error);
-    return new Date().toISOString();
-  }
-}
-
-// Function to get the translated path for a given pathname and locale
 async function getTranslatedPath(pathname: string, locale: string): Promise<string> {
   let translatedPath = pathname;
   try {
@@ -82,46 +66,22 @@ async function getTranslatedPath(pathname: string, locale: string): Promise<stri
   return translatedPath;
 }
 
-// Safe JSON stringification function
 export function safeJsonStringify(obj: Record<string, any>) {
   try {
     const sanitizedObj = JSON.parse(JSON.stringify(obj));
     return JSON.stringify(sanitizedObj);
   } catch (error) {
     console.error('Failed to stringify JSON-LD:', error);
-    return JSON.stringify({}); // Return empty object as fallback
+    return JSON.stringify({});
   }
 }
 
-// FAQ interface for type safety
 interface FAQItem {
   id: string;
   question: string;
   answer: string;
 }
 
-// How-To interfaces for type safety
-interface HowToStep {
-  id: string;
-  name: string;
-  text: string;
-  image?: string;
-  url?: string;
-}
-
-interface HowToItem {
-  id: string;
-  name: string;
-  description?: string;
-  totalTime?: string;
-  prepTime?: string;
-  performTime?: string;
-  supply?: string[];
-  tool?: string[];
-  steps: HowToStep[];
-}
-
-// Helper function to convert JSONB format to FAQ array (same as admin component)
 function jsonbToFaqs(jsonb: any): FAQItem[] {
   if (!jsonb) return [];
 
@@ -141,53 +101,11 @@ function jsonbToFaqs(jsonb: any): FAQItem[] {
   return [];
 }
 
-/**
- * Convert JSONB How-To data to array format
- * @param jsonb - How-To data from database (JSONB format)
- * @returns Array of How-To items
- */
-function jsonbToHowTos(jsonb: any): HowToItem[] {
-  if (!jsonb) return [];
-
-  try {
-    const parsed = typeof jsonb === 'string' ? JSON.parse(jsonb) : jsonb;
-    if (Array.isArray(parsed)) {
-      return parsed.map((item, index) => ({
-        id: index.toString(),
-        name: item.name || '',
-        description: item.description || '',
-        totalTime: item.totalTime || '',
-        prepTime: item.prepTime || '',
-        performTime: item.performTime || '',
-        supply: item.supply || [],
-        tool: item.tool || [],
-        steps: (item.steps || []).map((step: any, stepIndex: number) => ({
-          id: stepIndex.toString(),
-          name: step.name || '',
-          text: step.text || '',
-          image: step.image || '',
-          url: step.url || ''
-        }))
-      }));
-    }
-  } catch (error) {
-    console.error('Error parsing How-To JSONB:', error);
-  }
-
-  return [];
-}
-
-/**
- * Generate FAQ JSON-LD schema from FAQ JSONB data
- * @param faqData - FAQ data from database (JSONB format)
- * @returns FAQ schema object or null if no valid FAQs
- */
 function generateFAQSchema(faqData: any): Record<string, any> | null {
   if (!faqData) return null;
 
   const faqs = jsonbToFaqs(faqData);
 
-  // Filter out empty FAQs
   const validFaqs = faqs.filter(faq =>
     faq.question && faq.question.trim() !== '' &&
     faq.answer && faq.answer.trim() !== ''
@@ -209,23 +127,6 @@ function generateFAQSchema(faqData: any): Record<string, any> | null {
   };
 }
 
-/**
- * Generate standalone FAQ JSON-LD schema with additional context
- * Useful for pages that are primarily FAQ pages
- */
-interface GenerateStandaloneFAQSchemaOptions {
-  faqData: any;
-  pageUrl: string;
-  pageTitle: string;
-  locale: string;
-  siteSettings?: any;
-  locationData?: any;
-}
-
-/**
- * Utility function to combine multiple JSON-LD schemas into a single script tag
- * Filters out null schemas automatically
- */
 export function combineSchemas(...schemas: (Record<string, any> | null)[]): Record<string, any>[] {
   return schemas.filter(schema => schema !== null) as Record<string, any>[];
 }
@@ -308,12 +209,12 @@ interface GenerateProductSchemaOptions {
   displayCategory: string;
   serverTranslation?: any;
   vatNumber?: string;
-  mainEntityOfPageId?: string; // New optional parameter for referencing the main organization
-  brandName?: string; // New optional parameter for product-specific brand
-  author?: { display_name: string; slug: string }; // Add author to product schema options (legacy)
-  authors?: { id: string; display_name: string | null; slug: string }[]; // Add authors array for multiple authors
-  includeFAQ?: boolean; // Whether to include FAQ schema in the product schema
-  faqData?: any; // Optional FAQ data to use instead of product.faq (for translations)
+  mainEntityOfPageId?: string;
+  brandName?: string; 
+  author?: { display_name: string; slug: string }; 
+  authors?: { id: string; display_name: string | null; slug: string }[];
+  includeFAQ?: boolean; 
+  faqData?: any;
 }
 
 export async function generateProductSchema({
@@ -326,12 +227,12 @@ export async function generateProductSchema({
   displayCategory,
   serverTranslation,
   vatNumber = '',
-  mainEntityOfPageId, // Destructure new parameter
-  brandName, // Destructure new parameter
-  author, // Destructure new author parameter (legacy)
-  authors, // Destructure new authors parameter
-  includeFAQ = false, // Destructure new FAQ parameter
-  faqData // Destructure new FAQ data parameter
+  mainEntityOfPageId,
+  brandName,
+  author, 
+  authors,
+  includeFAQ = false,
+  faqData
 }: GenerateProductSchemaOptions): Promise<Record<string, any>> {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.zeyana.com';
   const currency = getCurrencyFromLocale(locale);
@@ -364,10 +265,9 @@ export async function generateProductSchema({
         }
       } catch (e) {
         console.error('Failed to parse additional_images:', e);
-        // Try to repair common JSON issues
         try {
           const repaired = product.additional_images
-            .replace(/,\s*]/g, ']')  // Remove trailing commas
+            .replace(/,\s*]/g, ']')
             .replace(/,\s*}/g, '}');
           const parsed = JSON.parse(repaired);
           if (Array.isArray(parsed)) {
@@ -427,7 +327,7 @@ export async function generateProductSchema({
     brand: (brandName && brandName !== `${siteSettings.site_name} ${locationData.country}`) ? {
       '@type': 'Brand',
       name: brandName,
-      logo: `${siteUrl}${siteSettings.site_logo || '/full-logo.webp'}`, // Assuming brand logo is the same as site logo for now
+      logo: `${siteUrl}${siteSettings.site_logo || '/full-logo.webp'}`, 
       description: `${brandName} ${tSchema?.provider.qualityValue?.replace('{country}', locationData.country) || ''}`
     } : {
       '@type': 'Brand',
@@ -454,7 +354,7 @@ export async function generateProductSchema({
       }
     })),
     offers: (() => {
-      // Parse options and SKUs to generate variant offers
+
       let parsedOptions: any[] = [];
       let parsedSkus: any[] = [];
 
@@ -465,7 +365,6 @@ export async function generateProductSchema({
         console.error('Error parsing product options/skus for JSON-LD:', e);
       }
 
-      // Base offer properties that apply to all variants
       const baseOfferProps = {
         priceCurrency: currency,
         priceValidUntil: new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0],
@@ -549,10 +448,8 @@ export async function generateProductSchema({
         })
       };
 
-      // Generate individual offers for variants
       const generateVariantOffers = () => {
         if (parsedSkus.length === 0 || parsedOptions.length === 0) {
-          // Fallback to single offer if no variants
           return [{
             '@type': 'Offer',
             ...baseOfferProps,
@@ -577,17 +474,14 @@ export async function generateProductSchema({
         }
 
         return parsedSkus.map((sku: any) => {
-          // Parse SKU attributes to get variant properties using the same logic as ProductVariantEngine
           const skuProperties: Record<string, any> = {};
           const urlParams: Record<string, string> = {};
           let variantColor = '';
           let variantSize = '';
           let variantImage = '';
 
-          // Build property ID mapping (AliExpress propertyId -> internal propertyId)
           const aliExpressToInternalMap: Record<number, number> = {};
 
-          // First pass: build the mapping by finding matching valueIds between options and SKU attributes
           for (const option of parsedOptions) {
             for (const value of option.values) {
               if (sku.skuAttr) {
@@ -606,7 +500,6 @@ export async function generateProductSchema({
             }
           }
 
-          // Second pass: parse this SKU's attributes using the mapping to get actual variant properties
           if (sku.skuAttr) {
             const attrParts = sku.skuAttr.split(';');
             attrParts.forEach((part: string) => {
@@ -641,7 +534,6 @@ export async function generateProductSchema({
             });
           }
 
-          // Fallback to specifications for color if not found in options
           if (!variantColor) {
             try {
               const specs = typeof product.specifications === 'string'
@@ -661,7 +553,6 @@ export async function generateProductSchema({
             }
           }
 
-          // Build variant URL with query parameters
           const variantParams = new URLSearchParams();
           Object.entries(urlParams).forEach(([key, value]) => {
             if (value) {
@@ -672,7 +563,6 @@ export async function generateProductSchema({
             ? `${productUrl}?${variantParams.toString()}`
             : productUrl;
 
-          // Build comprehensive variant name
           const variantNameParts = [];
           if (variantColor) variantNameParts.push(variantColor);
           if (variantSize) variantNameParts.push(`Size ${variantSize}`);
@@ -681,13 +571,10 @@ export async function generateProductSchema({
             ? `${displayName} - ${variantNameParts.join(', ')}`
             : `${displayName} - ${sku.displayName || 'Variant'}`;
 
-          // Calculate variant price
           const variantPrice = convertedPrice;
 
-          // Build variant-specific additionalProperty array (only unique variant data)
           const additionalProperties: Array<{ '@type': string; name: string; value: string }> = [];
 
-          // Add only SKU-specific properties (variant-unique data like Color, Size, Carat)
           Object.entries(skuProperties).forEach(([name, value]) => {
             if (value) {
               additionalProperties.push({
@@ -698,10 +585,6 @@ export async function generateProductSchema({
             }
           });
 
-          // Note: Shared product specifications (Model, Metal, Ring Weight, etc.) are now 
-          // handled at the parent Product level to avoid redundancy across all variant offers
-
-          // Return individual offer with variant details as direct properties (no itemOffered)
           return {
             '@type': 'Offer',
             ...baseOfferProps,
@@ -720,7 +603,6 @@ export async function generateProductSchema({
 
       const individualOffers = generateVariantOffers();
 
-      // If we have multiple offers, use AggregateOffer pattern
       if (individualOffers.length > 1) {
         const prices = individualOffers.map(offer => parseFloat(offer.price));
         const lowPrice = Math.min(...prices);
@@ -736,7 +618,6 @@ export async function generateProductSchema({
         };
       }
 
-      // Single offer - return it directly
       return individualOffers[0];
     })(),
     additionalProperty: (() => {
@@ -756,8 +637,6 @@ export async function generateProductSchema({
         }
       ];
 
-      // Parse specifications and extract required JSON-LD fields
-      // Always use English specifications for JSON-LD structured data
       const displaySpecifications = product.specifications;
       let colorValue = '';
 
@@ -773,13 +652,10 @@ export async function generateProductSchema({
                 typeof spec.name === 'string' &&
                 typeof spec.value !== 'undefined' && spec.value !== null) {
 
-                // Extract color for reference but exclude gender and age group from additionalProperty
                 if (spec.name.toLowerCase() === 'color') {
                   colorValue = String(spec.value);
                 }
 
-                // Add shared specifications to parent Product (excludes Gender/Age group/Color)
-                // Gender/Age group are top-level properties, Color varies by variant
                 if (spec.name !== 'Gender' && spec.name !== 'Age group' && spec.name !== 'Color') {
                   props.push({
                     '@type': 'PropertyValue',
@@ -792,13 +668,10 @@ export async function generateProductSchema({
           } else if (typeof parsedSpecs === 'object' && parsedSpecs !== null) {
             Object.entries(parsedSpecs).forEach(([name, value]) => {
               if (value !== null && value !== undefined) {
-                // Extract color for reference but exclude gender and age group from additionalProperty
                 if (name === 'Color') {
                   colorValue = String(value);
                 }
 
-                // Add shared specifications to parent Product (excludes Gender/Age group/Color)
-                // Gender/Age group are top-level properties, Color varies by variant
                 if (name !== 'Gender' && name !== 'Age group' && name !== 'Color') {
                   props.push({
                     '@type': 'PropertyValue',
@@ -823,9 +696,7 @@ export async function generateProductSchema({
 
       return props.filter(prop => prop.value);
     })(),
-    // Extract gender and ageGroup for top-level Schema.org properties
     ...((() => {
-      // Always use English specifications for JSON-LD structured data
       const displaySpecifications = product.specifications;
       let genderValue = '';
       let ageGroupValue = '';
@@ -896,8 +767,8 @@ interface GenerateProductListSchemaOptions {
   siteSettings: any;
   locationData: any;
   dict: any;
-  mainEntityOfPageId?: string; // Add this
-  authors?: { id: string; display_name: string | null; slug: string }[]; // Add authors array
+  mainEntityOfPageId?: string;
+  authors?: { id: string; display_name: string | null; slug: string }[];
 }
 
 export async function generateProductListSchema({
@@ -906,8 +777,8 @@ export async function generateProductListSchema({
   siteSettings,
   locationData,
   dict,
-  mainEntityOfPageId, // Destructure new parameter
-  authors // Destructure authors array
+  mainEntityOfPageId,
+  authors 
 }: GenerateProductListSchemaOptions): Promise<Record<string, any>> {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.zeyana.com';
   const t = dict.productsClient;
@@ -931,8 +802,8 @@ export async function generateProductListSchema({
       productUrl,
       displayCategory,
       serverTranslation: product.translations?.find((t: any) => t.locale === locale),
-      mainEntityOfPageId, // Pass through
-      authors: product.author_id ? authors?.filter(author => author.id === product.author_id) : undefined, // Pass authors array if available
+      mainEntityOfPageId,
+      authors: product.author_id ? authors?.filter(author => author.id === product.author_id) : undefined, 
     });
 
     return {
@@ -960,25 +831,5 @@ export async function generateProductListSchema({
     },
     inLanguage: locale
   };
-}
-
-interface GenerateArticleSchemaOptions {
-  article: any;
-  locale: string;
-  siteSettings: any;
-  locationData: any;
-  dict: any;
-  articleUrl: string;
-  primaryCategory: string;
-  productReference?: Record<string, any>;
-  articleCategoriesMap: Record<string, string[]>;
-  localizedCategories: any[];
-  mainEntityOfPageId?: string; // New optional parameter for referencing the main organization
-  author?: { display_name: string; slug: string }; // Add author to schema options (legacy)
-  authors?: { id: string; display_name: string | null; slug: string }[]; // Add authors array for multiple authors
-  includeFAQ?: boolean; // Whether to include FAQ schema in the article schema
-  faqData?: any; // Optional FAQ data to use instead of article.faq (for translations)
-  includeHowTo?: boolean; // Whether to include How-To schema in the article schema
-  howToData?: any; // Optional How-To data to use instead of article.how_to (for translations)
 }
 

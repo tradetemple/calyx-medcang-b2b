@@ -1,4 +1,3 @@
-// OptimizedProductImage.tsx
 'use client'
 
 import { useState, useMemo } from 'react'
@@ -40,7 +39,6 @@ export default function OptimizedProductImage({
   const [isLoading, setIsLoading] = useState(!shouldPrioritize) 
   const [hasError, setHasError] = useState(false)
 
-  // Remove background gradient for priority images to avoid layout recalc
   const containerStyle: React.CSSProperties = fill
     ? { position: 'relative', width: '100%', height: '100%' }
     : { width, height }
@@ -69,7 +67,6 @@ export default function OptimizedProductImage({
      )
   }
 
-  /* --- THE STRICT CDN PROXY --- */
   const { proxySrc, proxySrcSet } = useMemo(() => {
     if (!src) return { proxySrc: '', proxySrcSet: '' };
 
@@ -97,14 +94,12 @@ export default function OptimizedProductImage({
 
   return (
     <div className={`relative w-full h-full overflow-hidden ${className}`} style={containerStyle}>
-      {/* Skip shimmer entirely for priority images */}
       {!shouldPrioritize && isLoading && (
         <div className="absolute inset-0 z-10 pointer-events-none">
           <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
         </div>
       )}
 
-      {/* PURE HTML5 IMG TAG */}
       <img
         src={proxySrc}
         srcSet={proxySrcSet}
@@ -112,7 +107,7 @@ export default function OptimizedProductImage({
         alt={alt}
         className={`w-full h-full object-cover ${
           shouldPrioritize 
-            ? '' // No opacity transitions for LCP images
+            ? ''
             : `transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`
         }`}
         fetchPriority={shouldPrioritize ? 'high' : 'auto'}

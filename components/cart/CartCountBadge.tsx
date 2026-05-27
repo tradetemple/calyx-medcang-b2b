@@ -6,7 +6,6 @@ import { useCallback } from 'react'
 import { CLSSafeCartBadge } from './CLSSafeCartNotifications'
 
 export default function CartCountBadge() {
-  // Get cart count from store - use number of unique items, not total quantity
   const { items, openSidebar } = useB2BCartStore()
   const itemCount = items.length
   

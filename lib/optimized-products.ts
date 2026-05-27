@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { cache } from 'react';
 import { mockProducts } from './mock-data';
 import { MedicalProduct } from '@/types/medical-product';
 
-/**
- * Function #1: Lightweight product list for grids/cards
- */
 export const getProductsForListView = cache(async (
   locale: string, 
   limit = 50, 
@@ -28,7 +24,6 @@ export const getProductsForListView = cache(async (
     const processedProducts = filteredProducts.map((product: MedicalProduct) => {
       const processed: MedicalProduct = { ...product };
 
-      // Check for translations
       if (locale !== 'en' && product.translations && product.translations.length > 0) {
         const translation = product.translations.find((t) => t.locale === locale);
         if (translation) {
@@ -50,9 +45,6 @@ export const getProductsForListView = cache(async (
   }
 });
 
-/**
- * Function #2: Complete product details for single product page
- */
 export const getProductDetailsBySlug = cache(async (locale: string, slug: string): Promise<MedicalProduct | null> => {
   try {
     let product = mockProducts.find(p => p.slug === slug);
@@ -68,7 +60,6 @@ export const getProductDetailsBySlug = cache(async (locale: string, slug: string
     const processed = { ...product } as MedicalProduct;
     processed.displaySlug = product.slug;
 
-    // Apply translations
     if (locale !== 'en' && product.translations && product.translations.length > 0) {
       const translation = product.translations.find((t) => t.locale === locale);
       if (translation) {
@@ -88,9 +79,6 @@ export const getProductDetailsBySlug = cache(async (locale: string, slug: string
   }
 });
 
-/**
- * Function #3: Secure checkout validation
- */
 export const getProductDataForCheckout = cache(async (productIds: string[], locale: string = 'en') => {
   if (!productIds || productIds.length === 0) return [];
   
@@ -103,16 +91,10 @@ export const getProductDataForCheckout = cache(async (productIds: string[], loca
   }));
 });
 
-/**
- * Function #5: Get similar products 
- */
 export const getSimilarProducts = cache(async (productId: string, categoryId: string | null, locale: string, limit = 8) => {
   return getProductsForListView(locale, limit, false, categoryId || undefined); 
 });
 
-/**
- * Function #4: Get product slugs for content link processing
- */
 export const getProductSlugsForContent = cache(async (productIds: string[], locale: string): Promise<Map<string, string>> => {
   const slugMap = new Map<string, string>();
 

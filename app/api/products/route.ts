@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextRequest, NextResponse } from 'next/server'
 import { getProductsForListView, getProductDataForCheckout } from '@/lib/optimized-products'
 
@@ -11,12 +10,9 @@ export async function GET(request: NextRequest) {
 
     let products: any[]
 
-    // Use appropriate cached function based on whether IDs are provided
     if (ids && ids.length > 0) {
-      // For specific IDs, use checkout function (it's designed for this)
       products = await getProductDataForCheckout(ids)
     } else {
-      // For general listing, use list view function
       products = await getProductsForListView(locale, limit)
     }
 

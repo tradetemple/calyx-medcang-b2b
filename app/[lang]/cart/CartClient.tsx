@@ -25,7 +25,7 @@ export function QuantityControl({ item, dict }: { item: CartItem, dict: any }) {
   const t = dict
 
   const moq = item.product.moq_grams
-  const step = 50 // B2B typically steps in 50g increments
+  const step = 50
 
   const handleIncrease = () => {
     const currentTotal = items.reduce((sum, i) => sum + i.quantityGrams, 0)
@@ -38,7 +38,7 @@ export function QuantityControl({ item, dict }: { item: CartItem, dict: any }) {
 
   const handleDecrease = () => {
     if (item.quantityGrams - step < moq) {
-      return // Can't go below MOQ
+      return
     }
     updateQuantity(item.id, item.quantityGrams - step)
   }

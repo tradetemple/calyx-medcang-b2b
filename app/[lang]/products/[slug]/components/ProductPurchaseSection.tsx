@@ -32,7 +32,6 @@ export default function ProductPurchaseSection({
 
   return (
     <div className="lg:min-h-[240px]">
-      {/* Price Display */}
       <div className="mb-6 hidden lg:block min-h-[40px]">
         
         <div className='inline-flex gap-4 items-center'>
@@ -48,7 +47,6 @@ export default function ProductPurchaseSection({
         </div>
       </div>
 
-      {/* Product Variant Selectors and Add to Cart Section */}
       <div className="md:space-y-4 mb-2">
         <ProductVariantSelectors
           product={product as any}

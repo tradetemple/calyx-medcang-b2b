@@ -1,6 +1,5 @@
 import Script from 'next/script'
 
-// Function to generate the IIFE script content - prevents hydration mismatches
 function getThemeScriptContent() {
   return `
     (function () {
@@ -13,14 +12,13 @@ function getThemeScriptContent() {
   `;
 }
 
-// Component to render the script tag
 export function ThemeInitializer() {
   const scriptContent = getThemeScriptContent();
 
   return (
     <Script 
       id="theme-initializer" 
-      strategy="lazyOnload" // Run before React hydrates
+      strategy="lazyOnload"
       dangerouslySetInnerHTML={{ __html: scriptContent }} 
     />
   );

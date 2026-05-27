@@ -11,11 +11,6 @@ interface RoleGuardProps {
   dict: any;
 }
 
-/**
- * Client-side role guard component
- * Shows terminal error for unauthorized access
- * Includes role simulator for demo purposes
- */
 export default function RoleGuard({ 
   children, 
   allowedRoles,
@@ -26,7 +21,6 @@ export default function RoleGuard({
   const [showRoleSimulator, setShowRoleSimulator] = useState(false);
   const t = dict;
 
-  // Check role access
   const hasAccess = allowedRoles.includes(userRole);
 
   const handleRoleChange = (role: UserRole) => {
@@ -84,7 +78,6 @@ export default function RoleGuard({
     </div>
   );
 
-  // If not loaded yet, show loading
   if (!isLoaded) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-950">
@@ -95,12 +88,10 @@ export default function RoleGuard({
     );
   }
 
-  // If user doesn't have required role, show terminal error
   if (!hasAccess) {
     let errorTitle = t.rlsDenied.title;
     let errorMessage = t.rlsDenied.message;
 
-    // MedCanG §7 Compliance Error: Doctors cannot procure
     if (userRole === 'medical_doctor' && allowedRoles.includes('verified_pharmacy')) {
       errorTitle = t.rlsDenied.conflictTitle;
       errorMessage = t.rlsDenied.conflictMessage;
@@ -120,7 +111,6 @@ export default function RoleGuard({
     );
   }
 
-  // If user has access, render children + permanent simulator
   return (
     <>
       {children}

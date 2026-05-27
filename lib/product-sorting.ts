@@ -3,18 +3,12 @@ import { EnhancedProduct } from './product-enhancement';
 type SortBy = 'price' | 'name' | 'rating' | 'thc' | 'cbd' | 'batch' | 'irradiation' | 'liveStock';
 type SortOrder = 'asc' | 'desc';
 
-/**
- * Strips non-numeric chars from strings like "<1.0%" or "22.5%"
- */
 const extractNumber = (str: string | undefined): number => {
   if (!str) return 0;
   const num = parseFloat(str.replace(/[^0-9.]/g, ''));
   return isNaN(num) ? 0 : num;
 };
 
-/**
- * Safely extracts a specification value by name
- */
 const getSpecValue = (specs: any, name: string): string => {
   if (!specs) return '';
   const specArray = Array.isArray(specs) 
@@ -25,9 +19,6 @@ const getSpecValue = (specs: any, name: string): string => {
   return specArray.find((s: any) => s.name?.toLowerCase().includes(name.toLowerCase()))?.value || '';
 };
 
-/**
- * Centralized product sorting logic shared between main products page and global search
- */
 export const sortProducts = (
   products: EnhancedProduct[],
   sortBy: SortBy,
@@ -37,13 +28,11 @@ export const sortProducts = (
     const isOosA = a.status === 'out_of_stock' || a.status === 'inactive';
     const isOosB = b.status === 'out_of_stock' || b.status === 'inactive';
 
-    // 1. Push Out of Stock items to the bottom, always.
     if (isOosA && !isOosB) return 1;
     if (!isOosA && isOosB) return -1;
     
     let val = 0;
     
-    // Parse JSON fields securely for sorting
     const specA = a.specifications;
     const specB = b.specifications;
     const testA: any = a.test_results || {};

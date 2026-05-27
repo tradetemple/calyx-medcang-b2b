@@ -26,11 +26,9 @@ const Footer: React.FC<FooterProps> = async ({
 }) => {
   const year = new Date().getFullYear();
 
-  // EXACT SAME class used for all normal dropdown links
   const textClass = "text-black text-sm md:text-base tracking-wide hover:underline transition block w-full py-1 md:py-0";
   const titleClass = "text-xs uppercase tracking-widest font-bold text-black";
 
-  // Reusable Chevron Icon for mobile accordion
   const ChevronIcon = () => (
     <svg 
       className="w-4 h-4 text-black transition-transform duration-300 group-open:rotate-180" 
@@ -43,7 +41,6 @@ const Footer: React.FC<FooterProps> = async ({
     </svg>
   );
 
-  // Map out the social links cleanly
   const socialLinks = [
     { url: siteSettings.social_links?.github, label: dict.bottomRow?.githubAria || "GitHub" },
     { url: siteSettings.social_links?.linkedIn, label: dict.bottomRow?.linkedInAria || "LinkedIn" }
@@ -64,11 +61,9 @@ const Footer: React.FC<FooterProps> = async ({
         </div>
       </div>
 
-      {/* Section 2: Middle Row */}
       <div className="w-full"> 
         <div className="max-w-7xl mx-auto md:py-20"> 
           
-          {/* DESKTOP VIEW */}
           <div className="hidden md:grid md:grid-cols-4 gap-8">
             <div>
               <strong className={titleClass}>{dict.middleRow.sections[0].title}</strong>
@@ -97,7 +92,6 @@ const Footer: React.FC<FooterProps> = async ({
             </div>
           </div>
 
-          {/* MOBILE VIEW: Dropdowns */}
           <div className="md:hidden flex flex-col w-full divide-y divide-gray-200 pb-8">
             
             <details className="group py-6">
@@ -138,7 +132,6 @@ const Footer: React.FC<FooterProps> = async ({
         </div> 
       </div> 
 
-      {/* Section 3: Bottom Row */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-0 pt-6 md:pt-14 pb-12 md:border-y border-gray-200">
         <div className="flex flex-col sm:!flex-row items-center justify-between">
           
@@ -159,7 +152,6 @@ const Footer: React.FC<FooterProps> = async ({
             </div>
           </div>
 
-          {/* Inlined Desktop Social Links (Horizontal row for desktop only) */}
           <div className="hidden md:flex flex-row items-center justify-end gap-x-6 w-1/3">
             {socialLinks.map((link, idx) => (
               <a 

@@ -2,7 +2,8 @@ import CheckoutClient from './CheckoutClient';
 import { getHomeData } from '@/app/[lang]/utils/page-data';
 import { getProductDataForCheckout } from '@/lib/optimized-products';
 import { calculateCheckoutState } from '@/lib/checkout/calculator';
-import { CheckoutInput, CartItem } from '@/types/checkout-types';
+import { CheckoutInput } from '@/types/checkout-types';
+import { CartItem } from '@/types/cart';
 import { getSiteSettings } from '@/app/[lang]/utils/site-settings';
 import { getCurrencyFromLocale } from '@/i18n/utils';
 import RoleGuard from '@/components/RoleGuard';
@@ -25,7 +26,6 @@ export default async function CheckoutPage({
     throw new Error('Site settings not found');
   }
   
-  // Check for direct checkout URL parameters
   const directProductId = resolvedSearchParams.product as string | undefined;
   const directQuantity = resolvedSearchParams.quantity ? parseInt(resolvedSearchParams.quantity as string) : 1;
   const isDirectCheckout = !!directProductId;
@@ -44,16 +44,13 @@ export default async function CheckoutPage({
 
   let cartItems: CartItem[] = [];
   
-  // Handle direct checkout from URL parameters
   if (isDirectCheckout && directProductId) {
     try {
-      // Fetch the specific product for direct checkout
       const productsForCheckout = await getProductDataForCheckout([directProductId], locale);
       const product = productsForCheckout[0];
       
       if (product) {
         
-        // Create synthetic cart item for direct checkout
         const cartItem = {
           id: `direct-${directProductId}-${Date.now()}`,
           productId: directProductId,
@@ -103,7 +100,7 @@ export default async function CheckoutPage({
       notes: '',
     },
     billingIsSameAsShipping: true,
-    paymentMethod: 'sepa', // Default to Stripe
+    paymentMethod: 'sepa',
     userId: null,
     locale: locale,
     siteSettings: siteSettings,

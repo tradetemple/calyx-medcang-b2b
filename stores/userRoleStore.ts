@@ -2,7 +2,6 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { setUserRoleAction, clearUserRoleAction } from '@/lib/actions/auth';
 
-// Define user roles
 export type UserRole = 'guest' | 'verified_pharmacy' | 'medical_doctor';
 
 interface UserRoleState {
@@ -13,7 +12,6 @@ interface UserRoleState {
   clearUserRole: () => void;
 }
 
-// Helper to check if we're in browser
 const isBrowser = typeof window !== 'undefined';
 
 const getIdentifierForRole = (role: UserRole): string => {
@@ -36,12 +34,10 @@ export const useUserRoleStore = create<UserRoleState>()(
       setUserRole: (role: UserRole) => {
         const identifier = getIdentifierForRole(role);
         set({ userRole: role, identifier });
-        // Synchronize with server-side cookie
         setUserRoleAction(role).catch(console.error);
       },
       clearUserRole: () => {
         set({ userRole: 'guest', identifier: 'UNAUTHORIZED' });
-        // Synchronize with server-side cookie
         clearUserRoleAction().catch(console.error);
       }
     }),

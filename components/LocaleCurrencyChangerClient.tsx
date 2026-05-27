@@ -70,7 +70,6 @@ export default function LocaleCurrencyChangerClient({
   useEffect(() => {
     setMounted(true);
 
-    // Check for country parameter in URL and update store
     const urlParams = new URLSearchParams(window.location.search);
     const countryFromUrl = urlParams.get('country');
     if (countryFromUrl) {
@@ -123,7 +122,6 @@ export default function LocaleCurrencyChangerClient({
 
       router.push(translatedPath);
 
-      // Close the dropdown and then the mobile menu if the callback is provided
       setIsOpen(false);
       if (closeMenu) {
         closeMenu();
@@ -145,7 +143,6 @@ export default function LocaleCurrencyChangerClient({
 
   const handleDropdownToggle = () => {
     setIsOpen(!isOpen);
-    // Reset to language tab when opening on mobile
     if (!isOpen) {
       setActiveTab('language');
     }
@@ -157,7 +154,6 @@ export default function LocaleCurrencyChangerClient({
       className="relative inline-block text-left"
       onClick={(e) => e.stopPropagation()}
     >
-      {/* Main button */}
       <button
         type="button"
         onClick={handleDropdownToggle}
@@ -179,7 +175,6 @@ export default function LocaleCurrencyChangerClient({
         </svg>
       </button>
 
-      {/* Dropdown */}
       {isOpen && (
         <div
           className={`${direction === 'up' ? 'absolute bottom-full mb-2' : 'absolute top-full mt-2'} 
@@ -187,7 +182,6 @@ export default function LocaleCurrencyChangerClient({
           w-52 sm:w-80 md:w-96 rounded-none shadow-xl bg-bg-main/95 backdrop-blur-xl border border-text-main/10 ring-1 ring-primary/5 z-50 max-h-[80vh] overflow-hidden
           ${direction === 'up' ? 'origin-bottom' : 'origin-top'} animate-in fade-in-0 zoom-in-95 duration-200`}
         >
-          {/* Mobile-optimized tabs */}
           <div className="sm:hidden">
             <div className="flex border-b border-text-main/10 bg-bg-main/50">
               <button
@@ -223,9 +217,7 @@ export default function LocaleCurrencyChangerClient({
             </div>
           </div>
 
-          {/* Desktop layout or mobile tab content */}
           <div className="sm:grid sm:grid-cols-2 sm:divide-x sm:divide-text-main/10">
-            {/* Languages section */}
             <div className={`${activeTab === 'language' ? 'block' : 'hidden'} sm:block`}>
               <h3 className="hidden sm:block text-xs font-semibold text-text-secondary uppercase tracking-wide mb-2 md:pt-3 md:px-3">
                 {t.language}
@@ -254,7 +246,6 @@ export default function LocaleCurrencyChangerClient({
               </div>
             </div>
 
-            {/* Currencies section */}
             <div className={`${activeTab === 'currency' ? 'block' : 'hidden'} sm:block`}>
               <h3 className="hidden sm:block text-xs font-semibold text-text-secondary uppercase tracking-wide mb-2 md:pt-3 md:px-3">
                 {t.currencyChanger.title}

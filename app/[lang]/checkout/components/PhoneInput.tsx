@@ -3,7 +3,6 @@
 import { PhoneInput } from 'react-international-phone'
 import 'react-international-phone/style.css'
 
-/* ---------- styles ---------- */
 const styles = `
   .react-international-phone-input-container {
     display: flex !important;
