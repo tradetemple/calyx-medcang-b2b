@@ -71,6 +71,7 @@
         {
           "title": "Plattform",
           "links": {
+            "home": "Startseite",
             "cta": "B2B-Katalog",
             "cta1": "FHIR-Triage",
             "cta2": "Audit-Tresor",

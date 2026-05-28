@@ -71,6 +71,7 @@
         {
           "title": "Platform",
           "links": {
+            "home": "Home",
             "cta": "B2B Catalogue",
             "cta1": "FHIR Triage",
             "cta2": "Audit Vault",

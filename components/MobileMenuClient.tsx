@@ -185,7 +185,7 @@ export default function MobileMenuButtons({
                   {/* Dropdown Sections */}
                   <div className="flex flex-col w-full divide-y divide-gray-200 border-t border-gray-200">
                     {menuSections.map((section) => (
-                      <details key={section.id} className="group py-5">
+                      <details key={section.id} className="group py-6">
                         <summary className="flex justify-between items-center cursor-pointer list-none [&::-webkit-details-marker]:hidden">
                           <strong className="text-xs uppercase tracking-[0.2em] font-bold text-black">
                             {section.title}
@@ -228,7 +228,7 @@ export default function MobileMenuButtons({
                   </div>
 
                   {/* User Actions */}
-                  <div className="mt-8 pt-6 border-t border-gray-200">
+                  <div className="mt-8 pt-6 md:border-t border-gray-200">
                     
                     {extraElements && extraElements.length > 0 && (
                       <div className="mt-6 pt-6 border-t border-gray-200">

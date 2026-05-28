@@ -43,6 +43,7 @@ export default function MobileMenu({
       id: 'site',
       title: footerDict?.middleRow?.sections?.[0]?.title || 'Account',
       items: [
+        { name: footerDict?.middleRow?.sections?.[0]?.links?.home || 'Home', href: `/${lang}/` },
         { name: footerDict?.middleRow?.sections?.[0]?.links?.cta || 'Products', href: `/${lang}/products` },
         { name: footerDict?.middleRow?.sections?.[0]?.links?.cta1 || 'Products', href: `/${lang}/telemedicine` },
         { name: footerDict?.middleRow?.sections?.[0]?.links?.cta2 || 'Products', href: `/${lang}/audit` },

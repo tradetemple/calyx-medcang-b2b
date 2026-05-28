@@ -100,6 +100,7 @@ const Footer: React.FC<FooterProps> = async ({
                 <ChevronIcon />
               </summary>
               <ul className="mt-6 space-y-2">
+                <li><Link href={`/${lang}/`} className={textClass}>{dict.middleRow.sections[0].links.home}</Link></li>
                 <li><Link href={`/${lang}/products`} className={textClass}>{dict.middleRow.sections[0].links.cta}</Link></li>
                 <li><Link href={`/${lang}/telemedicine`} className={textClass}>{dict.middleRow.sections[0].links.cta1}</Link></li>
                 <li><Link href={`/${lang}/audit`} className={textClass}>{dict.middleRow.sections[0].links.cta2}</Link></li>

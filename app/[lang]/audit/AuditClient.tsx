@@ -16,7 +16,7 @@ const AuditRow = ({ event }: { event: AuditEvent }) => {
         [{new Date(event.timestamp).toLocaleTimeString()}]
       </td>
       <td className="py-2 px-3">
-        <span className="bg-slate-800 text-emerald-400 px-2 py-0.5 rounded-none border border-emerald-500/20 font-bold text-[9px] tracking-tighter">
+        <span className="bg-slate-800 text-emerald-400 px-2 py-0.5 rounded-none border border-emerald-500/20 font-bold text-[9px] tracking-tighter text-nowrap">
           {event.actor}
         </span>
       </td>
@@ -102,7 +102,7 @@ export default function AuditVaultPage(dict: AuditVaultProps) {
               <thead className="bg-slate-900/50 text-slate-300 text-[10px] uppercase tracking-widest font-bold border-b border-slate-800 sticky top-0">
                 <tr>
                   <th className="py-3 px-3 w-[120px]">{t.terminal.timestamp}</th>
-                  <th className="py-3 px-3 w-[150px]">{t.terminal.actorId}</th>
+                  <th className="py-3 px-3 w-[170px]">{t.terminal.actorId}</th>
                   <th className="py-3 px-3 w-[150px]">{t.terminal.action}</th>
                   <th className="py-3 px-3 w-[100px]">{t.terminal.status}</th>
                   <th className="py-3 px-3">{t.terminal.details}</th>
