@@ -10,6 +10,7 @@ export const FHIRMedicationRequestSchema = z.object({
   resourceType: z.literal('MedicationRequest'),
   id: z.string(),
   status: z.string(),
+  intent: z.string(),
   subject: z.object({
     reference: z.string(),
     display: z.string(),

@@ -25,6 +25,7 @@ const VALID_PAYLOAD = {
   "resourceType": "MedicationRequest",
   "id": "e-rezept-7721-abc",
   "status": "active",
+  "intent": "order",
   "subject": {
     "reference": "Patient/PAT-9921",
     "display": "Max Mustermann",
@@ -56,6 +57,7 @@ const INVALID_PAYLOAD = {
   "resourceType": "MedicationRequest",
   "id": "e-rezept-7721-abc",
   "status": "active",
+  "intent": "order",
   "subject": {
     "reference": "Patient/PAT-9921",
     "display": "Max Mustermann",
