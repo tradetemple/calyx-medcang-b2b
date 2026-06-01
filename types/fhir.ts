@@ -1,13 +1,19 @@
 import { z } from 'zod';
 
+const FHIRExtensionSchema = z.object({
+  url: z.string(),
+  valueDate: z.string().optional(),
+  valueBoolean: z.boolean().optional()
+});
+
 export const FHIRMedicationRequestSchema = z.object({
   resourceType: z.literal('MedicationRequest'),
   id: z.string(),
   status: z.string(),
   subject: z.object({
+    reference: z.string(),
     display: z.string(),
-    id: z.string(),
-    last_in_person_consultation: z.string(),
+    extension: z.array(FHIRExtensionSchema).optional(),
   }),
   medicationCodeableConcept: z.object({
     coding: z.array(z.object({
@@ -22,7 +28,7 @@ export const FHIRMedicationRequestSchema = z.object({
   }),
   requester: z.object({
     display: z.string(),
-    qes_verified: z.boolean()
+    extension: z.array(FHIRExtensionSchema).optional(),
   })
 });
 

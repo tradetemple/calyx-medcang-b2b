@@ -26,9 +26,14 @@ const VALID_PAYLOAD = {
   "id": "e-rezept-7721-abc",
   "status": "active",
   "subject": {
+    "reference": "Patient/PAT-9921",
     "display": "Max Mustermann",
-    "id": "PAT-9921",
-    "last_in_person_consultation": "2026-03-15"
+    "extension": [
+      {
+        "url": "https://calyx.thelynx.ai/fhir/StructureDefinition/last-consultation",
+        "valueDate": "2026-03-15"
+      }
+    ]
   },
   "medicationCodeableConcept": {
     "coding": [{ "display": "IUVO ICC 30/1" }]
@@ -38,7 +43,12 @@ const VALID_PAYLOAD = {
   },
   "requester": {
     "display": "Dr. Elena Schmidt",
-    "qes_verified": true
+    "extension": [
+      {
+        "url": "https://calyx.thelynx.ai/fhir/StructureDefinition/qes-verified",
+        "valueBoolean": true
+      }
+    ]
   }
 };
 
@@ -47,9 +57,14 @@ const INVALID_PAYLOAD = {
   "id": "e-rezept-7721-abc",
   "status": "active",
   "subject": {
+    "reference": "Patient/PAT-9921",
     "display": "Max Mustermann",
-    "id": "PAT-9921",
-    "last_in_person_consultation": "2025-01-10"
+    "extension": [
+      {
+        "url": "https://calyx.thelynx.ai/fhir/StructureDefinition/last-consultation",
+        "valueDate": "2025-01-10"
+      }
+    ]
   },
   "medicationCodeableConcept": {
     "coding": [{ "display": "IUVO ICC 30/1" }]
@@ -59,7 +74,12 @@ const INVALID_PAYLOAD = {
   },
   "requester": {
     "display": "Dr. Elena Schmidt",
-    "qes_verified": false 
+    "extension": [
+      {
+        "url": "https://calyx.thelynx.ai/fhir/StructureDefinition/qes-verified",
+        "valueBoolean": false
+      }
+    ]
   }
 };
 
@@ -101,25 +121,36 @@ export default function TelemedicineClient(dict: telemedicineProps) {
         parsedData = validation.data;
 
         const today = new Date('2026-05-22');
-        const lastConsultation = new Date(parsedData.subject.last_in_person_consultation);
+        const consultationExt = parsedData.subject.extension?.find(
+          (ext: any) => ext.url.includes('last-consultation')
+        );
+        const qesExt = parsedData.requester.extension?.find(
+          (ext: any) => ext.url.includes('qes-verified')
+        );
+
+        const lastConsultation = new Date(consultationExt?.valueDate || '1970-01-01');
         const diffTime = Math.abs(today.getTime() - lastConsultation.getTime());
         const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        
+
         compliance.consultationValid = diffDays <= 365;
-        compliance.qesVerified = parsedData.requester.qes_verified;
+        compliance.qesVerified = qesExt ? qesExt.valueBoolean : false;
         
         compliance.allPassed = compliance.fhirValid && compliance.qesVerified && compliance.consultationValid;
 
         if (compliance.allPassed) {
           addLog(
             t.handleTriage.fhirValidation, 
-            t.handleTriage.allPassed.replace('{parsedData.id}', parsedData.id).replace('{parsedData.subject.id}', parsedData.subject.id).replace('{parsedData.dispenseRequest.quantity.value}', parsedData.dispenseRequest.quantity.value.toString()), 
+            t.handleTriage.allPassed
+              .replace('{parsedData.id}', parsedData.id)
+              .replace('{parsedData.subject.id}', parsedData.subject.reference)
+              .replace('{parsedData.dispenseRequest.quantity.value}', parsedData.dispenseRequest.quantity.value.toString()), 
             t.handleTriage.success
           );
         } else {
           addLog(
             t.handleTriage.fhirValidation, 
-            t.handleTriage.notPassed.replace('{parsedData.subject.id}', parsedData.subject.id),
+            t.handleTriage.notPassed
+              .replace('{parsedData.subject.id}', parsedData.subject.reference),
             t.handleTriage.failure
           );
         }
@@ -224,7 +255,7 @@ export default function TelemedicineClient(dict: telemedicineProps) {
                       {triageResult.data ? (
                         <div>
                           <p className="text-lg font-bold text-slate-900 leading-tight">{triageResult.data.subject.display}</p>
-                          <p className="text-sm font-mono text-slate-500">{triageResult.data.subject.id}</p>
+                          <p className="text-sm font-mono text-slate-500">{triageResult.data.subject.reference}</p>
                         </div>
                       ) : (
                         <p className="text-sm text-slate-600 italic">{t.rightColumn.noData}</p>
@@ -268,7 +299,7 @@ export default function TelemedicineClient(dict: telemedicineProps) {
                       <ChecklistRow 
                         label={t.rightColumn.consultationCheck}
                         passed={triageResult.compliance.consultationValid} 
-                        detail={triageResult.data ? `${t.rightColumn.lastSeen} ${triageResult.data.subject.last_in_person_consultation}` : undefined}
+                        detail={triageResult.data ? `${t.rightColumn.lastSeen} ${triageResult.data.subject.extension?.find(e => e.url.includes('last-consultation'))?.valueDate || 'Unknown'}` : undefined}
                         dict={checklistDict}
                       />
                     </div>
