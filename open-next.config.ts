@@ -1,13 +1,6 @@
 import { defineCloudflareConfig } from "@opennextjs/cloudflare";
-import r2IncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/r2-incremental-cache";
-import { withRegionalCache } from "@opennextjs/cloudflare/overrides/incremental-cache/regional-cache";
-import memoryQueue from "@opennextjs/cloudflare/overrides/queue/memory-queue";
+import kvIncrementalCache from "@opennextjs/cloudflare/overrides/incremental-cache/kv-incremental-cache"; // Import the KV override [1.1.5]
 
 export default defineCloudflareConfig({
-  incrementalCache: withRegionalCache(r2IncrementalCache, {
-    mode: "long-lived"
-  }),
-  
-  tagCache: "dummy",
-  queue: memoryQueue
+  incrementalCache: kvIncrementalCache, // Binds "use cache" directly to Cloudflare KV [1.1.5]
 });

@@ -21,10 +21,6 @@ assets = { directory = ".open-next/assets", binding = "ASSETS" }
 binding = "NEXT_CACHE_WORKERS_KV"
 id = "836fad400aff4a9d8aeae85c49e03904"
 
-[[r2_buckets]]
-bucket_name = "next-inc-cache"
-binding = "NEXT_INC_CACHE_R2_BUCKET"
-
 # Observability (optional)
 [observability]
 enabled = true
