@@ -18,7 +18,7 @@ assets = { directory = ".open-next/assets", binding = "ASSETS" }
 # - etc.
 
 [[kv_namespaces]]
-"binding": "NEXT_INC_CACHE_KV",
+"binding": "KV_BINDING",
 "id": "836fad400aff4a9d8aeae85c49e03904"
 
 # Observability (optional)
